@@ -1,0 +1,10 @@
+coluna,knn_escolhido,melhor_metodo_validacao,NRMSE_validacao_knn,NRMSE_validacao_linear,limite_linear_aplicado_dias,maior_bloco_validado_dias,dias_lineares,dias_knn
+Active_Energy_Delivered_Received,knn_7,linear,0.04022019681182434,0.003975115850279309,30,30,24,1
+Current_Phase_Average,knn_7,knn_7,0.8828889312869679,0.9200606127376441,2,30,2,23
+Active_Power,knn_7,knn_7,0.9338344953400283,1.0252588223075851,2,30,2,23
+Wind_Speed,knn_3,linear,0.7141019198939939,0.6649205678316087,30,30,15,208
+Weather_Temperature_Celsius,knn_7,knn_7,0.7214680925998654,0.8017675405259993,2,30,6,217
+Global_Horizontal_Radiation,knn_5,linear,0.03550770047703835,0.03548985401624421,30,30,15,208
+Wind_Direction,knn_3,linear,0.0,0.0,30,30,15,208
+Weather_Daily_Rainfall,knn_3,linear,0.9695151854846351,0.8843015036241053,30,30,15,208
+Radiation_Global_Tilted,knn_7,knn_7,0.35432986246284853,0.39700164884733047,2,30,6,217

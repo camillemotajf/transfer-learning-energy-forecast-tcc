@@ -1,0 +1,13 @@
+coluna,dias_observados,faltantes_antes_pct,maior_lacuna_dias,dias_interpolados,dias_knn,faltantes_depois_pct,estimados_pct,dias_estimados_alem_validacao
+Active_Energy_Delivered_Received,338,6.887052341597796,22,24,1,0.0,6.887052341597796,0
+Current_Phase_Average,338,6.887052341597796,22,2,23,0.0,6.887052341597796,0
+Active_Power,338,6.887052341597796,22,2,23,0.0,6.887052341597796,0
+Wind_Speed,140,61.43250688705234,208,15,208,0.0,61.43250688705234,208
+Weather_Temperature_Celsius,140,61.43250688705234,208,6,217,0.0,61.43250688705234,208
+Weather_Relative_Humidity,0,100.0,363,0,0,100.0,0.0,0
+Global_Horizontal_Radiation,140,61.43250688705234,208,15,208,0.0,61.43250688705234,208
+Diffuse_Horizontal_Radiation,0,100.0,363,0,0,100.0,0.0,0
+Wind_Direction,140,61.43250688705234,208,15,208,0.0,61.43250688705234,208
+Weather_Daily_Rainfall,140,61.43250688705234,208,15,208,0.0,61.43250688705234,208
+Radiation_Global_Tilted,140,61.43250688705234,208,6,217,0.0,61.43250688705234,208
+Radiation_Diffuse_Tilted,0,100.0,363,0,0,100.0,0.0,0
