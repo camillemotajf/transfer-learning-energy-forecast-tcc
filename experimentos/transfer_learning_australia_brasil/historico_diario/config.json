@@ -1,0 +1,31 @@
+{
+  "horizonte_dias": 1,
+  "variaveis": ["Active_Power", "Weather_Temperature_Celsius", "Weather_Relative_Humidity", "Global_Horizontal_Radiation", "dia_ano_sin", "dia_ano_cos"],
+  "lags": [1, 3],
+  "seeds": [42, 7, 21, 84, 123],
+  "arquiteturas": ["mlp_direta", "mlp_residual", "lstm_direta"],
+  "metodos": ["sem_ajuste", "cabeca", "completo", "local"],
+  "capacidade_ac_kw": {"australia": 24.0, "brasil": 1000.0},
+  "fim_treino_australia": "2022-12-31",
+  "fim_validacao_australia": "2023-12-31",
+  "fim_treino_brasil": "2025-09-30",
+  "fim_validacao_brasil": "2025-10-31",
+  "fim_teste_brasil": "2025-12-31",
+  "limite_ffill_australia_dias": 2,
+  "limites_operacionais": {
+    "Weather_Temperature_Celsius": [-20.0, 60.0],
+    "Weather_Relative_Humidity": [0.0, 100.0],
+    "Global_Horizontal_Radiation": [0.0, 600.0]
+  },
+  "treinamento": {
+    "epocas_fonte": 150, "paciencia_fonte": 20,
+    "epocas_brasil": 200, "paciencia_brasil": 30,
+    "melhoria_minima": 0.00001,
+    "lr_fonte": 0.001, "lr_cabeca": 0.001, "lr_completo": 0.0001, "lr_local": 0.001,
+    "batch_fonte": 64, "batch_brasil": 16,
+    "weight_decay": 0.0001, "threads_cpu": 2,
+    "mlp_unidades": [32, 16], "lstm_unidades": 16
+  },
+  "escopo": "Experimento retrospectivo diário. ERA5 histórica não representa informação meteorológica operacional disponível em tempo real.",
+  "lag_7": "Referência anterior preservada em australia_deep_learning; não comparável numericamente sem igualar entradas e datas. Aqui priorizamos lags 1 e 3 para conservar janelas brasileiras."
+}

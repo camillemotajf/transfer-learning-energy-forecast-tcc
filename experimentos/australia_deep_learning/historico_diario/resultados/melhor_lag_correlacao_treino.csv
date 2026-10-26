@@ -1,0 +1,11 @@
+variavel,lag_dias,pares_treino,spearman_treino
+Active_Power,1,3413,0.8440602151430708
+Radiation_Global_Tilted,1,3084,0.2823606649949517
+Global_Horizontal_Radiation,1,3416,0.2805399054412338
+dia_ano_cos,1,3419,0.207068144940446
+Weather_Temperature_Celsius,10,3389,0.18829272491165785
+Radiation_Diffuse_Tilted,1,3231,-0.15728152272224072
+Diffuse_Horizontal_Radiation,10,3394,0.1307823167354915
+Weather_Relative_Humidity,1,3416,-0.12322120353151167
+Weather_Daily_Rainfall,1,3416,-0.09771640978380215
+dia_ano_sin,14,3406,-0.09228722944091766

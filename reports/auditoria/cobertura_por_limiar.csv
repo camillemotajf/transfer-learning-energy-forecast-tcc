@@ -1,0 +1,15 @@
+cenario,cobertura_minima_pct,dias_cobertura_24h,dias_cobertura_diurna,dias_diurna_poslinear15,dias_com_estacao_e_potencia_diurnas,dias_conjuntos_poslinear15
+filtro_FX,50,315,328,329,123,123
+filtro_FX,75,278,303,310,110,111
+filtro_FX,80,271,298,306,109,110
+filtro_FX,90,207,216,288,98,104
+filtro_FX,95,73,100,273,25,98
+filtro_FX,99,6,48,261,0,97
+filtro_FX,100,4,30,260,0,97
+identidade,50,344,357,358,123,123
+identidade,75,303,331,338,110,111
+identidade,80,295,326,334,109,110
+identidade,90,230,241,314,98,104
+identidade,95,73,118,298,25,98
+identidade,99,6,48,284,0,97
+identidade,100,4,30,280,0,97

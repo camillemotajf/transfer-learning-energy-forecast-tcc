@@ -1,0 +1,16 @@
+{
+  "arquitetura": "lstm",
+  "seed": 42,
+  "melhor_epoca": 34,
+  "epocas_executadas": 64,
+  "parametros": 1555,
+  "segundos": 3.065411700052209,
+  "pre_treinamento": false,
+  "dominio_treinamento": "brasil",
+  "dispositivo": "CPU",
+  "residual_persistencia": false,
+  "estado_recorrente_persistente": false,
+  "teste_usado_na_selecao": false,
+  "assinatura": "72b36d7445194b8eed9addaadb3d840be94b8f7133e66227d1041b186172ec8e",
+  "checkpoint_sha256": "6cf230645f9e9895c6af6ff78d10e8a859991bf9e99c33ed89ad7e127f80dd38"
+}

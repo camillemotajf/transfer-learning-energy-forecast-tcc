@@ -1,0 +1,7 @@
+variavel,esperados,faltantes,faltantes_diurnos,maior_lacuna_min,faltantes_pct
+Active_Power_original,105120,15097,5407,3270,14.361681887366819
+Global_Horizontal_Radiation,105120,288,157,1440,0.273972602739726
+Weather_Relative_Humidity,105120,288,157,1440,0.273972602739726
+Weather_Temperature_Celsius,105120,288,157,1440,0.273972602739726
+ghi_estacao_original_escala_nao_validada,105120,71737,35316,301065,68.24296042617961
+temperatura_estacao_original,105120,71737,35316,301065,68.24296042617961

@@ -1,0 +1,31 @@
+{
+  "resolucao": "5min",
+  "horizonte_minutos": 5,
+  "particoes": 12,
+  "checkpoints_brasil_recarregados": 120,
+  "alvos_somente_medidos": true,
+  "persistencia_t_menos_5min_medida": true,
+  "janelas_conferidas": true,
+  "escalas_so_fonte_treino": true,
+  "encoder_congelado_preservado": true,
+  "notebooks_executados": [
+    "notebooks\\00_guia_do_projeto.ipynb",
+    "notebooks\\01_australia_base_diaria.ipynb",
+    "notebooks\\02_brasil_auditoria_original.ipynb",
+    "notebooks\\03_brasil_base_observada.ipynb",
+    "notebooks\\04_brasil_meteorologia_publica.ipynb",
+    "notebooks\\05_brasil_base_final.ipynb",
+    "notebooks\\06_planejamento_transfer_learning.ipynb",
+    "experimentos\\australia_deep_learning\\notebooks\\01_inputs_lags_e_faltantes.ipynb",
+    "experimentos\\australia_deep_learning\\notebooks\\02_treino_mlp.ipynb",
+    "experimentos\\australia_deep_learning\\notebooks\\03_treino_lstm.ipynb",
+    "experimentos\\australia_deep_learning\\notebooks\\04_comparacao_modelos.ipynb",
+    "experimentos\\australia_deep_learning\\notebooks\\05_mlp_correcao_persistencia.ipynb",
+    "experimentos\\transfer_learning_australia_brasil\\notebooks\\01_dados_contrato_e_blocos.ipynb",
+    "experimentos\\transfer_learning_australia_brasil\\notebooks\\02_pre_treino_australia.ipynb",
+    "experimentos\\transfer_learning_australia_brasil\\notebooks\\03_adaptacao_brasil.ipynb",
+    "experimentos\\transfer_learning_australia_brasil\\notebooks\\04_teste_comparacao_e_conclusao.ipynb"
+  ],
+  "testes_unittest_aprovados": 44,
+  "teste_cronos_excluido_da_migracao": true
+}

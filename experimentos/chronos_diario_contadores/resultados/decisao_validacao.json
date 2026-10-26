@@ -1,0 +1,15 @@
+{
+  "escolhido": {
+    "modelo": "portfolio_covariaveis",
+    "n": 26,
+    "MAE_kW": 40.68632776431548,
+    "RMSE_kW": 52.93547365292565,
+    "WAPE_pct": 16.078191650000225,
+    "Skill_RMSE_pct": 1.09325532940997,
+    "BIAS_kW": 3.931564734532276
+  },
+  "teste_usado_na_selecao": false,
+  "teste_previamente_consultado": true,
+  "criterio": "Menor RMSE nas 26 datas de outubro; held-out fora da selecao brasileira.",
+  "assinatura": "e2bf4d8bc82d3671df3c65a4f9fd976fbd527ec77167a51d7304535d767334b3"
+}

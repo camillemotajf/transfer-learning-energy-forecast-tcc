@@ -1,0 +1,96 @@
+{
+  "data_auditoria_cliente": "2026-10-25",
+  "experimento": "chronos_diario_contadores",
+  "australia": {
+    "linhas_brutas": 1256431,
+    "duplicatas_timestamp": 0,
+    "inicio_bruto": "2013-07-25 16:35:00",
+    "fim_bruto": "2025-08-23 05:55:00",
+    "dias_recebidos": 4378,
+    "inicio_diario_usado": "2013-07-25",
+    "fim_diario_usado": "2023-12-31",
+    "calendario_usado": 3812,
+    "dias_potencia_disponivel": 3778,
+    "faltantes_por_coluna": {
+      "Active_Power": 34,
+      "Weather_Temperature_Celsius": 25,
+      "Weather_Relative_Humidity": 20,
+      "Global_Horizontal_Radiation": 20,
+      "dia_ano_sin": 0,
+      "dia_ano_cos": 0
+    },
+    "max_diferenca_media_bruta_diaria": {
+      "Active_Power": 1.7763568394002505e-15,
+      "Weather_Temperature_Celsius": 7.105427357601002e-15,
+      "Weather_Relative_Humidity": 1.4210854715202004e-14,
+      "Global_Horizontal_Radiation": 5.684341886080802e-14
+    },
+    "max_diferenca_reconstrucao_pu": {
+      "Active_Power": 9.71445146547012e-17,
+      "Weather_Temperature_Celsius": 3.552713678800501e-15,
+      "Weather_Relative_Humidity": 3.552713678800501e-15,
+      "Global_Horizontal_Radiation": 5.684341886080802e-14,
+      "dia_ano_sin": 1.1102230246251565e-16,
+      "dia_ano_cos": 1.1102230246251565e-16
+    },
+    "cobertura_alvos": [
+      {
+        "particao": "treino",
+        "n": 3392,
+        "alvos_com_288_leituras": 3339,
+        "alvos_com_menos_95pct_leituras": 10,
+        "menor_numero_leituras": 145
+      },
+      {
+        "particao": "validacao",
+        "n": 352,
+        "alvos_com_288_leituras": 239,
+        "alvos_com_menos_95pct_leituras": 84,
+        "menor_numero_leituras": 97
+      }
+    ]
+  },
+  "brasil": {
+    "usina": "07-07FX",
+    "n_inversores": 8,
+    "equipamentos": [
+      "inverter121",
+      "inverter122",
+      "inverter123",
+      "inverter124",
+      "inverter125",
+      "inverter126",
+      "inverter127",
+      "inverter128"
+    ],
+    "registros_5min_2025": 680772,
+    "duplicatas_consolidadas": 52617,
+    "dias_validos": 284,
+    "dias_reprovados": 81,
+    "timezone": "America/Sao_Paulo",
+    "imputacao_diaria": false,
+    "regra": "daily max após 6h; total mediano <4h e >=19h; 0<=e1<=1600, e2>=0, |e1-e2|<=max(8,0.03*e1); oito consistentes",
+    "meteorologia": "ERA5 diário homogêneo; estação local não participa das três entradas meteorológicas",
+    "dias_meteo_completa": 364,
+    "janelas_treino": 160,
+    "janelas_validacao": 26,
+    "janelas_teste": 44
+  },
+  "arquivos_sha256": {
+    "data\\raw\\australia\\87-Site_DKA-M9_A+C-Phases.csv": "adebe983a30f58c5900247308790ed0659de9fdff2a4fd59f6e464147e3c2d14",
+    "data\\raw\\australia\\base_diaria_australia.csv": "9c76c84cec5eee4dbc00c4f53d76cdfa242605950383dd83fede93143031f0dc",
+    "experimentos\\transfer_learning_australia_brasil\\historico_diario\\config.json": "8651c500d851370efc8d7b6a95e42572837872d8f611941c17ee0e5a8d6ef789",
+    "experimentos\\transfer_learning_australia_brasil\\historico_diario\\dados\\australia_pu.csv": "f77c3a43433544a4b721b2c5e47ecbd4a6b5fe347898442ffe2b6630d45379d0",
+    "data\\raw\\brasil\\Leopoldo-fixa-inv.csv": "598ede357558a5655894945c9d3aed845dd3fb5ed9e61e25d1f70cbec8611314",
+    "data\\processed\\brasil\\leopoldo_diario_contadores_auditado.csv": "658785023e225a8eb4dbae5717ec715adc8a4e06103bb832f3e32d7de846d2d8",
+    "data\\interim\\meteorologia\\meteorologia_era5_diaria.csv": "c27019581796ccc8b02bf2270c198b2f394609dc1ef5bb46108fdcad5b42196a",
+    "experimentos\\chronos_diario_contadores\\resultados\\particoes.csv": "40292b455d2a6277086d78ed12c81acd660a550fca1fe720321a30a18f424694",
+    "experimentos\\chronos_diario_contadores\\resultados\\benchmark_final.csv": "59e9c4835d42f74e5ce266fe74351d1db00899c42f6065851c932120331538a6",
+    "experimentos\\transfer_learning_australia_brasil\\historico_diario\\dados\\australia_lag3_treino.npz": "9dbcace1ed8e4da12c411d55378441869eafc7db0c330f4456dc3f4a098017a8",
+    "experimentos\\transfer_learning_australia_brasil\\historico_diario\\dados\\australia_lag3_validacao.npz": "b7c65eba55ee2fe8129c5a39f31ee21b06d88f9aa5cb570918d376c1236b20fb",
+    "experimentos\\chronos_diario_contadores\\dados\\brasil_lag3_treino.npz": "650933d426918d8956ca6eaf958d57e53f67fbea5cc2eb55a548a880e60e1f17",
+    "experimentos\\chronos_diario_contadores\\dados\\brasil_lag3_validacao.npz": "3d8536c76566ae69487aabfebd60732ba71cf7e79628a478b376f8ea17c2e32b",
+    "experimentos\\chronos_diario_contadores\\dados\\brasil_lag3_teste.npz": "d28160b9f405dec05ddb71cc90e402c317b6cfac578e3da1b019cb7311e8064a"
+  },
+  "alterou_bases_ou_modelos": false
+}

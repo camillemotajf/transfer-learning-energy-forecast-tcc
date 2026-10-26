@@ -1,0 +1,71 @@
+{
+  "alvo": "Active_Power",
+  "horizonte_dias": 1,
+  "emissao": "Após o fechamento do dia anterior ao alvo",
+  "grupo_selecionado": "meteo_com_poa",
+  "variaveis_por_passo": [
+    "Active_Power",
+    "Weather_Temperature_Celsius",
+    "Weather_Relative_Humidity",
+    "Global_Horizontal_Radiation",
+    "Diffuse_Horizontal_Radiation",
+    "Weather_Daily_Rainfall",
+    "Radiation_Global_Tilted",
+    "Radiation_Diffuse_Tilted",
+    "dia_ano_sin",
+    "dia_ano_cos"
+  ],
+  "lags_dias": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "lookback": 7,
+  "ordem_tensor": "amostra, tempo do mais antigo ao mais recente, variáveis na ordem declarada",
+  "shape_mlp": [
+    70
+  ],
+  "shape_lstm": [
+    7,
+    10
+  ],
+  "selecao": "Menor RMSE Ridge na validação comum; teste não participa. Proxy de seleção, não ótimo garantido para as redes.",
+  "n_alvos_validacao_comum": 336,
+  "fonte_sha256": "9c76c84cec5eee4dbc00c4f53d76cdfa242605950383dd83fede93143031f0dc",
+  "config_sha256": "a11424c275b389fcf7c5de832b048bbc3385a8860c1e1742c4c37002edbb5fc4",
+  "fim_treino": "2022-12-31",
+  "fim_validacao": "2023-12-31",
+  "x_media_treino": [
+    4.4340444505838,
+    21.429499889505678,
+    35.68959941489612,
+    266.9043603868812,
+    54.551418063106105,
+    0.29033627608717977,
+    285.09017660322144,
+    54.25805131417286,
+    -0.03251118503951257,
+    0.006085911959197872
+  ],
+  "x_escala_treino": [
+    1.9896471252556187,
+    7.68341691782612,
+    17.490658479292755,
+    81.55329190577598,
+    35.26263680981768,
+    1.8487423451103486,
+    77.99553912420184,
+    35.790025510104314,
+    0.7084563366989238,
+    0.7049791511201537
+  ],
+  "y_media_treino": 4.4340444505838,
+  "y_escala_treino": 1.9896471252556187,
+  "vento_excluido": true,
+  "unidade_alvo": "Unidade numérica da fonte; potência nominal/unidade física ainda precisam ser confirmadas",
+  "transferencia": "Reproduzir variáveis, ordem e lags no Brasil; ajustar escalas brasileiras somente no treino local. Padronização estatística não é potência por unidade de capacidade nominal."
+}

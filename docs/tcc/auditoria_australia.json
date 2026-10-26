@@ -1,0 +1,49 @@
+{
+  "linhas_brutas": 1256431,
+  "duplicatas_timestamp": 0,
+  "inicio_bruto": "2013-07-25 16:35:00",
+  "fim_bruto": "2025-08-23 05:55:00",
+  "dias_recebidos": 4378,
+  "inicio_diario_usado": "2013-07-25",
+  "fim_diario_usado": "2023-12-31",
+  "calendario_usado": 3812,
+  "dias_potencia_disponivel": 3778,
+  "faltantes_por_coluna": {
+    "Active_Power": 34,
+    "Weather_Temperature_Celsius": 25,
+    "Weather_Relative_Humidity": 20,
+    "Global_Horizontal_Radiation": 20,
+    "dia_ano_sin": 0,
+    "dia_ano_cos": 0
+  },
+  "max_diferenca_media_bruta_diaria": {
+    "Active_Power": 1.7763568394002505e-15,
+    "Weather_Temperature_Celsius": 7.105427357601002e-15,
+    "Weather_Relative_Humidity": 1.4210854715202004e-14,
+    "Global_Horizontal_Radiation": 5.684341886080802e-14
+  },
+  "max_diferenca_reconstrucao_pu": {
+    "Active_Power": 9.71445146547012e-17,
+    "Weather_Temperature_Celsius": 3.552713678800501e-15,
+    "Weather_Relative_Humidity": 3.552713678800501e-15,
+    "Global_Horizontal_Radiation": 5.684341886080802e-14,
+    "dia_ano_sin": 1.1102230246251565e-16,
+    "dia_ano_cos": 1.1102230246251565e-16
+  },
+  "cobertura_alvos": [
+    {
+      "particao": "treino",
+      "n": 3392,
+      "alvos_com_288_leituras": 3339,
+      "alvos_com_menos_95pct_leituras": 10,
+      "menor_numero_leituras": 145
+    },
+    {
+      "particao": "validacao",
+      "n": 352,
+      "alvos_com_288_leituras": 239,
+      "alvos_com_menos_95pct_leituras": 84,
+      "menor_numero_leituras": 97
+    }
+  ]
+}

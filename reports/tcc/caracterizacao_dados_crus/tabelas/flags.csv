@@ -1,0 +1,10 @@
+fonte,variavel,criterio,linhas_sinalizadas,denominador_linhas
+Austrália,Active_Power,Valor negativo (triagem; não removido),18675,1256431
+Austrália,Weather_Temperature_Celsius,Temperatura fora de −20 a 60 °C (triagem),3046,1256431
+Austrália,Weather_Relative_Humidity,Umidade fora de 0 a 100%,14548,1256431
+Austrália,Global_Horizontal_Radiation,Valor negativo (triagem; não removido),1,1256431
+Brasil — inversores,total_active_power_w,Valor negativo (triagem; não removido),0,733389
+Brasil — inversores,daily_power_yields_kwh,Valor negativo (triagem; não removido),0,733389
+Brasil — inversores,total_power_yields_kwh,Valor negativo (triagem; não removido),0,733389
+Brasil — estação,air_temperature_med,Temperatura fora de −20 a 60 °C (triagem),0,35535
+Brasil — estação,ghi_irr_med,Valor negativo (triagem; não removido),10987,35535

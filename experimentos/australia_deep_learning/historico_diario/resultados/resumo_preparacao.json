@@ -1,0 +1,71 @@
+{
+  "linhas_recebidas": 4378,
+  "dias_calendario": 4413,
+  "datas_ausentes": 35,
+  "alvos_ausentes_ou_invalidos": 37,
+  "alvos_imputados": 0,
+  "invalidos_por_variavel": {
+    "Active_Energy_Delivered_Received": 0,
+    "Current_Phase_Average": 0,
+    "Active_Power": 0,
+    "Wind_Speed": 0,
+    "Weather_Temperature_Celsius": 9,
+    "Weather_Relative_Humidity": 5,
+    "Global_Horizontal_Radiation": 0,
+    "Diffuse_Horizontal_Radiation": 0,
+    "Wind_Direction": 0,
+    "Weather_Daily_Rainfall": 0,
+    "Radiation_Global_Tilted": 2,
+    "Radiation_Diffuse_Tilted": 1
+  },
+  "limites": {
+    "Weather_Temperature_Celsius": [
+      -20.0,
+      60.0
+    ],
+    "Weather_Relative_Humidity": [
+      0.0,
+      100.0
+    ],
+    "Global_Horizontal_Radiation": [
+      0.0,
+      600.0
+    ],
+    "Diffuse_Horizontal_Radiation": [
+      0.0,
+      600.0
+    ],
+    "Weather_Daily_Rainfall": [
+      0.0,
+      null
+    ],
+    "Radiation_Global_Tilted": [
+      0.0,
+      600.0
+    ],
+    "Radiation_Diffuse_Tilted": [
+      0.0,
+      600.0
+    ]
+  },
+  "particoes": [
+    {
+      "particao": "treino",
+      "janelas": 2924,
+      "primeiro_alvo": "2013-08-07",
+      "ultimo_alvo": "2022-12-31"
+    },
+    {
+      "particao": "validacao",
+      "janelas": 336,
+      "primeiro_alvo": "2023-01-01",
+      "ultimo_alvo": "2023-12-31"
+    },
+    {
+      "particao": "teste",
+      "janelas": 565,
+      "primeiro_alvo": "2024-01-01",
+      "ultimo_alvo": "2025-08-23"
+    }
+  ]
+}

@@ -1,0 +1,378 @@
+{
+  "data": "2026-10-24",
+  "arquivos": [
+    {
+      "origem": "leopoldo/imputacao.py",
+      "destino": "src/energia_transfer/imputacao.py",
+      "sha256_antes": "d71f40b95447822b7434cace9a50e89135c1f8e9830df411ebb5c226bbfc48c3",
+      "bytes": 8952
+    },
+    {
+      "origem": "leopoldo/meteorologia_publica.py",
+      "destino": "src/energia_transfer/meteorologia_publica.py",
+      "sha256_antes": "6c82aba65c3c4412460b01a1eeac217ccfee673919bbd950dddec8fd17c7f293",
+      "bytes": 13182
+    },
+    {
+      "origem": "leopoldo/auditoria_base_original.py",
+      "destino": "src/energia_transfer/auditoria_base_original.py",
+      "sha256_antes": "8e44ab5078597571095b158543c43f9cef0b4cbfc2ba11e188e87d1ad91530bc",
+      "bytes": 27413
+    },
+    {
+      "origem": "leopoldo/base_consecutiva.py",
+      "destino": "src/energia_transfer/base_consecutiva.py",
+      "sha256_antes": "8ae906403a052593a2f8b4fb5bfb73ab59af162e9da67faa4c9d66a06449ec20",
+      "bytes": 27232
+    },
+    {
+      "origem": "leopoldo/Leopoldo-fixa-inv.csv",
+      "destino": "data/raw/brasil/Leopoldo-fixa-inv.csv",
+      "sha256_antes": "598ede357558a5655894945c9d3aed845dd3fb5ed9e61e25d1f70cbec8611314",
+      "bytes": 206075869
+    },
+    {
+      "origem": "leopoldo/Leopoldo-fixa-est.csv",
+      "destino": "data/raw/brasil/Leopoldo-fixa-est.csv",
+      "sha256_antes": "c51aaf7f7486c8af703bbaaa01c99105b1c5cbd3d73a9543ee93494fae3158be",
+      "bytes": 26664444
+    },
+    {
+      "origem": "australia/base_diaria_australia.csv",
+      "destino": "data/raw/australia/base_diaria_australia.csv",
+      "sha256_antes": "9c76c84cec5eee4dbc00c4f53d76cdfa242605950383dd83fede93143031f0dc",
+      "bytes": 890407
+    },
+    {
+      "origem": "australia/data.ipynb",
+      "destino": "notebooks/historico/australia_original.ipynb",
+      "sha256_antes": "806eb5eac243d47e4e149b86f4ecc7d7ef5fd0188ce92330b0c2c79537d4af4c",
+      "bytes": 142008
+    },
+    {
+      "origem": "leopoldo/data.ipynb",
+      "destino": "notebooks/historico/brasil_original.ipynb",
+      "sha256_antes": "05663927c9d4163b9c2a60e050f3cacbd7f82742be2ca2947033443634d03b2b",
+      "bytes": 2157022
+    },
+    {
+      "origem": "leopoldo/base_consecutiva.md",
+      "destino": "docs/base_consecutiva.md",
+      "sha256_antes": "5139264f497ea7a292868c4926bd9d4e9361d2418766cbfdce004f07122ea798",
+      "bytes": 5921
+    },
+    {
+      "origem": "leopoldo/bibliografia_imputacao.md",
+      "destino": "docs/bibliografia_imputacao.md",
+      "sha256_antes": "3f39f0b5944f57c17dd91a927cba56fb02641cb63bcb52522b7fe35319dc399a",
+      "bytes": 10569
+    },
+    {
+      "origem": "leopoldo/meteorologia_publica.md",
+      "destino": "docs/meteorologia_publica.md",
+      "sha256_antes": "55b1de3e776102d6257c7237bec2275a268c7cc03f750df0e56ae623e272d4c9",
+      "bytes": 7809
+    },
+    {
+      "origem": "leopoldo/respaldo_blocos_temporais.md",
+      "destino": "docs/respaldo_blocos_temporais.md",
+      "sha256_antes": "4bbb3b998d57d61fc1fc23bd01827d1ccd5ecbffdefde041841732d159c2d034",
+      "bytes": 11307
+    },
+    {
+      "origem": "leopoldo/respaldo_cientifico_imputacao.md",
+      "destino": "docs/respaldo_cientifico_imputacao.md",
+      "sha256_antes": "ef3183b7e2bfd9de527f4d4c76815ca96e83ca9d44c7d35ca8ce3bcb508124c8",
+      "bytes": 10317
+    },
+    {
+      "origem": "leopoldo/referencias_imputacao.bib",
+      "destino": "docs/referencias/referencias.bib",
+      "sha256_antes": "cfa60f186922cfd1563862bf0e001fdfd640dcf6744e62596b6f4a6d1af23fe4",
+      "bytes": 4487
+    },
+    {
+      "origem": "leopoldo/auditoria_original/alternativa_energia_por_contadores.csv",
+      "destino": "reports/auditoria/alternativa_energia_por_contadores.csv",
+      "sha256_antes": "65e5c20f8763a96c39a707e9b08527bc818b4af4a073ce9774b6ebf7e605fad2",
+      "bytes": 36862
+    },
+    {
+      "origem": "leopoldo/auditoria_original/analise_e_estrategia.md",
+      "destino": "docs/analise_e_estrategia.md",
+      "sha256_antes": "99e3e442240b6c410b15d3563099e1166ac50bf63031f97d869c3bcfe7ce7290",
+      "bytes": 13824
+    },
+    {
+      "origem": "leopoldo/auditoria_original/cobertura_por_limiar.csv",
+      "destino": "reports/auditoria/cobertura_por_limiar.csv",
+      "sha256_antes": "83781731ea4145e35d739f5cfa85bc0491ffa45cf89cd20a5581759b72090011",
+      "bytes": 611
+    },
+    {
+      "origem": "leopoldo/auditoria_original/faltantes_originais_por_dia.png",
+      "destino": "reports/figures/faltantes_originais_por_dia.png",
+      "sha256_antes": "5813531eb0a656343269eb5838e0662e6aad66996d9ffb6ca192336470bae42a",
+      "bytes": 358886
+    },
+    {
+      "origem": "leopoldo/auditoria_original/faltantes_por_dia.csv",
+      "destino": "reports/auditoria/faltantes_por_dia.csv",
+      "sha256_antes": "746ce791d790a11c0d62ce8d9920e94031c15a96a1e517075d85477009a0f344",
+      "bytes": 97861
+    },
+    {
+      "origem": "leopoldo/auditoria_original/faltantes_por_dia_filtro_FX.csv",
+      "destino": "reports/auditoria/faltantes_por_dia_filtro_FX.csv",
+      "sha256_antes": "d37d8605804f4b89270e871f873fd238bcac024cb6d1cbdfa68d084fdf682c67",
+      "bytes": 73452
+    },
+    {
+      "origem": "leopoldo/auditoria_original/faltantes_por_inversor_dia.csv",
+      "destino": "reports/auditoria/faltantes_por_inversor_dia.csv",
+      "sha256_antes": "ddabb25faef84f8e11df0e3ccf1810664fac0a10b5b7271f585cbe41932b0346",
+      "bytes": 307605
+    },
+    {
+      "origem": "leopoldo/auditoria_original/faltantes_por_variavel_dia.csv",
+      "destino": "reports/auditoria/faltantes_por_variavel_dia.csv",
+      "sha256_antes": "ec2c25b88865caaadd73ea90fe740e9cc13b5b15e3b43f3e01ea2b02def6a8fa",
+      "bytes": 471416
+    },
+    {
+      "origem": "leopoldo/auditoria_original/identidades_e_codigos.csv",
+      "destino": "reports/auditoria/identidades_e_codigos.csv",
+      "sha256_antes": "6d3cbe6e939ef0f71df21d8c4517db0b87e6e8460e8726563c1239f3791fa847",
+      "bytes": 1542
+    },
+    {
+      "origem": "leopoldo/auditoria_original/lacunas_continuas.csv",
+      "destino": "reports/auditoria/lacunas_continuas.csv",
+      "sha256_antes": "4bfdbecc7076d36dfb35e7830721fcd3b48e8324725bfee0596b218b6d938464",
+      "bytes": 4221713
+    },
+    {
+      "origem": "leopoldo/auditoria_original/mapa_faltantes_originais.png",
+      "destino": "reports/figures/mapa_faltantes_originais.png",
+      "sha256_antes": "93723e7697b3aa10d72cd8e5093cd0841f2e1b13931dda091c3eb59fc0b9619c",
+      "bytes": 70362
+    },
+    {
+      "origem": "leopoldo/auditoria_original/resumo_auditoria.json",
+      "destino": "reports/auditoria/resumo_auditoria.json",
+      "sha256_antes": "08479ceb97de7e050d8743f619dc05a32d5dba867a42ea505214f4aafa27bef7",
+      "bytes": 914
+    },
+    {
+      "origem": "leopoldo/auditoria_original/resumo_mensal.csv",
+      "destino": "reports/auditoria/resumo_mensal.csv",
+      "sha256_antes": "7cf4b1aa1b16923a758c848ed048769a60ca4823e952a1211cd2941835bc9850",
+      "bytes": 765
+    },
+    {
+      "origem": "leopoldo/auditoria_original/resumo_por_dia.csv",
+      "destino": "reports/auditoria/resumo_por_dia.csv",
+      "sha256_antes": "609959b6d019b703b16de3c6f63c1bb106c6a9b02ea0fec568e58ed80f8812ea",
+      "bytes": 27118
+    },
+    {
+      "origem": "leopoldo/auditoria_original/resumo_tamanhos_lacunas.csv",
+      "destino": "reports/auditoria/resumo_tamanhos_lacunas.csv",
+      "sha256_antes": "8ad50bdd9b4b4e7525da83f49e7319f06656b39131f45b277786c1a6c5dbc49b",
+      "bytes": 1912
+    },
+    {
+      "origem": "leopoldo/auditoria_original/validacao_lacunas_curtas.csv",
+      "destino": "reports/auditoria/validacao_lacunas_curtas.csv",
+      "sha256_antes": "4d105bf8f73e44bf955224d64cd2e2db36f0a654b818efe10d40bd1d5636fb27",
+      "bytes": 726
+    },
+    {
+      "origem": "leopoldo/auditoria_original/validacao_lacunas_curtas_detalhada.csv",
+      "destino": "reports/auditoria/validacao_lacunas_curtas_detalhada.csv",
+      "sha256_antes": "bad4cdc319847297caf4ef68341eb5308b3e9d913cf0cdf21620ed8a00bc310c",
+      "bytes": 212894
+    },
+    {
+      "origem": "leopoldo/dados_publicos/caracteristicas_usina.json",
+      "destino": "config/usina_leopoldo.json",
+      "sha256_antes": "3fd1a85c801e24e4d0a3807654cce983e8d12a4286af20cf20c341bc0c16269f",
+      "bytes": 1005
+    },
+    {
+      "origem": "leopoldo/dados_publicos/meteorologia_era5_horaria.csv",
+      "destino": "data/interim/meteorologia/meteorologia_era5_horaria.csv",
+      "sha256_antes": "ed6d48b0678f30af38f02072da7418fe62445eb9ef09dfa121a1377d323c4f76",
+      "bytes": 543833
+    },
+    {
+      "origem": "leopoldo/dados_publicos/open_meteo_era5_2025.json",
+      "destino": "data/external/era5/open_meteo_era5_2025.json",
+      "sha256_antes": "d8d8265470b3a04c1f7ae91afe8b0ff81ef3d58b952f941d2208b48a9c856758",
+      "bytes": 484122
+    },
+    {
+      "origem": "leopoldo/dados_publicos/open_meteo_era5_2025_metadados.json",
+      "destino": "data/external/era5/open_meteo_era5_2025_metadados.json",
+      "sha256_antes": "f3cd35acba393e9aad41e7578d4571c4fb05669be806df42f41eb1da8cf057eb",
+      "bytes": 1742
+    },
+    {
+      "origem": "leopoldo/dados_publicos/processamento_meteorologia.json",
+      "destino": "reports/exploratorio/meteorologia/processamento_meteorologia.json",
+      "sha256_antes": "de4e36576e9a5183f106cd2755d576e4666fe8fd9f6c284c81a725fe48a07d40",
+      "bytes": 2216
+    },
+    {
+      "origem": "leopoldo/base_diaria_leopoldo.csv",
+      "destino": "data/interim/exploratorio/base_diaria_leopoldo.csv",
+      "sha256_antes": "7beaca33d30fd54ba2a5bcc2c1794180dd52f1d1e1e37c098ceaa8465722f8ef",
+      "bytes": 37437
+    },
+    {
+      "origem": "leopoldo/base_diaria_leopoldo_comum_imputada.csv",
+      "destino": "data/interim/exploratorio/base_diaria_leopoldo_comum_imputada.csv",
+      "sha256_antes": "55495c529d262b2a8f455901decc36a23e0d08a75840713a84109afc3e8b9359",
+      "bytes": 56518
+    },
+    {
+      "origem": "leopoldo/base_diaria_leopoldo_consecutiva.csv",
+      "destino": "data/processed/brasil/base_diaria_leopoldo_consecutiva.csv",
+      "sha256_antes": "efd753bb3d9877bebfc7d77a622b5b24a9aa3af0553352d2063dc3ef7ed510d8",
+      "bytes": 9375
+    },
+    {
+      "origem": "leopoldo/base_diaria_leopoldo_dias_validos.csv",
+      "destino": "data/processed/brasil/base_diaria_leopoldo_dias_validos.csv",
+      "sha256_antes": "872bd0466924f6fec3faa7f48e675eb5f04e7d3aba0cccff276611a7e8c4c34d",
+      "bytes": 62289
+    },
+    {
+      "origem": "leopoldo/base_diaria_leopoldo_imputada.csv",
+      "destino": "data/interim/exploratorio/base_diaria_leopoldo_imputada.csv",
+      "sha256_antes": "c2f39638106f864e2e227cd8b9240d631175724a0eaa31a932366ff61d2f9af4",
+      "bytes": 57687
+    },
+    {
+      "origem": "leopoldo/base_diaria_leopoldo_meteo_homogenea.csv",
+      "destino": "data/interim/exploratorio/base_diaria_leopoldo_meteo_homogenea.csv",
+      "sha256_antes": "6dc0cf0713ff67013c669678768d7081477fa8023d6fb25b3aea455dd2b371b9",
+      "bytes": 75878
+    },
+    {
+      "origem": "leopoldo/base_diaria_leopoldo_meteo_publica.csv",
+      "destino": "data/interim/exploratorio/base_diaria_leopoldo_meteo_publica.csv",
+      "sha256_antes": "6d00e410d7ef1e138fa94872d18df1c358f1085a41f7356546ab05df84f1e1c9",
+      "bytes": 74331
+    },
+    {
+      "origem": "leopoldo/blocos_consecutivos_leopoldo.csv",
+      "destino": "reports/base_final/blocos_consecutivos_leopoldo.csv",
+      "sha256_antes": "dfb1998a1ded3115e4b8599c1f04f257d590a30bb31200852cddb40888a4eda0",
+      "bytes": 1363
+    },
+    {
+      "origem": "leopoldo/comparacao_era5_estacao.csv",
+      "destino": "reports/exploratorio/meteorologia/comparacao_era5_estacao.csv",
+      "sha256_antes": "9454554c9a13d1f17da6504efb6452e0d8c97a945c3f4370de7ce45579949596",
+      "bytes": 1108
+    },
+    {
+      "origem": "leopoldo/diagnostico_base_consecutiva.png",
+      "destino": "reports/figures/diagnostico_base_consecutiva.png",
+      "sha256_antes": "7e669aa5f42d2f14dcf4a204045e7dc0a2c8d28a8c624ec3eb8620864a02ee91",
+      "bytes": 354135
+    },
+    {
+      "origem": "leopoldo/diagnostico_imputacao_leopoldo.png",
+      "destino": "reports/figures/diagnostico_imputacao_leopoldo.png",
+      "sha256_antes": "1e91ee355e281614b8868b8753f7316ac4afc2efb64399615a21bd4e1e46f32b",
+      "bytes": 366061
+    },
+    {
+      "origem": "leopoldo/diagnostico_meteorologia_publica.png",
+      "destino": "reports/figures/diagnostico_meteorologia_publica.png",
+      "sha256_antes": "3369269d31b9ec255fe763423cda9ae5a4eeba8828b94ca82c53b94d2a0a79bc",
+      "bytes": 623863
+    },
+    {
+      "origem": "leopoldo/imputacoes_potencia_5min.csv.gz",
+      "destino": "reports/base_final/imputacoes_potencia_5min.csv.gz",
+      "sha256_antes": "fc39c35c83221fdd9ca0e396890979da484b3b2be6fd45290e0619dc82ac5b1d",
+      "bytes": 352565
+    },
+    {
+      "origem": "leopoldo/indicadores_imputacao_leopoldo.csv",
+      "destino": "reports/exploratorio/imputacao/indicadores_imputacao_leopoldo.csv",
+      "sha256_antes": "630b7dafb1b45dd676a81c97d1a1a3464e776c6f70085b3a7f9119e32869b221",
+      "bytes": 128382
+    },
+    {
+      "origem": "leopoldo/meteorologia_era5_diaria.csv",
+      "destino": "data/interim/exploratorio/meteorologia_era5_diaria.csv",
+      "sha256_antes": "91e47934c3b12b9899ee2a1534ee35bf45cbfabaef74434976e6def526e8d9b8",
+      "bytes": 68274
+    },
+    {
+      "origem": "leopoldo/metodos_imputacao_leopoldo.csv",
+      "destino": "reports/exploratorio/imputacao/metodos_imputacao_leopoldo.csv",
+      "sha256_antes": "4fefb7b3a45ba03625b83eac7b957f30078d1b890362ea74175a64212943978d",
+      "bytes": 909
+    },
+    {
+      "origem": "leopoldo/origens_meteorologia_publica.csv",
+      "destino": "reports/exploratorio/meteorologia/origens_meteorologia_publica.csv",
+      "sha256_antes": "404a91f88836154dd3158c952d7f394a0e2c1b23b836cd8a1f8c85daaa78afb7",
+      "bytes": 88231
+    },
+    {
+      "origem": "leopoldo/qualidade_diaria_base_consecutiva.csv",
+      "destino": "reports/base_final/qualidade_diaria_base_consecutiva.csv",
+      "sha256_antes": "dc20e8781bc77e4d4244d763cd9d00dc0c45c2b2bbeb76575c0593a32569dd7b",
+      "bytes": 69856
+    },
+    {
+      "origem": "leopoldo/relatorio_imputacao_leopoldo.csv",
+      "destino": "reports/exploratorio/imputacao/relatorio_imputacao_leopoldo.csv",
+      "sha256_antes": "7cc7bfe2c131f6d89cb64b4ec8132dacf0ad31767a33248015448e9e032a1073",
+      "bytes": 1041
+    },
+    {
+      "origem": "leopoldo/relatorio_meteorologia_publica.csv",
+      "destino": "reports/exploratorio/meteorologia/relatorio_meteorologia_publica.csv",
+      "sha256_antes": "800fe496b40d15dfc9f6389e1c8b8dc11569cd50bb8a7d1dde711c0faa088bbf",
+      "bytes": 727
+    },
+    {
+      "origem": "leopoldo/resumo_base_consecutiva.json",
+      "destino": "reports/base_final/resumo_base_consecutiva.json",
+      "sha256_antes": "c0681f2042cf29e88ce1fb4c3ff97d6e0d2a83746c447229b924918b6528277e",
+      "bytes": 4215
+    },
+    {
+      "origem": "leopoldo/sensibilidade_azimute_era5.csv",
+      "destino": "reports/exploratorio/meteorologia/sensibilidade_azimute_era5.csv",
+      "sha256_antes": "c4ed4d96b873a644282e6441ab8a01c6a648dbc4429a7b612bad16543f469ae0",
+      "bytes": 212
+    },
+    {
+      "origem": "leopoldo/sensibilidade_cobertura_base_consecutiva.csv",
+      "destino": "reports/base_final/sensibilidade_cobertura_base_consecutiva.csv",
+      "sha256_antes": "d92bca6ab1efceac6a9eca298ab56608b35ee93f3713553629a33dbdf52dfbae",
+      "bytes": 170
+    },
+    {
+      "origem": "leopoldo/validacao_imputacao_detalhada.csv",
+      "destino": "reports/exploratorio/imputacao/validacao_imputacao_detalhada.csv",
+      "sha256_antes": "49cd54166e7ab22e4c2b30f4fa63d1463ebf6aa513227b462687033e95481b90",
+      "bytes": 47321
+    },
+    {
+      "origem": "leopoldo/validacao_imputacao_leopoldo.csv",
+      "destino": "reports/exploratorio/imputacao/validacao_imputacao_leopoldo.csv",
+      "sha256_antes": "0718d4f671bedba9c40e30cfc513f7a9c31a19719a451f333a8c8b795b1397cd",
+      "bytes": 9539
+    }
+  ],
+  "observacao": "SHA-256 conferido imediatamente antes e depois de cada movimentação; ajustes posteriores de código e links são intencionais."
+}

@@ -1,0 +1,56 @@
+{
+  "usina": "07-07FX",
+  "n_inversores": 8,
+  "equipamentos": [
+    "inverter121",
+    "inverter122",
+    "inverter123",
+    "inverter124",
+    "inverter125",
+    "inverter126",
+    "inverter127",
+    "inverter128"
+  ],
+  "registros_5min_2025": 680772,
+  "duplicatas_consolidadas": 52617,
+  "dias_validos": 284,
+  "dias_reprovados": 81,
+  "timezone": "America/Sao_Paulo",
+  "imputacao_diaria": false,
+  "regra": "daily max após 6h; total mediano <4h e >=19h; 0<=e1<=1600, e2>=0, |e1-e2|<=max(8,0.03*e1); oito consistentes",
+  "arquivo_inversores": "data/raw/brasil/Leopoldo-fixa-inv.csv",
+  "nome_mencionado_no_codigo_usuario": "Leopoldo-fixa-inv(1).csv (não localizado; usado CSV original do projeto)",
+  "dias_base_anterior": 297,
+  "dias_recuperados": 33,
+  "dias_so_base_anterior": 46,
+  "janelas_sem_meteo_passada": 0,
+  "particoes": [
+    {
+      "dominio": "brasil",
+      "particao": "treino",
+      "n": 160,
+      "dias_validos": 202,
+      "janelas_so_contadores": 160,
+      "inicio": "2025-02-02",
+      "fim": "2025-09-30"
+    },
+    {
+      "dominio": "brasil",
+      "particao": "validacao",
+      "n": 26,
+      "dias_validos": 29,
+      "janelas_so_contadores": 26,
+      "inicio": "2025-10-01",
+      "fim": "2025-10-31"
+    },
+    {
+      "dominio": "brasil",
+      "particao": "teste",
+      "n": 44,
+      "dias_validos": 53,
+      "janelas_so_contadores": 44,
+      "inicio": "2025-11-01",
+      "fim": "2025-12-31"
+    }
+  ]
+}

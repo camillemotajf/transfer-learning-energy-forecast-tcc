@@ -1,0 +1,27 @@
+{
+  "base_do_notebook": "contadores_07-07FX_2025",
+  "notebook_sha256": "2f80e812518ae0d40c23aba555ee62087351a3467cb7c70cdb5e8a388c268619",
+  "celulas_codigo_executadas": 9,
+  "imagens_embutidas": 8,
+  "erros_no_notebook": 0,
+  "adaptadores_verificados": [
+    "individual",
+    "individual_covariaveis",
+    "portfolio",
+    "portfolio_covariaveis",
+    "transferencia_sem_brasil"
+  ],
+  "pesos_base_preservados": true,
+  "dias_validos": 284,
+  "dias_reprovados": 81,
+  "janelas_treino": 160,
+  "janelas_validacao": 26,
+  "janelas_teste": 44,
+  "codigo_enviado_reproduzido_numericamente": true,
+  "testes_unitarios_chronos_aprovados": 10,
+  "metricas_recalculadas_das_previsoes": true,
+  "fontes_sha256_verificados": true,
+  "benchmark_verificado": true,
+  "checkpoints_locais_verificados": 10,
+  "testes_unitarios_benchmark_aprovados": 4
+}

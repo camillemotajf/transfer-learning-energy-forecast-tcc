@@ -1,0 +1,25 @@
+{
+  "motivo": "Corrigir descrições diárias herdadas nos metadados após a migração, sem refazer ou alterar treinamento.",
+  "contrato_anterior_sha256": "8f4620377df84cba02da9ddb11268d151c50c8bc59f11a06993cf411115b7fd0",
+  "contrato_atual_sha256": "d63cd46a62c0214c7eea2cce64e1cfd91d0b956c3c289526138ba7e149c7e3f5",
+  "pesos_bit_a_bit_preservados": 150,
+  "tensores_npz_inalterados": {
+    "dados\\australia_lag6_treino.npz": "d66c6dfb807e7d56b66d73b3f9a580ae1d947e815398e1617ed525c9e19619aa",
+    "dados\\australia_lag12_treino.npz": "218e5344b4047de4eae6caefe9b9b53da1bd87aa145ae4457b188992d53f4ddc",
+    "dados\\australia_lag6_validacao.npz": "6ec3c09d38f360942307b9f058e828cbf27c77753000c3f363f642f0ce254bf8",
+    "dados\\australia_lag12_validacao.npz": "7426dc5c2b7672ca4747cd085f963a8efaca909fc5a9ebe84db4d905a3973faa",
+    "dados\\australia_lag6_teste.npz": "6751cde9b0c7927afef4007b52d258cfbd1e37b3d9208135c6de1d318f9f910a",
+    "dados\\australia_lag12_teste.npz": "fad7e948f4462ec57505a0e1a7044f58e761853bdf6a4f65b847bdc03f3039b3",
+    "dados\\brasil_lag6_treino.npz": "336da4f823abf749d072a59fc4790bb632973904b2d40527e37ef3c7091e3f4a",
+    "dados\\brasil_lag12_treino.npz": "06a9d2fc4ffe05844bc9a745012c139bcf789312cad0c82d132dc7b63bfb8c97",
+    "dados\\brasil_lag6_validacao.npz": "54233b99f497df9d7a01f49cfa63d617b542683c83ccdab44704bbe7b8c70e9e",
+    "dados\\brasil_lag12_validacao.npz": "1cff7e6b5999483731a3b5d13fbc64a25780640b8a86a526dc59f550b105a120",
+    "dados\\brasil_lag6_teste.npz": "63161fe76ad08301a9464809e5ae0860009d077e04a00fbc16fc4e7f9ae54c0b",
+    "dados\\brasil_lag12_teste.npz": "a86f3e950690509aad41a519ee5bfcc942c7831438bd79167c32cab2f6612891",
+    "dados\\australia_lag12_teste_24h.npz": "b9997685f117cc4f5571f83a1b7716fdca830447134add80b68ee61d086436e3",
+    "dados\\australia_lag6_teste_24h.npz": "2b3064b080069a4eaf65d545abd1e0cd4ad44e10d1352d18312d1d41f0463b7d",
+    "dados\\brasil_lag12_teste_24h.npz": "d9c19fc6633247d77d6cf3a8fc4a3090d69cf4156423fae30be8c49e9f195136",
+    "dados\\brasil_lag6_teste_24h.npz": "2daba9615eca248f2d9206966eb011851db54c6ada85356509b5fa096ec868f3"
+  },
+  "ranking_validacao_inalterado": true
+}

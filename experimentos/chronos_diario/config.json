@@ -1,0 +1,79 @@
+{
+  "modelo": "amazon/chronos-2",
+  "revisao": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+  "frequencia": "D",
+  "contexto_passos": 3,
+  "horizonte_passos": 1,
+  "semente": 42,
+  "num_steps": 200,
+  "learning_rate": 2e-05,
+  "batch_origens": 8,
+  "batch_inferencia": 64,
+  "eval_steps": 25,
+  "paciencia": 4,
+  "janelas_checkpoint": 38,
+  "lora_config": {
+    "r": 8,
+    "lora_alpha": 16,
+    "target_modules": [
+      "self_attention.q",
+      "self_attention.k",
+      "self_attention.v",
+      "self_attention.o",
+      "output_patch_embedding.output_layer"
+    ]
+  },
+  "cenarios": [
+    {
+      "nome": "individual",
+      "dominios": [
+        "brasil"
+      ],
+      "calendario": false
+    },
+    {
+      "nome": "portfolio",
+      "dominios": [
+        "australia",
+        "brasil"
+      ],
+      "calendario": false
+    },
+    {
+      "nome": "individual_covariaveis",
+      "dominios": [
+        "brasil"
+      ],
+      "calendario": true
+    },
+    {
+      "nome": "portfolio_covariaveis",
+      "dominios": [
+        "australia",
+        "brasil"
+      ],
+      "calendario": true
+    },
+    {
+      "nome": "transferencia_sem_brasil",
+      "dominios": [
+        "australia"
+      ],
+      "calendario": true
+    }
+  ],
+  "artigo": "https://towardsdatascience.com/five-ways-to-fine-tune-chronos-2-the-time-series-foundation-model/",
+  "implementacao_autor": "https://github.com/ShuaiGuo16/chronos-2-forecasting/blob/main/02_chronos2_fine_tuning_building_demand.ipynb",
+  "natureza": "Piloto diario: media de potencia AC tratada; 151 janelas de treino, 19 de validacao e 23 de teste. Uma semente; sem preencher dias ausentes. Teste ja consultado em experimentos diarios anteriores.",
+  "colunas_covariaveis": [
+    "Weather_Temperature_Celsius",
+    "Weather_Relative_Humidity",
+    "Global_Horizontal_Radiation",
+    "dia_ano_sin",
+    "dia_ano_cos"
+  ],
+  "colunas_futuras": [
+    "dia_ano_sin",
+    "dia_ano_cos"
+  ]
+}

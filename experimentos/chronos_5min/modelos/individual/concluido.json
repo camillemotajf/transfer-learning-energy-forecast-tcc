@@ -1,0 +1,22 @@
+{
+  "parametros_treinaveis": 1206912,
+  "parametros_totais": 120684576,
+  "congelados_sha256_antes": "593542b2b6634f5c39a7558583fdf59f97a3aac944c79eb73fd4269166a0ee91",
+  "congelados_sha256_depois": "593542b2b6634f5c39a7558583fdf59f97a3aac944c79eb73fd4269166a0ee91",
+  "passos_executados": 1000,
+  "melhor_loss": 0.35438254475593567,
+  "melhor_checkpoint": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\experimentos\\chronos_5min\\modelos\\individual\\checkpoint-800",
+  "cenario": "individual",
+  "semente": 42,
+  "composicao": [
+    {
+      "dominio": "brasil",
+      "treino": 31874,
+      "validacao_checkpoint": 512
+    }
+  ],
+  "assinatura": "b6fa21ba84ad0a7855afa6f2335b8570260cfac314c092bf3da77dd2d29170b5",
+  "segundos": 777.3724038999062,
+  "memoria_cuda_max_mib": 1222.5595703125,
+  "adaptador_sha256": "6927acb62531bdfe093a0f5b74c918e372a05af02c61ad948bd1c3a077c57c82"
+}

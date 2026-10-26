@@ -1,0 +1,30 @@
+{
+  "modelo": "amazon/chronos-2",
+  "revisao": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+  "chronos_version": "2.3.2",
+  "torch_version": "2.14.1+cu126",
+  "dispositivo": "cuda",
+  "frequencia": "5min",
+  "contexto_passos": 12,
+  "horizonte_passos": 1,
+  "capacidade_kw": 1000.0,
+  "batch_janelas": 128,
+  "batch_modelo": 64,
+  "cross_learning": false,
+  "semente": 42,
+  "cenarios": {
+    "Chronos2_univariado": [],
+    "Chronos2_calendario": [
+      "hora_sin",
+      "hora_cos",
+      "dia_ano_sin",
+      "dia_ano_cos"
+    ]
+  },
+  "pos_processamento": "clip inferior em zero, sem teto",
+  "base_sha256": "ff1207c2501ca8d17f77dca56f8f7683e1b6ccf20fe9d139c38300b7a513f3d4",
+  "datas_sha256": "bb2394ff9acaef5bd3f43401d74345035fad2e5cdfa6c6bc638c1e38eef87020",
+  "n": 7668,
+  "inicio_teste": "2025-11-01 05:45:00",
+  "fim_teste": "2025-12-31 18:45:00"
+}

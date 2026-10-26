@@ -1,0 +1,124 @@
+{
+  "escopo": "Somente CSVs crus; Austrália integral 2013–2025; Brasil código 07-07FX em calendário de 2025",
+  "imputacao": false,
+  "correcao_de_valores": false,
+  "remocao_de_duplicatas": false,
+  "agregacao_de_alvos": false,
+  "denominadores": "288 intervalos [t,t+5min) por dia civil e equipamento; comparação separada com chaves de timestamp exato",
+  "disponibilidade": "Existência em intervalo de cinco minutos e de valor finito. Apenas máscaras de contagem; nenhum valor duplicado é consolidado e os timestamps crus são preservados.",
+  "ressalvas": [
+    "Grade civil completa é uma referência; bordas do arquivo e períodos anteriores ao início da aquisição não comprovam falha.",
+    "Valores negativos e fora das faixas de triagem permanecem nas estatísticas e distribuições.",
+    "Inventário de todas as colunas; estudo detalhado nas variáveis de potência, contadores e meteorologia, sem vento.",
+    "Umidade não aparece no arquivo da estação brasileira; ausência de variável não é perda de leituras.",
+    "GHI da estação brasileira conserva a escala do CSV; unidade/calibração pendentes de confirmação.",
+    "ERA5, bases diárias reconstruídas, normalização e filtros dos modelos não entram nesta análise."
+  ],
+  "fontes_sha256": {
+    "data\\raw\\australia\\87-Site_DKA-M9_A+C-Phases.csv": "adebe983a30f58c5900247308790ed0659de9fdff2a4fd59f6e464147e3c2d14",
+    "data\\raw\\brasil\\Leopoldo-fixa-inv.csv": "598ede357558a5655894945c9d3aed845dd3fb5ed9e61e25d1f70cbec8611314",
+    "data\\raw\\brasil\\Leopoldo-fixa-est.csv": "c51aaf7f7486c8af703bbaaa01c99105b1c5cbd3d73a9543ee93494fae3158be"
+  },
+  "codigo_sha256": "1732272e61e417167c5d8e583470b692c11c6613eb3a772d83f53b8d2d878d87",
+  "fontes": {
+    "australia": {
+      "fonte": "Austrália",
+      "arquivo": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\raw\\australia\\87-Site_DKA-M9_A+C-Phases.csv",
+      "linhas_arquivo": 1256431,
+      "linhas_selecionadas": 1256431,
+      "codigo_selecionado": null,
+      "codigos_no_arquivo": {},
+      "equipamentos": [
+        "sistema"
+      ],
+      "n_equipamentos": 1,
+      "inicio_registrado": "2013-07-25 16:35:00",
+      "fim_registrado": "2025-08-23 05:55:00",
+      "inicio_calendario": "2013-07-25",
+      "fim_calendario": "2025-08-23",
+      "dias_calendario": 4413,
+      "timestamps_invalidos": 0,
+      "equipamentos_ausentes": 0,
+      "linhas_fora_grade_5min": 0,
+      "linhas_fora_calendario": 0,
+      "chaves_repetidas": 0,
+      "linhas_excedentes_mesma_chave": 0,
+      "chaves_com_valores_distintos": 0,
+      "grade_esperada": 1270944,
+      "fuso": "Convenção do CSV; sem fuso explícito",
+      "dias_sem_qualquer_registro": 35,
+      "dias_com_grade_completa": 4176,
+      "dias_com_registros_parciais": 202
+    },
+    "brasil_inversores": {
+      "fonte": "Brasil — inversores",
+      "arquivo": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\raw\\brasil\\Leopoldo-fixa-inv.csv",
+      "linhas_arquivo": 793607,
+      "linhas_selecionadas": 733389,
+      "codigo_selecionado": "07-07FX",
+      "codigos_no_arquivo": {
+        "07-07FX": 733389,
+        "07-07TK-2": 60218
+      },
+      "equipamentos": [
+        "inverter121",
+        "inverter122",
+        "inverter123",
+        "inverter124",
+        "inverter125",
+        "inverter126",
+        "inverter127",
+        "inverter128"
+      ],
+      "n_equipamentos": 8,
+      "inicio_registrado": "2025-01-02 20:38:27.603000",
+      "fim_registrado": "2025-12-31 20:55:00",
+      "inicio_calendario": "2025-01-01",
+      "fim_calendario": "2025-12-31",
+      "dias_calendario": 365,
+      "timestamps_invalidos": 0,
+      "equipamentos_ausentes": 0,
+      "linhas_fora_grade_5min": 223941,
+      "linhas_fora_calendario": 0,
+      "chaves_repetidas": 7732,
+      "linhas_excedentes_mesma_chave": 27422,
+      "chaves_com_valores_distintos": 10,
+      "grade_esperada": 840960,
+      "fuso": "America/Sao_Paulo (apresentação de datetime UTC)",
+      "dias_sem_qualquer_registro": 19,
+      "dias_com_grade_completa": 6,
+      "dias_com_registros_parciais": 340
+    },
+    "brasil_estacao": {
+      "fonte": "Brasil — estação",
+      "arquivo": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\raw\\brasil\\Leopoldo-fixa-est.csv",
+      "linhas_arquivo": 35535,
+      "linhas_selecionadas": 35535,
+      "codigo_selecionado": "07-07FX",
+      "codigos_no_arquivo": {
+        "07-07FX": 35535
+      },
+      "equipamentos": [
+        "est_sols1"
+      ],
+      "n_equipamentos": 1,
+      "inicio_registrado": "2025-01-03 12:13:41.334000",
+      "fim_registrado": "2025-12-31 20:55:00",
+      "inicio_calendario": "2025-01-01",
+      "fim_calendario": "2025-12-31",
+      "dias_calendario": 365,
+      "timestamps_invalidos": 0,
+      "equipamentos_ausentes": 0,
+      "linhas_fora_grade_5min": 1494,
+      "linhas_fora_calendario": 0,
+      "chaves_repetidas": 250,
+      "linhas_excedentes_mesma_chave": 2144,
+      "chaves_com_valores_distintos": 180,
+      "grade_esperada": 105120,
+      "fuso": "America/Sao_Paulo (apresentação de datetime UTC)",
+      "dias_sem_qualquer_registro": 225,
+      "dias_com_grade_completa": 0,
+      "dias_com_registros_parciais": 140
+    }
+  }
+}

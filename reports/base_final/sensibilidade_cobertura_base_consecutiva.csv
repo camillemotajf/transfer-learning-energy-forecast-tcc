@@ -1,0 +1,4 @@
+cobertura_minima_pct,dias_elegiveis,maior_bloco_dias,inicio,fim
+90.0,313,43,2025-02-01,2025-03-15
+95.0,297,43,2025-02-01,2025-03-15
+99.0,255,23,2025-09-21,2025-10-13

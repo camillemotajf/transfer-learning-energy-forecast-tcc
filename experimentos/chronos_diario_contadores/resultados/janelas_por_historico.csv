@@ -1,0 +1,13 @@
+historico_dias,particao,janelas_so_contadores,janelas_modelo
+1,treino,184,184
+1,validacao,28,28
+1,teste,50,50
+3,treino,160,160
+3,validacao,26,26
+3,teste,44,44
+7,treino,128,128
+7,validacao,22,22
+7,teste,33,33
+14,treino,88,88
+14,validacao,16,16
+14,teste,22,22

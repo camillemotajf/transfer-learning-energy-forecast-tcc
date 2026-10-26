@@ -1,0 +1,5 @@
+# Usar o PyTorch CUDA ja instalado; nao substituir por uma variante CPU.
+chronos-forecasting==2.3.2
+peft==0.21.2
+transformers==5.20.2
+accelerate==1.15.0

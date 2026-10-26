@@ -1,0 +1,64 @@
+{
+  "escopo": "Reprodução do protocolo diário atual; sem alterar bases/modelos",
+  "australia_dias": 3812,
+  "brasil": {
+    "usina": "07-07FX",
+    "n_inversores": 8,
+    "equipamentos": [
+      "inverter121",
+      "inverter122",
+      "inverter123",
+      "inverter124",
+      "inverter125",
+      "inverter126",
+      "inverter127",
+      "inverter128"
+    ],
+    "registros_5min_2025": 680772,
+    "duplicatas_consolidadas": 52617,
+    "dias_validos": 284,
+    "dias_reprovados": 81,
+    "timezone": "America/Sao_Paulo",
+    "imputacao_diaria": false,
+    "regra": "daily max após 6h; total mediano <4h e >=19h; 0<=e1<=1600, e2>=0, |e1-e2|<=max(8,0.03*e1); oito consistentes"
+  },
+  "capacidades_ac_kw": {
+    "australia": 24.0,
+    "brasil": 1000.0
+  },
+  "limites_diarios": {
+    "Weather_Temperature_Celsius": [
+      -20.0,
+      60.0
+    ],
+    "Weather_Relative_Humidity": [
+      0.0,
+      100.0
+    ],
+    "Global_Horizontal_Radiation": [
+      0.0,
+      600.0
+    ]
+  },
+  "ffill_meteorologia_au_dias": 2,
+  "imputacao_potencia": false,
+  "meteorologia_br": "ERA5 homogêneo; sem combinação com estação",
+  "normalizacao": "Potência em p.u.; MLP/LSTM locais padronizam X/y somente com treino brasileiro. Chronos não recebe o padronizador externo.",
+  "codigo_sha256": "8aab1496eea6a9a9a5a631cfd91f3017d0f21f32e6ffed14ab687b00176e9ff1",
+  "fontes_sha256": {
+    "data\\raw\\australia\\87-Site_DKA-M9_A+C-Phases.csv": "adebe983a30f58c5900247308790ed0659de9fdff2a4fd59f6e464147e3c2d14",
+    "data\\raw\\australia\\base_diaria_australia.csv": "9c76c84cec5eee4dbc00c4f53d76cdfa242605950383dd83fede93143031f0dc",
+    "experimentos\\transfer_learning_australia_brasil\\historico_diario\\config.json": "8651c500d851370efc8d7b6a95e42572837872d8f611941c17ee0e5a8d6ef789",
+    "experimentos\\transfer_learning_australia_brasil\\historico_diario\\dados\\australia_pu.csv": "f77c3a43433544a4b721b2c5e47ecbd4a6b5fe347898442ffe2b6630d45379d0",
+    "data\\raw\\brasil\\Leopoldo-fixa-inv.csv": "598ede357558a5655894945c9d3aed845dd3fb5ed9e61e25d1f70cbec8611314",
+    "data\\processed\\brasil\\leopoldo_diario_contadores_auditado.csv": "658785023e225a8eb4dbae5717ec715adc8a4e06103bb832f3e32d7de846d2d8",
+    "data\\interim\\meteorologia\\meteorologia_era5_diaria.csv": "c27019581796ccc8b02bf2270c198b2f394609dc1ef5bb46108fdcad5b42196a",
+    "experimentos\\chronos_diario_contadores\\resultados\\benchmark_normalizacao.json": "988c37e7f44b868b980b04f204561cb691e81cf26612b89801b5901b49e5f9da",
+    "experimentos\\chronos_diario_contadores\\benchmark_config.json": "c8b93635a554fec14a712a86c2f41e5343a895284ba0c05e6147ae7b6d8df307",
+    "experimentos\\transfer_learning_australia_brasil\\historico_diario\\dados\\australia_lag3_treino.npz": "9dbcace1ed8e4da12c411d55378441869eafc7db0c330f4456dc3f4a098017a8",
+    "experimentos\\transfer_learning_australia_brasil\\historico_diario\\dados\\australia_lag3_validacao.npz": "b7c65eba55ee2fe8129c5a39f31ee21b06d88f9aa5cb570918d376c1236b20fb",
+    "experimentos\\chronos_diario_contadores\\dados\\brasil_lag3_treino.npz": "650933d426918d8956ca6eaf958d57e53f67fbea5cc2eb55a548a880e60e1f17",
+    "experimentos\\chronos_diario_contadores\\dados\\brasil_lag3_validacao.npz": "3d8536c76566ae69487aabfebd60732ba71cf7e79628a478b376f8ea17c2e32b",
+    "experimentos\\chronos_diario_contadores\\dados\\brasil_lag3_teste.npz": "d28160b9f405dec05ddb71cc90e402c317b6cfac578e3da1b019cb7311e8064a"
+  }
+}

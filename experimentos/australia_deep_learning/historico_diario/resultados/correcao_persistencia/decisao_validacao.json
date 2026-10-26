@@ -1,0 +1,52 @@
+{
+  "criterio": "Menor RMSE médio das cinco sementes na validação de 2023, incluindo persistência",
+  "RMSE_validacao": {
+    "MLP + persistência": 0.7212618258040147,
+    "MLP direta": 0.7288038933051272,
+    "Persistência": 0.8407196445435515
+  },
+  "melhor_por_validacao": "MLP + persistência",
+  "seleciona_melhor_seed": false,
+  "teste_usado_na_escolha": false,
+  "avaliacao_teste": "2024-2025 já foi inspecionado; resultados exploratórios, sem seleção por este período",
+  "configuracao": {
+    "seeds": [
+      42,
+      7,
+      21,
+      84,
+      123
+    ],
+    "formulacoes": [
+      "direta",
+      "residual"
+    ],
+    "objetivo": "Comparação pareada da mesma MLP, com e sem soma da persistência",
+    "hiperparametros": "Mesmos valores do treinamento em config.json; sem busca neste experimento",
+    "criterio": "Menor RMSE médio das cinco sementes na validação de 2023, incluindo persistência",
+    "teste": "2024-2025 já foi inspecionado; resultados exploratórios, sem seleção por este período"
+  },
+  "treinamento": {
+    "seed": 42,
+    "epocas_maximas": 150,
+    "paciencia": 20,
+    "melhoria_minima": 1e-05,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "threads_cpu": 2,
+    "mlp_unidades": [
+      32,
+      16
+    ],
+    "lstm_unidades": 16
+  },
+  "torch_version": "2.14.1+cpu",
+  "contrato_sha256": "121d5767b2b74dc7e4d32483ec788f3cb4c2654c11dd3993dc869a3ea0e017d7",
+  "config_experimento_sha256": "39d89ebe3d0f6dd35ea4a1cd6f550b9b17fca3e57caec1f1456da48e5d623fd6",
+  "particoes_sha256": {
+    "treino": "ca7cb421f8acea7ff0457cd358329f576ec6494b6733a14ea68a55e89cf0704b",
+    "validacao": "d0f84b7959ba875b725bc578207680fee0e6682e9c3812abe4a075274e9f6901",
+    "teste": "794c7941e2a91f564c7f4e0a0e84e789410886d5edd83f1fa9a93fbdabcb5828"
+  }
+}

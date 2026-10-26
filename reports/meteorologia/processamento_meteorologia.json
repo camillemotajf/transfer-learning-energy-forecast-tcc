@@ -1,0 +1,35 @@
+{
+  "ano": 2025,
+  "dias_calendario": 365,
+  "dias_com_todas_as_colunas_publicas": 364,
+  "sha256_bruto": "d8d8265470b3a04c1f7ae91afe8b0ff81ef3d58b952f941d2208b48a9c856758",
+  "fonte": "Copernicus ERA5, via Open-Meteo",
+  "geometria": {
+    "latitude": -16.55,
+    "longitude": -48.85,
+    "altitude_m": 927,
+    "geometria_confirmada": false,
+    "inclinacao_graus": 20,
+    "azimute_norte_horario_graus": 0,
+    "albedo": 0.3,
+    "fonte": {
+      "arquivo": "C:\\Users\\Camille\\Documents\\Artigos\\solar-enegy\\prev_trk_gen\\data\\Características da usina.xlsx",
+      "sha256": "a950c06ecf7ee03e64e194a854382d29419dbaefc1dad6eaf4cd2d5a1d6a2c52",
+      "aba": "Fixa",
+      "celulas": {
+        "B2": "L-O",
+        "B3": "20 º",
+        "B9": "20 º",
+        "E7": 0.3,
+        "E14": -16.55,
+        "E15": -48.85,
+        "E16": "927 m",
+        "K6": 8
+      }
+    },
+    "observacao": "Inclinação de 20° solicitada pelo usuário; orientação norte (0°) adotada como hipótese. B3 da planilha contém 20° sem convenção confirmada. Comparar azimutes 20° e 340° na análise de sensibilidade.",
+    "geometria_habilitada": true,
+    "confirmacao_usuario": "provavelmente é orientação norte o azimute, e pra considerar a inclinação de 20"
+  },
+  "observacao": "O cache começa em 02/01/2025; não há extrapolação para 01/01."
+}

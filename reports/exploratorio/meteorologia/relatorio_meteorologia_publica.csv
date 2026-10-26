@@ -1,0 +1,13 @@
+coluna,dias_observados,dias_ERA5,dias_imputacao_eletrica,faltantes_antes_pct,faltantes_depois_pct
+Active_Energy_Delivered_Received,338,0,25,6.887052341597796,0.0
+Current_Phase_Average,338,0,25,6.887052341597796,0.0
+Active_Power,338,0,25,6.887052341597796,0.0
+Wind_Speed,140,223,0,61.43250688705234,0.0
+Weather_Temperature_Celsius,140,223,0,61.43250688705234,0.0
+Weather_Relative_Humidity,0,363,0,100.0,0.0
+Global_Horizontal_Radiation,140,223,0,61.43250688705234,0.0
+Diffuse_Horizontal_Radiation,0,363,0,100.0,0.0
+Wind_Direction,140,223,0,61.43250688705234,0.0
+Weather_Daily_Rainfall,140,223,0,61.43250688705234,0.0
+Radiation_Global_Tilted,140,223,0,61.43250688705234,0.0
+Radiation_Diffuse_Tilted,0,363,0,100.0,0.0

@@ -1,0 +1,103 @@
+{
+  "best_global_step": 100,
+  "best_metric": 0.169125497341156,
+  "best_model_checkpoint": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\experimentos\\chronos_diario_contadores\\modelos\\transferencia_sem_brasil\\checkpoint-100",
+  "epoch": 0.5,
+  "eval_steps": 25,
+  "global_step": 100,
+  "is_hyper_param_search": false,
+  "is_local_process_zero": true,
+  "is_world_process_zero": true,
+  "log_history": [
+    {
+      "epoch": 0.125,
+      "grad_norm": 0.14423944056034088,
+      "learning_rate": 1.76e-05,
+      "loss": 0.17495428085327147,
+      "step": 25
+    },
+    {
+      "epoch": 0.125,
+      "eval_loss": 0.17108455300331116,
+      "eval_runtime": 1.6248,
+      "eval_samples_per_second": 140.322,
+      "eval_steps_per_second": 3.077,
+      "step": 25
+    },
+    {
+      "epoch": 0.25,
+      "grad_norm": 0.18792033195495605,
+      "learning_rate": 1.5100000000000001e-05,
+      "loss": 0.1754823684692383,
+      "step": 50
+    },
+    {
+      "epoch": 0.25,
+      "eval_loss": 0.169962540268898,
+      "eval_runtime": 0.9199,
+      "eval_samples_per_second": 247.856,
+      "eval_steps_per_second": 5.435,
+      "step": 50
+    },
+    {
+      "epoch": 0.375,
+      "grad_norm": 0.1714632660150528,
+      "learning_rate": 1.2600000000000001e-05,
+      "loss": 0.18830080032348634,
+      "step": 75
+    },
+    {
+      "epoch": 0.375,
+      "eval_loss": 0.1692415177822113,
+      "eval_runtime": 1.7275,
+      "eval_samples_per_second": 131.981,
+      "eval_steps_per_second": 2.894,
+      "step": 75
+    },
+    {
+      "epoch": 0.5,
+      "grad_norm": 0.14947658777236938,
+      "learning_rate": 1.0100000000000002e-05,
+      "loss": 0.1822378921508789,
+      "step": 100
+    },
+    {
+      "epoch": 0.5,
+      "eval_loss": 0.169125497341156,
+      "eval_runtime": 1.6598,
+      "eval_samples_per_second": 137.366,
+      "eval_steps_per_second": 3.012,
+      "step": 100
+    }
+  ],
+  "logging_steps": 25,
+  "max_steps": 200,
+  "num_input_tokens_seen": 0,
+  "num_train_epochs": 9223372036854775807,
+  "save_steps": 25,
+  "stateful_callbacks": {
+    "EarlyStoppingCallback": {
+      "args": {
+        "early_stopping_patience": 4,
+        "early_stopping_threshold": 0.0
+      },
+      "attributes": {
+        "early_stopping_patience_counter": 0
+      }
+    },
+    "TrainerControl": {
+      "args": {
+        "should_epoch_stop": false,
+        "should_evaluate": false,
+        "should_log": false,
+        "should_save": true,
+        "should_training_stop": false
+      },
+      "attributes": {}
+    }
+  },
+  "total_flos": 0.0,
+  "train_batch_size": 48,
+  "trial_name": null,
+  "trial_params": null
+}

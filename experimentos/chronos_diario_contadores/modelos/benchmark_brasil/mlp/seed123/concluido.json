@@ -1,0 +1,16 @@
+{
+  "arquitetura": "mlp",
+  "seed": 123,
+  "melhor_epoca": 18,
+  "epocas_executadas": 48,
+  "parametros": 1217,
+  "segundos": 1.756769899977371,
+  "pre_treinamento": false,
+  "dominio_treinamento": "brasil",
+  "dispositivo": "CPU",
+  "residual_persistencia": false,
+  "estado_recorrente_persistente": false,
+  "teste_usado_na_selecao": false,
+  "assinatura": "72b36d7445194b8eed9addaadb3d840be94b8f7133e66227d1041b186172ec8e",
+  "checkpoint_sha256": "d11d6942121d72bda868ae861281544f993ac1ea0f5b59aa3678a868b29b5d47"
+}

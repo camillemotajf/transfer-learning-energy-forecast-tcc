@@ -1,0 +1,31 @@
+{
+  "versao": 1,
+  "dominio_treinamento": "brasil",
+  "seed_principal": 42,
+  "seeds": [42, 7, 21, 84, 123],
+  "contexto_passos": 3,
+  "horizonte_passos": 1,
+  "mlp_unidades": [32, 16],
+  "lstm_unidades": 16,
+  "epocas_maximas": 200,
+  "paciencia": 30,
+  "melhoria_minima": 0.00001,
+  "batch_size": 16,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "threads_cpu": 2,
+  "capacidade_ac_kw": 1000.0,
+  "colunas_historicas": [
+    "Active_Power",
+    "Weather_Temperature_Celsius",
+    "Weather_Relative_Humidity",
+    "Global_Horizontal_Radiation",
+    "dia_ano_sin",
+    "dia_ano_cos"
+  ],
+  "colunas_futuras": ["dia_ano_sin", "dia_ano_cos"],
+  "pre_treinamento": false,
+  "residual_persistencia": false,
+  "criterio_checkpoint": "MSE da validação; normalização ajustada somente no treino brasileiro",
+  "criterio_seed_principal": "42 fixada antes do treinamento; não selecionar semente pelo teste"
+}

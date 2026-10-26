@@ -1,0 +1,40 @@
+{
+  "fonte": "Copernicus ERA5, via Open-Meteo",
+  "documentacao": "https://open-meteo.com/en/docs/historical-weather-api",
+  "parametros": {
+    "latitude": -16.55,
+    "longitude": -48.85,
+    "elevation": 927,
+    "start_date": "2025-01-02",
+    "end_date": "2026-01-01",
+    "timezone": "America/Sao_Paulo",
+    "models": "era5",
+    "wind_speed_unit": "ms",
+    "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,rain,shortwave_radiation,diffuse_radiation,direct_normal_irradiance"
+  },
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-16.55&longitude=-48.85&elevation=927&start_date=2025-01-02&end_date=2026-01-01&timezone=America%2FSao_Paulo&models=era5&wind_speed_unit=ms&hourly=temperature_2m%2Crelative_humidity_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Crain%2Cshortwave_radiation%2Cdiffuse_radiation%2Cdirect_normal_irradiance",
+  "download_utc": "2026-10-24T01:30:34.333645+00:00",
+  "data_consulta_cliente": "2026-10-23",
+  "sha256": "d8d8265470b3a04c1f7ae91afe8b0ff81ef3d58b952f941d2208b48a9c856758",
+  "resposta_localizacao": {
+    "latitude": -16.5,
+    "longitude": -48.75,
+    "elevation": 927.0,
+    "timezone": "America/Sao_Paulo",
+    "utc_offset_seconds": -10800
+  },
+  "unidades": {
+    "time": "iso8601",
+    "temperature_2m": "°C",
+    "relative_humidity_2m": "%",
+    "wind_speed_10m": "m/s",
+    "wind_direction_10m": "°",
+    "rain": "mm",
+    "shortwave_radiation": "W/m²",
+    "diffuse_radiation": "W/m²",
+    "direct_normal_irradiance": "W/m²"
+  },
+  "licenca": "https://open-meteo.com/en/licence",
+  "citacao_era5": "https://doi.org/10.1002/qj.3803",
+  "citacao_open_meteo": "https://doi.org/10.5281/zenodo.7970649"
+}

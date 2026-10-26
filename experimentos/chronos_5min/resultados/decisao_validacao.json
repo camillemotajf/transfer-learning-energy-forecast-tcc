@@ -1,0 +1,17 @@
+{
+  "escolhido": {
+    "modelo": "individual_calendario",
+    "n": 4043,
+    "MAE_kW": 60.38049434494287,
+    "RMSE_kW": 134.8074021836578,
+    "WAPE_pct": 12.553230912344857,
+    "Skill_RMSE_pct": 5.89967040668019,
+    "BIAS_kW": 7.31723244684249
+  },
+  "criterio": "Menor RMSE em todas as 4043 origens de outubro de 2025.",
+  "held_out_excluido_da_selecao_brasileira": true,
+  "semente": 42,
+  "teste_usado_na_selecao": false,
+  "teste_previamente_consultado": true,
+  "assinatura": "b6fa21ba84ad0a7855afa6f2335b8570260cfac314c092bf3da77dd2d29170b5"
+}

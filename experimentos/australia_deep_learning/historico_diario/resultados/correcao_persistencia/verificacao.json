@@ -1,0 +1,9 @@
+{
+  "controle_seed_42_reproduz_original": true,
+  "checkpoints_recarregados": 10,
+  "particoes_verificadas": 30,
+  "metricas_recalculadas_csv": true,
+  "residual_soma_persistencia_verificada": true,
+  "notebook_executado_sem_erros": true,
+  "testes_deep_learning_aprovados": 8
+}

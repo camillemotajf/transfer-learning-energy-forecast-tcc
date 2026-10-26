@@ -1,0 +1,8 @@
+{
+  "adaptadores_verificados": 5,
+  "mesma_base_nos_cinco": true,
+  "pesos_congelados_inalterados": true,
+  "celulas_executadas": 7,
+  "imagens_embutidas": 4,
+  "notebook": "teste_cronos_diario.ipynb"
+}

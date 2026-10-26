@@ -1,0 +1,25 @@
+{
+  "resolucao": "5min",
+  "horizonte_minutos": 5,
+  "linhas_australia_brutas": 1256431,
+  "duplicatas_australia": 0,
+  "australia": {
+    "grade": 1270529,
+    "alvos_medidos": 1210930,
+    "inputs_estimados": 39596
+  },
+  "brasil": {
+    "grade": 105120,
+    "alvos_medidos": 90023,
+    "inputs_estimados": 12627,
+    "estacao_temperatura_presente": 33383
+  },
+  "alvos_imputados": 0,
+  "meteo_brasil": "ERA5 horária carregada para frente até 55 minutos; somente auxiliar, excluída do contrato principal",
+  "reconstrucao": "Proxy causal e ffill de até três passos nos inputs; sem interpolação com ponto posterior. Alvos exigem medição original.",
+  "fontes_sha256": {
+    "australia": "adebe983a30f58c5900247308790ed0659de9fdff2a4fd59f6e464147e3c2d14",
+    "brasil": "598ede357558a5655894945c9d3aed845dd3fb5ed9e61e25d1f70cbec8611314",
+    "estacao": "c51aaf7f7486c8af703bbaaa01c99105b1c5cbd3d73a9543ee93494fae3158be"
+  }
+}

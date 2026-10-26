@@ -1,0 +1,8 @@
+{
+  "seeds": [42, 7, 21, 84, 123],
+  "formulacoes": ["direta", "residual"],
+  "objetivo": "Comparação pareada da mesma MLP, com e sem soma da persistência",
+  "hiperparametros": "Mesmos valores do treinamento em config.json; sem busca neste experimento",
+  "criterio": "Menor RMSE médio das cinco sementes na validação de 2023, incluindo persistência",
+  "teste": "2024-2025 já foi inspecionado; resultados exploratórios, sem seleção por este período"
+}

@@ -1,0 +1,28 @@
+{
+  "particoes_verificadas": 10,
+  "checkpoints_fonte": 30,
+  "checkpoints_brasileiros_recarregados": 120,
+  "metricas_recalculadas": 120,
+  "escalas_so_treino_australiano": true,
+  "pretreino_precede_brasil": true,
+  "janelas_e_persistencia_conferidas_na_fonte": true,
+  "pesos_congelados_preservados": true,
+  "notebooks_executados": [
+    {
+      "arquivo": "01_dados_contrato_e_blocos.ipynb",
+      "imagens_embutidas": 1
+    },
+    {
+      "arquivo": "02_pre_treino_australia.ipynb",
+      "imagens_embutidas": 1
+    },
+    {
+      "arquivo": "03_adaptacao_brasil.ipynb",
+      "imagens_embutidas": 1
+    },
+    {
+      "arquivo": "04_teste_comparacao_e_conclusao.ipynb",
+      "imagens_embutidas": 2
+    }
+  ]
+}

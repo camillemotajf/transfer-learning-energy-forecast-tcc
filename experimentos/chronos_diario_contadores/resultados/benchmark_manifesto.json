@@ -1,0 +1,53 @@
+{
+  "config": {
+    "versao": 1,
+    "dominio_treinamento": "brasil",
+    "seed_principal": 42,
+    "seeds": [
+      42,
+      7,
+      21,
+      84,
+      123
+    ],
+    "contexto_passos": 3,
+    "horizonte_passos": 1,
+    "mlp_unidades": [
+      32,
+      16
+    ],
+    "lstm_unidades": 16,
+    "epocas_maximas": 200,
+    "paciencia": 30,
+    "melhoria_minima": 1e-05,
+    "batch_size": 16,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "threads_cpu": 2,
+    "capacidade_ac_kw": 1000.0,
+    "colunas_historicas": [
+      "Active_Power",
+      "Weather_Temperature_Celsius",
+      "Weather_Relative_Humidity",
+      "Global_Horizontal_Radiation",
+      "dia_ano_sin",
+      "dia_ano_cos"
+    ],
+    "colunas_futuras": [
+      "dia_ano_sin",
+      "dia_ano_cos"
+    ],
+    "pre_treinamento": false,
+    "residual_persistencia": false,
+    "criterio_checkpoint": "MSE da validação; normalização ajustada somente no treino brasileiro",
+    "criterio_seed_principal": "42 fixada antes do treinamento; não selecionar semente pelo teste"
+  },
+  "arquivos_sha256": {
+    "dados/brasil_lag3_treino.npz": "650933d426918d8956ca6eaf958d57e53f67fbea5cc2eb55a548a880e60e1f17",
+    "dados/brasil_lag3_validacao.npz": "3d8536c76566ae69487aabfebd60732ba71cf7e79628a478b376f8ea17c2e32b",
+    "dados/brasil_lag3_teste.npz": "d28160b9f405dec05ddb71cc90e402c317b6cfac578e3da1b019cb7311e8064a"
+  },
+  "codigo_sha256": "6595c27aefbd8820fd9cdbbad7fce9da320f8b3d5da9223feeaa2f67b0857bec",
+  "torch": "2.14.1+cu126",
+  "assinatura": "72b36d7445194b8eed9addaadb3d840be94b8f7133e66227d1041b186172ec8e"
+}

@@ -1,0 +1,13 @@
+{
+  "notebook_sha256": "2f80e812518ae0d40c23aba555ee62087351a3467cb7c70cdb5e8a388c268619",
+  "celulas_codigo_executadas": 9,
+  "imagens_embutidas": 8,
+  "erros_no_notebook": 0,
+  "checkpoints_brasil_verificados": 10,
+  "mesmos_alvos_teste": 44,
+  "metricas_por_seed_recalculadas": 20,
+  "normalizacao_somente_treino_verificada": true,
+  "metricas_chronos_preservadas": true,
+  "testes_benchmark_aprovados": 4,
+  "testes_chronos_aprovados": 10
+}

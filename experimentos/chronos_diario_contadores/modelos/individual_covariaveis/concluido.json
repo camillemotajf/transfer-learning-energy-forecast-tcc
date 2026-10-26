@@ -1,0 +1,22 @@
+{
+  "parametros_treinaveis": 1206912,
+  "parametros_totais": 120684576,
+  "congelados_sha256_antes": "593542b2b6634f5c39a7558583fdf59f97a3aac944c79eb73fd4269166a0ee91",
+  "congelados_sha256_depois": "593542b2b6634f5c39a7558583fdf59f97a3aac944c79eb73fd4269166a0ee91",
+  "passos_executados": 200,
+  "melhor_loss": 0.16116231679916382,
+  "melhor_checkpoint": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\experimentos\\chronos_diario_contadores\\modelos\\individual_covariaveis\\checkpoint-200",
+  "cenario": "individual_covariaveis",
+  "semente": 42,
+  "composicao": [
+    {
+      "dominio": "brasil",
+      "treino": 160,
+      "validacao_checkpoint": 26
+    }
+  ],
+  "assinatura": "e2bf4d8bc82d3671df3c65a4f9fd976fbd527ec77167a51d7304535d767334b3",
+  "segundos": 126.22056869999506,
+  "memoria_cuda_max_mib": 1285.0439453125,
+  "adaptador_sha256": "c69d66943498e42a0fe1b5f1da2a4e39341288d37cf43d1b84b8c2c05deb3294"
+}

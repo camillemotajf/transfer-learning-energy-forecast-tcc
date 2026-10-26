@@ -1,0 +1,37 @@
+{
+  "n_dias": 44,
+  "n_modelos": 10,
+  "n_erros": 440,
+  "foco": [
+    "persistencia",
+    "portfolio_covariaveis",
+    "mlp_brasil",
+    "lstm_brasil"
+  ],
+  "escolhido_validacao_geral": "lstm_brasil",
+  "chronos_escolhido_validacao": "portfolio_covariaveis",
+  "definicao_erro": "previsto - referência; positivo = superestimação",
+  "limiar_principal_kw": 54.75312499999999,
+  "limiar_sensibilidade_kw": 88.76250000000003,
+  "n_pares_treino": 184,
+  "periodo": "2025-01-01 a 2025-09-30",
+  "regra": "Q75 da variação absoluta no treino; Q90 como sensibilidade",
+  "max_diferenca_referencias_kw": 0.12916666666668183,
+  "percentil75_calculado_sem_teste": true,
+  "treino_ou_selecao_executados": false,
+  "meteorologia_dia_alvo": "somente diagnóstico retrospectivo, não foi entrada do modelo",
+  "cobertura": "fração das 2304 leituras inversor-horário possíveis; não é cobertura simultânea da planta",
+  "referencia_alternativa": "soma das diferenças do contador acumulado / 24; todas as previsões originais mantidas, inclusive persistência",
+  "referencias_contadores_independentes": false,
+  "observacao_referencia": "contadores dos mesmos equipamentos; não são medição independente de calibração",
+  "codigo_sha256": "e6d5e3a547dc190cf3fb550371e6378ef9c544648ed1fc7cda34224a0879630e",
+  "arquivos_sha256": {
+    "experimentos\\chronos_diario_contadores\\resultados\\benchmark_previsoes_teste.csv": "5a8554110a4bfb41c6d175b15f6c70c9d57eba15573fbf619aef19ba2d93adfa",
+    "experimentos\\chronos_diario_contadores\\resultados\\benchmark_final.csv": "59e9c4835d42f74e5ce266fe74351d1db00899c42f6065851c932120331538a6",
+    "experimentos\\chronos_diario_contadores\\resultados\\benchmark_decisao_validacao.json": "b5d7e5f8012c0c67bd0af99042c28a201671a10b7fdf4c20c747bda61930d325",
+    "experimentos\\chronos_diario_contadores\\resultados\\decisao_validacao.json": "66e8369b264cb27e31531e5d7e947c3e2c1cb827229ce8a58ac912df22d0b1c0",
+    "experimentos\\chronos_diario_contadores\\resultados\\auditoria_calendario_brasil.csv": "658785023e225a8eb4dbae5717ec715adc8a4e06103bb832f3e32d7de846d2d8",
+    "experimentos\\chronos_diario_contadores\\resultados\\leopoldo_qualidade_por_inversor.csv": "3b68f290a1f7101b303a3aa56280bd70f3759cd02d369a89a88c98db64aa89d7"
+  },
+  "assinatura": "c0a646d61ac6207f970eaa1452b1a4c06fa7e5936c539435316a4c944ecc9222"
+}

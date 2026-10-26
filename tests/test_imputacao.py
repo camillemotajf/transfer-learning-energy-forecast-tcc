@@ -5,8 +5,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "leopoldo"))
-from imputacao import estimar_knn, imputar_diario, interpolar_interno, validar_metodos
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from energia_transfer.imputacao import estimar_knn, imputar_diario, interpolar_interno, validar_metodos
 
 
 class ImputacaoTests(unittest.TestCase):

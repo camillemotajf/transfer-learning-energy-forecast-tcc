@@ -1,0 +1,6 @@
+dominio,particao,n,inicio,fim
+Austrália,treino,3392,2013-07-28,2022-12-31
+Austrália,validacao,352,2023-01-01,2023-12-31
+Brasil,treino,160,2025-02-02,2025-09-30
+Brasil,validacao,26,2025-10-01,2025-10-31
+Brasil,teste,44,2025-11-01,2025-12-31

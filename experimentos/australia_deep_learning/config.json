@@ -1,0 +1,84 @@
+{
+  "variaveis": [
+    "Active_Power",
+    "hora_sin",
+    "hora_cos",
+    "dia_ano_sin",
+    "dia_ano_cos"
+  ],
+  "lags": [
+    6,
+    12
+  ],
+  "seeds": [
+    42,
+    7,
+    21,
+    84,
+    123
+  ],
+  "arquiteturas": [
+    "mlp_direta",
+    "mlp_residual",
+    "lstm_direta"
+  ],
+  "metodos": [
+    "sem_ajuste",
+    "cabeca",
+    "completo",
+    "local"
+  ],
+  "capacidade_ac_kw": {
+    "australia": 24.0,
+    "brasil": 1000.0
+  },
+  "fim_treino_australia": "2022-12-31",
+  "fim_validacao_australia": "2023-12-31",
+  "fim_treino_brasil": "2025-09-30",
+  "fim_validacao_brasil": "2025-10-31",
+  "fim_teste_brasil": "2025-12-31",
+  "limite_ffill_australia_dias": 2,
+  "limites_operacionais": {
+    "Weather_Temperature_Celsius": [
+      -20.0,
+      60.0
+    ],
+    "Weather_Relative_Humidity": [
+      0.0,
+      100.0
+    ],
+    "Global_Horizontal_Radiation": [
+      0.0,
+      1500.0
+    ]
+  },
+  "treinamento": {
+    "epocas_fonte": 25,
+    "paciencia_fonte": 5,
+    "epocas_brasil": 40,
+    "paciencia_brasil": 6,
+    "melhoria_minima": 1e-05,
+    "lr_fonte": 0.001,
+    "lr_cabeca": 0.001,
+    "lr_completo": 0.0001,
+    "lr_local": 0.001,
+    "batch_fonte": 1024,
+    "batch_brasil": 512,
+    "weight_decay": 0.0001,
+    "threads_cpu": 2,
+    "mlp_unidades": [
+      32,
+      16
+    ],
+    "lstm_unidades": 16,
+    "batch_previsao": 2048
+  },
+  "escopo": "Retrospectivo de 5 minutos; alvo sempre medido, avaliacao principal diurna; meteorologia horaria apenas auxiliar.",
+  "resolucao": "5min",
+  "horizonte_passos": 1,
+  "horizonte_minutos": 5,
+  "inicio_treino_australia": "2013-07-25",
+  "fim_teste_australia": "2025-08-23",
+  "stride_treino_fonte": 12,
+  "stride_treino_brasil": 1
+}

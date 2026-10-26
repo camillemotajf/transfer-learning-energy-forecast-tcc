@@ -1,0 +1,12 @@
+{
+  "modelo": "lstm",
+  "melhor_epoca": 9,
+  "epocas_executadas": 29,
+  "parametros": 1809,
+  "seed": 42,
+  "dispositivo": "CPU",
+  "contrato_sha256": "121d5767b2b74dc7e4d32483ec788f3cb4c2654c11dd3993dc869a3ea0e017d7",
+  "torch_version": "2.14.1+cpu",
+  "teste_usado_na_selecao": false,
+  "observacao": "Parada antecipada pelo MSE padronizado da validação. Predições finais limitadas inferiormente a zero. Nenhum alvo foi imputado."
+}

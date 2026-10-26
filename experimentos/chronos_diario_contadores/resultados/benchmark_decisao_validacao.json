@@ -1,0 +1,16 @@
+{
+  "escolhido": {
+    "modelo": "lstm_brasil",
+    "n": 26,
+    "MAE_kW": 39.44546689944147,
+    "RMSE_kW": 49.0495629233317,
+    "WAPE_pct": 15.58783530936416,
+    "Skill_RMSE_pct": 8.353845512556713,
+    "BIAS_kW": -10.267715812653579
+  },
+  "seed_principal": 42,
+  "selecao": "Menor RMSE em outubro; seed 42 pré-fixada; transferência sem Brasil fora da seleção brasileira.",
+  "teste_usado_na_selecao": false,
+  "teste_previamente_consultado": true,
+  "assinatura": "72b36d7445194b8eed9addaadb3d840be94b8f7133e66227d1041b186172ec8e"
+}

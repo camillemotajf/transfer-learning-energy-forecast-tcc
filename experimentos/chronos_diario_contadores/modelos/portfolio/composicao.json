@@ -1,0 +1,12 @@
+[
+  {
+    "dominio": "australia",
+    "treino": 160,
+    "validacao_checkpoint": 19
+  },
+  {
+    "dominio": "brasil",
+    "treino": 160,
+    "validacao_checkpoint": 19
+  }
+]

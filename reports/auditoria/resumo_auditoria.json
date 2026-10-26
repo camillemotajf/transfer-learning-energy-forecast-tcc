@@ -1,0 +1,33 @@
+{
+  "ano": 2025,
+  "fuso": "America/Sao_Paulo",
+  "dias_calendario": 365,
+  "passos_5min_por_dia": 288,
+  "inversores": [
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66
+  ],
+  "serial_unico_por_id": true,
+  "linhas_brutas_inversores": 793607,
+  "linhas_brutas_estacao": 35535,
+  "potencias_nulas_no_arquivo": 14740,
+  "meteo_valores_nulos_em_linhas_existentes": 0,
+  "dias_sem_potencia_filtro_FX": 27,
+  "dias_sem_potencia_identidade": 1,
+  "dias_sem_potencia_poslinear15": 1,
+  "dias_sem_estacao": 225,
+  "intervalos_planta_recuperados_identidade": 7236,
+  "intervalos_planta_recuperaveis_linear15": 5353,
+  "intervalos_estacao_recuperaveis_linear15": 597,
+  "dias_energia_contador_disponivel": 309,
+  "dias_recuperados_energia_sem_potencia": 0,
+  "faltantes_planta_diurnos": 5407,
+  "faltantes_planta_noturnos": 9690,
+  "intervalos_potencia_positiva_escuro": 0
+}

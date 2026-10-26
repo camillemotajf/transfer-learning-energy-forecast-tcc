@@ -1,0 +1,88 @@
+{
+  "versao": 1,
+  "cfg": {
+    "modelo": "amazon/chronos-2",
+    "revisao": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+    "frequencia": "5min",
+    "contexto_passos": 12,
+    "horizonte_passos": 1,
+    "semente": 42,
+    "num_steps": 1000,
+    "learning_rate": 2e-05,
+    "batch_origens": 16,
+    "batch_inferencia": 64,
+    "eval_steps": 50,
+    "paciencia": 6,
+    "janelas_checkpoint": 512,
+    "lora_config": {
+      "r": 8,
+      "lora_alpha": 16,
+      "target_modules": [
+        "self_attention.q",
+        "self_attention.k",
+        "self_attention.v",
+        "self_attention.o",
+        "output_patch_embedding.output_layer"
+      ]
+    },
+    "cenarios": [
+      {
+        "nome": "individual",
+        "dominios": [
+          "brasil"
+        ],
+        "calendario": false
+      },
+      {
+        "nome": "portfolio",
+        "dominios": [
+          "australia",
+          "brasil"
+        ],
+        "calendario": false
+      },
+      {
+        "nome": "individual_calendario",
+        "dominios": [
+          "brasil"
+        ],
+        "calendario": true
+      },
+      {
+        "nome": "portfolio_calendario",
+        "dominios": [
+          "australia",
+          "brasil"
+        ],
+        "calendario": true
+      },
+      {
+        "nome": "transferencia_sem_brasil",
+        "dominios": [
+          "australia"
+        ],
+        "calendario": true
+      }
+    ],
+    "artigo": "https://towardsdatascience.com/five-ways-to-fine-tune-chronos-2-the-time-series-foundation-model/",
+    "implementacao_autor": "https://github.com/ShuaiGuo16/chronos-2-forecasting/blob/main/02_chronos2_fine_tuning_building_demand.ipynb",
+    "natureza": "Exploratorio: o teste brasileiro ja foi consultado nas etapas anteriores. Uma semente; nenhuma configuracao sera escolhida pelo teste."
+  },
+  "pacotes": {
+    "chronos-forecasting": "2.3.2",
+    "torch": "2.14.1+cu126",
+    "transformers": "5.20.2",
+    "peft": "0.21.2",
+    "accelerate": "1.15.0"
+  },
+  "arquivos_sha256": {
+    "data\\processed\\brasil\\base_5min_brasil.pkl": "ff1207c2501ca8d17f77dca56f8f7683e1b6ccf20fe9d139c38300b7a513f3d4",
+    "experimentos\\transfer_learning_australia_brasil\\dados\\brasil_lag12_treino.npz": "06a9d2fc4ffe05844bc9a745012c139bcf789312cad0c82d132dc7b63bfb8c97",
+    "experimentos\\transfer_learning_australia_brasil\\dados\\brasil_lag12_validacao.npz": "1cff7e6b5999483731a3b5d13fbc64a25780640b8a86a526dc59f550b105a120",
+    "experimentos\\transfer_learning_australia_brasil\\dados\\brasil_lag12_teste.npz": "a86f3e950690509aad41a519ee5bfcc942c7831438bd79167c32cab2f6612891",
+    "data\\processed\\australia\\base_5min_australia.pkl": "3c06bca4a7ecaebb6f8204aa38357073826c35e1696d529601f149a26e73f112",
+    "experimentos\\transfer_learning_australia_brasil\\dados\\australia_lag12_treino.npz": "218e5344b4047de4eae6caefe9b9b53da1bd87aa145ae4457b188992d53f4ddc",
+    "experimentos\\transfer_learning_australia_brasil\\dados\\australia_lag12_validacao.npz": "7426dc5c2b7672ca4747cd085f963a8efaca909fc5a9ebe84db4d905a3973faa"
+  },
+  "assinatura": "b6fa21ba84ad0a7855afa6f2335b8570260cfac314c092bf3da77dd2d29170b5"
+}

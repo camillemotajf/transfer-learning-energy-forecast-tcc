@@ -1,0 +1,42 @@
+[
+  {
+    "arquivo": "fig_3_3_01_etapas_australia",
+    "titulo": "Ausências em cada etapa australiana",
+    "legenda": "Recorte de 3812 dias até 2023. Ausentes finais = ausentes de calendário + inválidos adicionais − preenchidos. As barras representam etapas e não devem ser somadas entre si. Os limites são aplicados às médias diárias; potência não é imputada."
+  },
+  {
+    "arquivo": "fig_3_3_02_exemplos_ffill",
+    "titulo": "Exemplos do preenchimento causal meteorológico",
+    "legenda": "Para cada variável, mostra-se a primeira ocorrência de preenchimento no recorte. O último valor válido é propagado por no máximo dois dias consecutivos; não se usa informação futura. São exemplos, não uma validação quantitativa da precisão dos valores imputados."
+  },
+  {
+    "arquivo": "fig_3_3_03_cobertura_alvos",
+    "titulo": "Cobertura intradiária dos alvos australianos usados",
+    "legenda": "95% é apenas uma referência descritiva, não um filtro aplicado no experimento. Treino: 10 de 3392 alvos abaixo de 95%; validação: 84 de 352. A média de leituras disponíveis pode diferir da média integral das 24 horas; o controle diário não elimina essa limitação."
+  },
+  {
+    "arquivo": "fig_3_3_04_contadores_brasil",
+    "titulo": "Consistência dos contadores e reprovação de dias brasileiros",
+    "legenda": "A dispersão inclui apenas pares com ambos os contadores finitos; a falta das bordas também reprova dias e é contabilizada à direita. Exigem-se oito inversores consistentes por dia. Os motivos se sobrepõem e não devem ser somados para obter 81 dias. Concordância interna não substitui medição independente."
+  },
+  {
+    "arquivo": "fig_3_3_05_base_brasileira",
+    "titulo": "Disponibilidade após reconstrução brasileira e meteorologia pública",
+    "legenda": "Há 19 dias sem registros de inversores e 62 dias com registros que não satisfazem a validação: 81 dias sem alvo final; 284 aprovados. Cada variável ERA5 tem 364 dias completos; 01/01 permanece ausente. Não se imputam alvos diários nem se combinam medições da estação com ERA5 nesta versão."
+  },
+  {
+    "arquivo": "fig_3_3_06_alvos_diarios",
+    "titulo": "Séries diárias após os procedimentos vigentes",
+    "legenda": "As lacunas permanecem no calendário e interrompem as linhas. Austrália: média aritmética das amostras presentes. Brasil: soma dos contadores diários de oito inversores aprovados dividida por 24 horas. As definições e os períodos diferem; esta figura não comprova equivalência de qualidade dos alvos."
+  },
+  {
+    "arquivo": "fig_3_3_07_janelas",
+    "titulo": "Disponibilidade de alvos e de janelas consecutivas",
+    "legenda": "A previsão de um dia recebe três dias civis anteriores completos; não se comprimem as datas e não se atravessam dias sem potência válida. São 3744 janelas australianas e 230 brasileiras (160/26/44 em treino/validação/teste). Janelas sobrepostas não são amostras estatisticamente independentes."
+  },
+  {
+    "arquivo": "fig_3_3_08_escalas",
+    "titulo": "Normalização física e padronização estatística",
+    "legenda": "À esquerda, capacidades AC adotadas no projeto, ainda sujeitas à confirmação técnica. À direita, históricos de potência das janelas brasileiras; as mesmas média/desvio do treino são aplicadas à validação e ao teste, sem reajuste. Repetições de um dia em janelas sobrepostas entram no ajuste, conforme implementação. Chronos usa entradas em p.u./unidades físicas e não recebe este padronizador externo."
+  }
+]

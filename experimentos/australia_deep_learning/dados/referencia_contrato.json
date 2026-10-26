@@ -1,0 +1,9 @@
+{
+  "contrato": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\experimentos\\transfer_learning_australia_brasil\\dados\\contrato.json",
+  "sha256": "d63cd46a62c0214c7eea2cce64e1cfd91d0b956c3c289526138ba7e149c7e3f5",
+  "escolhas_por_validacao_australiana": {
+    "mlp_residual": 12,
+    "lstm_direta": 12,
+    "mlp_direta": 12
+  }
+}

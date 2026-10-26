@@ -1,0 +1,6 @@
+{
+  "candidato_transferencia_por_validacao": "MLP",
+  "criterio": "Menor RMSE da validação entre MLP e LSTM; sem escolher pelo teste",
+  "nota": "Se ambas perderem para persistência, a transferência continua sendo uma hipótese a avaliar; não há ganho demonstrado.",
+  "ajuste_brasil_executado": false
+}

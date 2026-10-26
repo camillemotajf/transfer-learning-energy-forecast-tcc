@@ -1,0 +1,6 @@
+cenario,referencia,ganho_RMSE_pct,ganho_WAPE_pct
+individual,zero_shot_univariado,-0.24185405568257767,1.0482881589165438
+portfolio,zero_shot_univariado,-1.7712621009851715,0.4010926203600551
+individual_calendario,zero_shot_calendario,3.1290105314588312,5.382251845849861
+portfolio_calendario,zero_shot_calendario,2.534597763682611,5.27290929480726
+transferencia_sem_brasil,zero_shot_calendario,1.5551271235806352,4.522475784937285

@@ -1,0 +1,21 @@
+{
+  "data": "2026-10-24",
+  "notebooks_executados_em_processos_isolados": [
+    "notebooks/00_guia_do_projeto.ipynb",
+    "notebooks/01_australia_base_diaria.ipynb",
+    "notebooks/02_brasil_auditoria_original.ipynb",
+    "notebooks/03_brasil_base_observada.ipynb",
+    "notebooks/04_brasil_meteorologia_publica.ipynb",
+    "notebooks/05_brasil_base_final.ipynb",
+    "notebooks/06_planejamento_transfer_learning.ipynb",
+    "notebooks/exploratorio/01_imputacao_linear_knn.ipynb",
+    "notebooks/exploratorio/02_comparacao_meteorologia.ipynb"
+  ],
+  "testes_unittest_aprovados": 24,
+  "dias_base_consecutiva": 43,
+  "dias_aprovados_total": 297,
+  "integridade": "Fontes, cache, configuração, notebooks históricos e os dois CSVs finais idênticos por SHA-256 ao estado anterior à reorganização.",
+  "links_documentacao": "Links locais de README.md e docs/ verificados.",
+  "pastas_anteriores": "australia/ e leopoldo/ estavam em uso por outros processos; foram mantidas somente com READMEs apontando para os novos caminhos.",
+  "limitacao_fonte_australiana": "A base diária recebida está incluída; o CSV intradiário original não está disponível."
+}

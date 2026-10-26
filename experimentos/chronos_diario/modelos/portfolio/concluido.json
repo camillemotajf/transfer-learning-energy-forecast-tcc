@@ -1,0 +1,27 @@
+{
+  "parametros_treinaveis": 1206912,
+  "parametros_totais": 120684576,
+  "congelados_sha256_antes": "593542b2b6634f5c39a7558583fdf59f97a3aac944c79eb73fd4269166a0ee91",
+  "congelados_sha256_depois": "593542b2b6634f5c39a7558583fdf59f97a3aac944c79eb73fd4269166a0ee91",
+  "passos_executados": 200,
+  "melhor_loss": 0.9428927302360535,
+  "melhor_checkpoint": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\experimentos\\chronos_diario\\modelos\\portfolio\\checkpoint-200",
+  "cenario": "portfolio",
+  "semente": 42,
+  "composicao": [
+    {
+      "dominio": "australia",
+      "treino": 151,
+      "validacao_checkpoint": 19
+    },
+    {
+      "dominio": "brasil",
+      "treino": 151,
+      "validacao_checkpoint": 19
+    }
+  ],
+  "assinatura": "20f7d9ee970c74d050608844ace408f78b970983274e50a53b360a1ffeca9b0b",
+  "segundos": 47.681322299991734,
+  "memoria_cuda_max_mib": 1208.1220703125,
+  "adaptador_sha256": "b88e7131d8196020daf1b9524341ab290dec93aa514680e6dd2ac1ff1842057b"
+}

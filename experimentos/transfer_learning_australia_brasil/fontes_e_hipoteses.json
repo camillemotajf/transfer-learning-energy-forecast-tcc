@@ -1,0 +1,43 @@
+{
+  "consulta": "2026-10-24",
+  "australia": {
+    "sistema": "1B Trina, DKA-M9 A+C Phases",
+    "associacao_arquivo": "CSV intradiario original localizado em TCC/87-Site_DKA-M9_A+C-Phases.csv e copiado para data/raw/australia; sem desagregar medias diarias.",
+    "url": "https://dkasolarcentre.com.au/source/alice-springs/dka-m9-a-c-phases",
+    "capacidade_dc_kw": 23.4,
+    "inversores": "4 x 6 kW, SMA SMC 6000A",
+    "capacidade_ac_kw_adotada": 24.0,
+    "glossario": "https://dkasolarcentre.com.au/glossary",
+    "unidade": "O glossário descreve potência AC em kW, média de leituras em cinco minutos. A correspondência com a coluna Active_Power da base diária segue a procedência do notebook original.",
+    "alertas": [
+      "Mudança de módulos e divisão do sistema em agosto de 2013",
+      "Nota de 22/04/2022: falhas de seguidores e alinhamento de seguidores defeituosos ao norte, inclinação de 10 graus",
+      "Notas sobre inversores defeituosos e reparos; a capacidade instalada não é a capacidade operacional efetiva de cada dia",
+      "CSV original de cinco minutos localizado e usado diretamente; sem desagregação diária."
+    ],
+    "mascara_solar": {
+      "latitude_aproximada": -23.76,
+      "longitude_aproximada": 133.87,
+      "altitude_m_adotada": 560,
+      "fuso": "Australia/Darwin"
+    }
+  },
+  "brasil": {
+    "capacidade_ac_kw_adotada": 1000.0,
+    "origem": "Oito inversores de 125 kW, conforme parâmetro POTENCIA_NOMINAL_W da auditoria existente; confirmar a placa técnica antes de publicação final.",
+    "alvo": "Potência AC no instante t+5 min, originalmente medida nos oito inversores; avaliação principal diurna, complementar 24h. Não é média diária.",
+    "meteorologia": "ERA5 nativa horaria, mantida por ate 55 minutos; auxiliar e fora do contrato principal.",
+    "reconstrucao": "Inputs: proxy causal de até três passos e depois ffill do total de até três passos; combinação pode chegar a 30 minutos. Alvos e persistência exigem medições originais. Sem interpolação com extremo futuro."
+  },
+  "normalizacao": "Potência AC/capacidade AC. Escalas de potência e calendário aprendidas só no treino australiano diurno. Nenhuma escala recalibrada no destino.",
+  "restricao": "Resultados condicionados à associação e capacidades documentadas; sensores australianos e reanálise brasileira diferem. Transferência pode ser negativa. Estudo exploratório de uma usina brasileira em um único ano.",
+  "referencias": [
+    "https://doi.org/10.1038/s41598-022-18516-x",
+    "https://doi.org/10.1109/ACCESS.2025.3591040",
+    "https://otexts.com/fpp3/toolbox.html#time-series-cross-validation",
+    "https://otexts.com/fpp3/regression.html#ex-ante-versus-ex-post-forecasts"
+  ],
+  "resolucao": "5min",
+  "protocolo": "Historicos 30/60 minutos; horizonte 5 minutos; treino fonte com passo de amostragem 12 (uma em cada 12 janelas validas); validacao/teste em todos os instantes diurnos elegiveis.",
+  "latencia": "Horizonte por timestamps; latência real de coleta e publicação da ERA5 não é simulada. ERA5 não é input principal."
+}

@@ -1,0 +1,48 @@
+{
+  "fonte": "Copernicus ERA5 / Open-Meteo",
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=-16.55&longitude=-48.85&elevation=927&start_date=2025-01-02&end_date=2026-01-01&timezone=America%2FSao_Paulo&models=era5&wind_speed_unit=ms&hourly=temperature_2m%2Crelative_humidity_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Crain%2Cshortwave_radiation%2Cdiffuse_radiation%2Cdirect_normal_irradiance",
+  "sha256_bruto": "d8d8265470b3a04c1f7ae91afe8b0ff81ef3d58b952f941d2208b48a9c856758",
+  "geometria": {
+    "latitude": -16.55,
+    "longitude": -48.85,
+    "altitude_m": 927,
+    "geometria_confirmada": false,
+    "inclinacao_graus": 20,
+    "azimute_norte_horario_graus": 0,
+    "albedo": 0.3,
+    "fonte": {
+      "arquivo": "C:\\Users\\Camille\\Documents\\Artigos\\solar-enegy\\prev_trk_gen\\data\\Características da usina.xlsx",
+      "sha256": "a950c06ecf7ee03e64e194a854382d29419dbaefc1dad6eaf4cd2d5a1d6a2c52",
+      "aba": "Fixa",
+      "celulas": {
+        "B2": "L-O",
+        "B3": "20 º",
+        "B9": "20 º",
+        "E7": 0.3,
+        "E14": -16.55,
+        "E15": -48.85,
+        "E16": "927 m",
+        "K6": 8
+      }
+    },
+    "observacao": "Inclinação de 20° solicitada pelo usuário; orientação norte (0°) adotada como hipótese. B3 da planilha contém 20° sem convenção confirmada. Comparar azimutes 20° e 340° na análise de sensibilidade.",
+    "geometria_habilitada": true,
+    "confirmacao_usuario": "provavelmente é orientação norte o azimute, e pra considerar a inclinação de 20"
+  },
+  "dias": 363,
+  "colunas_meteorologicas": [
+    "Wind_Speed",
+    "Weather_Temperature_Celsius",
+    "Weather_Relative_Humidity",
+    "Global_Horizontal_Radiation",
+    "Diffuse_Horizontal_Radiation",
+    "Wind_Direction",
+    "Weather_Daily_Rainfall",
+    "Radiation_Global_Tilted",
+    "Radiation_Diffuse_Tilted"
+  ],
+  "faltantes_finais_pct": 0.0,
+  "regra_chuva": "Média do acumulado diário em pontos de 5 min, com chuva uniforme dentro da hora; total separado.",
+  "regra_poa": "Perez no meio da hora; albedo 0,3; sem ganho bifacial nem sombreamento de horizonte.",
+  "licenca": "https://open-meteo.com/en/licence"
+}

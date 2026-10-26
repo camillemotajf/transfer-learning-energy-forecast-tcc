@@ -1,0 +1,20 @@
+[
+  {
+    "notebook": "03_02_caracterizacao_dados_crus.ipynb",
+    "codigo_executado": 12,
+    "imagens_incorporadas": 9,
+    "png": 9,
+    "pdf": 9,
+    "tabelas_csv": 16,
+    "fontes_preservadas": true
+  },
+  {
+    "notebook": "03_03_tratamento_e_preprocessamento.ipynb",
+    "codigo_executado": 10,
+    "imagens_incorporadas": 8,
+    "png": 8,
+    "pdf": 8,
+    "tabelas_csv": 13,
+    "fontes_preservadas": true
+  }
+]

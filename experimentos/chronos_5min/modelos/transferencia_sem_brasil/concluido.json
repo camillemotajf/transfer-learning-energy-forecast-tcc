@@ -1,0 +1,22 @@
+{
+  "parametros_treinaveis": 1206912,
+  "parametros_totais": 120684576,
+  "congelados_sha256_antes": "593542b2b6634f5c39a7558583fdf59f97a3aac944c79eb73fd4269166a0ee91",
+  "congelados_sha256_depois": "593542b2b6634f5c39a7558583fdf59f97a3aac944c79eb73fd4269166a0ee91",
+  "passos_executados": 1000,
+  "melhor_loss": 0.05034484714269638,
+  "melhor_checkpoint": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\experimentos\\chronos_5min\\modelos\\transferencia_sem_brasil\\checkpoint-900",
+  "cenario": "transferencia_sem_brasil",
+  "semente": 42,
+  "composicao": [
+    {
+      "dominio": "australia",
+      "treino": 40704,
+      "validacao_checkpoint": 512
+    }
+  ],
+  "assinatura": "b6fa21ba84ad0a7855afa6f2335b8570260cfac314c092bf3da77dd2d29170b5",
+  "segundos": 757.5665187999839,
+  "memoria_cuda_max_mib": 1352.88916015625,
+  "adaptador_sha256": "644c64b4249475134316c12c6af0d1f2b52a906a4f465f13ec73e3ea255e8c36"
+}

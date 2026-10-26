@@ -1,0 +1,13 @@
+variavel,registros_recebidos,ausentes_no_csv,ausentes_calendario,invalidos_operacionais,faltantes_treino_apos_qc_pct,inputs_ffill_causal,uso
+Active_Energy_Delivered_Received,4376,2,37,0,0.7832898172323759,0,excluída pelo usuário/transferibilidade
+Current_Phase_Average,4376,2,37,0,0.7832898172323759,0,excluída pelo usuário/transferibilidade
+Active_Power,4376,2,37,0,0.7832898172323759,0,alvo e histórico
+Wind_Speed,1185,3193,3228,0,65.62228024369017,0,excluída pelo usuário/transferibilidade
+Weather_Temperature_Celsius,4356,22,57,9,1.0443864229765014,23,candidata meteorológica
+Weather_Relative_Humidity,4356,22,57,5,0.8123005512039455,24,candidata meteorológica
+Global_Horizontal_Radiation,4356,22,57,0,0.7832898172323759,19,candidata meteorológica
+Diffuse_Horizontal_Radiation,4356,22,57,0,0.7832898172323759,19,candidata meteorológica
+Wind_Direction,4356,22,57,0,0.7832898172323759,0,excluída pelo usuário/transferibilidade
+Weather_Daily_Rainfall,4356,22,57,0,0.7832898172323759,19,candidata meteorológica
+Radiation_Global_Tilted,3994,384,419,2,11.807368726428779,67,candidata meteorológica
+Radiation_Diffuse_Tilted,4140,238,273,1,7.542790832608065,67,candidata meteorológica
