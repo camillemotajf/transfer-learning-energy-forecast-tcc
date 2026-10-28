@@ -1,0 +1,67 @@
+fonte,variavel,criterio,intervalos_sinalizados
+australia,Active_Power,Valor negativo; inspeção segundo a variável,18675
+australia,Wind_Speed,Valor negativo; inspeção segundo a variável,6
+australia,Weather_Temperature_Celsius,Temperatura do ar fora de −20 a 60 °C,3046
+australia,Weather_Relative_Humidity,Umidade fora de 0 a 100%,14548
+australia,Global_Horizontal_Radiation,Valor negativo; inspeção segundo a variável,1
+australia,Diffuse_Horizontal_Radiation,Valor negativo; inspeção segundo a variável,0
+australia,Wind_Direction,Valor negativo; inspeção segundo a variável,6154
+australia,Weather_Daily_Rainfall,Valor negativo; inspeção segundo a variável,0
+australia,Radiation_Global_Tilted,Valor negativo; inspeção segundo a variável,3
+australia,Radiation_Diffuse_Tilted,Valor negativo; inspeção segundo a variável,1
+brasil,potencia_total_kw,Valor negativo; inspeção segundo a variável,0
+brasil,indice_albedo_medio,Valor negativo; inspeção segundo a variável,0
+brasil,gri_kwh_day_est,Valor negativo; inspeção segundo a variável,0
+brasil,albedo_tracker,Valor negativo; inspeção segundo a variável,1
+brasil,gri_irr_med,Valor negativo; inspeção segundo a variável,1
+brasil,poa_kwh_hour,Valor negativo; inspeção segundo a variável,14936
+brasil,precipitacao_acc,Valor negativo; inspeção segundo a variável,0
+brasil,dir_vento,Valor negativo; inspeção segundo a variável,0
+brasil,poa_irradiancia,Valor negativo; inspeção segundo a variável,15369
+brasil,poa_irr_med,Valor negativo; inspeção segundo a variável,15364
+brasil,air_speed_max,Valor negativo; inspeção segundo a variável,7017
+brasil,air_temperature_med,Temperatura do ar fora de −20 a 60 °C,0
+brasil,indice_albedo_tracker,Valor negativo; inspeção segundo a variável,1
+brasil,gri_kwh_acc,Valor negativo; inspeção segundo a variável,0
+brasil,poa_irr_max,Valor negativo; inspeção segundo a variável,15223
+brasil,temperatura_ambiente,Temperatura do ar fora de −20 a 60 °C,0
+brasil,poa_kwh_min,Valor negativo; inspeção segundo a variável,15364
+brasil,tensao_bateria,Valor negativo; inspeção segundo a variável,0
+brasil,calculo_albedo_medio,Valor negativo; inspeção segundo a variável,0
+brasil,vel_vento,Valor negativo; inspeção segundo a variável,9403
+brasil,ghi_irr_max,Valor negativo; inspeção segundo a variável,5428
+brasil,air_temperature_min,Temperatura do ar fora de −20 a 60 °C,0
+brasil,ghi_irr_med,Valor negativo; inspeção segundo a variável,10420
+brasil,ghi_irr_min,Valor negativo; inspeção segundo a variável,13980
+brasil,ghi_kwh_min,Valor negativo; inspeção segundo a variável,10420
+brasil,gri_irradiancia,Valor negativo; inspeção segundo a variável,1
+brasil,temperatura_painel,Valor negativo; inspeção segundo a variável,0
+brasil,indice_albedo_maximo,Valor negativo; inspeção segundo a variável,0
+brasil,ghi_kwh_day,Valor negativo; inspeção segundo a variável,0
+brasil,gri_irr_min,Valor negativo; inspeção segundo a variável,1
+brasil,ghi_kwh_day_est,Valor negativo; inspeção segundo a variável,0
+brasil,pv_temperatura_med,Valor negativo; inspeção segundo a variável,0
+brasil,poa_irr_min,Valor negativo; inspeção segundo a variável,15471
+brasil,ghi_kwh_hour,Valor negativo; inspeção segundo a variável,10748
+brasil,ghi_irradiancia,Valor negativo; inspeção segundo a variável,10115
+brasil,dir_vento_med,Valor negativo; inspeção segundo a variável,0
+brasil,precipitacao_acc_hour,Valor negativo; inspeção segundo a variável,0
+brasil,gri_kwh_day,Valor negativo; inspeção segundo a variável,0
+brasil,poa_kwh_day_est,Valor negativo; inspeção segundo a variável,0
+brasil,poa_kwh_acc,Valor negativo; inspeção segundo a variável,0
+brasil,air_temperature_max,Temperatura do ar fora de −20 a 60 °C,0
+brasil,ghi_kwh_acc,Valor negativo; inspeção segundo a variável,0
+brasil,precipitacao_acc_min,Valor negativo; inspeção segundo a variável,0
+brasil,poa_kwh_day,Valor negativo; inspeção segundo a variável,0
+brasil,pv_temperatura_max,Valor negativo; inspeção segundo a variável,0
+brasil,air_speed_med,Valor negativo; inspeção segundo a variável,8536
+brasil,indice_albedo_minimo,Valor negativo; inspeção segundo a variável,0
+brasil,gri_kwh_min,Valor negativo; inspeção segundo a variável,1
+brasil,gri_kwh_hour,Valor negativo; inspeção segundo a variável,0
+brasil,pv_temperatura_min,Valor negativo; inspeção segundo a variável,0
+brasil,air_speed_min,Valor negativo; inspeção segundo a variável,12901
+brasil,precipitacao_acc_day,Valor negativo; inspeção segundo a variável,0
+brasil,poa_kwh_acc_est,Valor negativo; inspeção segundo a variável,0
+brasil,gri_irr_max,Valor negativo; inspeção segundo a variável,1
+brasil,ghi_kwh_acc_est,Valor negativo; inspeção segundo a variável,0
+brasil,gri_kwh_acc_est,Valor negativo; inspeção segundo a variável,0

@@ -1,0 +1,9 @@
+{
+  "fontes_sha256": {
+    "data\\raw\\australia\\87-Site_DKA-M9_A+C-Phases.csv": "adebe983a30f58c5900247308790ed0659de9fdff2a4fd59f6e464147e3c2d14",
+    "data\\raw\\brasil\\Leopoldo-fixa-inv.csv": "598ede357558a5655894945c9d3aed845dd3fb5ed9e61e25d1f70cbec8611314",
+    "data\\raw\\brasil\\Leopoldo-fixa-est.csv": "deb6db2f755db69f1a435ec0f13bda11056bfd0952cea063a759e26b0cfef903"
+  },
+  "script": "scripts/tabelar_colunas_originais_tcc.py",
+  "n_colunas": 129
+}

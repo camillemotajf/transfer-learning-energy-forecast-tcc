@@ -1,0 +1,4 @@
+﻿coluna,significado_pt,origem,destino
+meta.id_inversor,Identificador do inversor usado na deduplicação e na contagem de equipamentos,CSV original dos inversores,Não é exportado no CSV agregado
+data_5min,datetime original em UTC associado ao início do intervalo por floor de cinco minutos,Criado em ambas as fontes,Renomeado para datetime na consolidação
+_validos,Contagem para priorizar duplicatas: na estação conta todas as colunas preenchidas; nos inversores somente as cinco medições selecionadas,Criado pelo notebook,Não é exportado; não representa uma validação física

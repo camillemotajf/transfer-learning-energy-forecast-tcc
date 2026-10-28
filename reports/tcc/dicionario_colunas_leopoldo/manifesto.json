@@ -1,0 +1,9 @@
+{
+  "csv": "Leopoldo_base_consolidada_5min.csv",
+  "sha256_csv": "9593a0cacecff5020d0481bde2e21aed06f3fe1750d694ae0b9e6e93ff6768c9",
+  "colunas_finais": 73,
+  "colunas_auxiliares": 3,
+  "sha256_fontes_celulas_pipeline": "06a0f1638342258c11a52323632d94cbbb3c61a63e5879e6a7cfdb0566031743",
+  "sha256_codigo_dicionario": "6e7f960717fa56250fa63d818a9905c11c0da9e2b6b8716f060899502f13feef",
+  "nota": "Explicações e evidências; não constituem manual do fornecedor nem certificação da calibração local."
+}

@@ -4,9 +4,9 @@ PNG: 300 dpi; PDF: vetorial. Numeração provisória.
 
 ## fig_3_3_01_etapas_australia
 
-Ausências em cada etapa australiana
+Efeito das etapas de pré-processamento sobre a disponibilidade da base australiana
 
-Recorte de 3812 dias até 2023. Ausentes finais = ausentes de calendário + inválidos adicionais − preenchidos. As barras representam etapas e não devem ser somadas entre si. Os limites são aplicados às médias diárias; potência não é imputada.
+Número de dias com valores ausentes, invalidados, preenchidos e ausentes após o tratamento, no calendário de 3812 dias até 31/12/2023. As ausências finais correspondem às ausências iniciais acrescidas das invalidações e descontadas as imputações. Os limites operacionais são aplicados às médias diárias. Apenas as variáveis meteorológicas recebem preenchimento; a potência permanece sem imputação.
 
 Fonte: elaboração própria com os arquivos e procedimentos identificados no manifesto.
 
@@ -14,7 +14,7 @@ Fonte: elaboração própria com os arquivos e procedimentos identificados no ma
 
 Exemplos do preenchimento causal meteorológico
 
-Para cada variável, mostra-se a primeira ocorrência de preenchimento no recorte. O último valor válido é propagado por no máximo dois dias consecutivos; não se usa informação futura. São exemplos, não uma validação quantitativa da precisão dos valores imputados.
+Séries diárias de temperatura, umidade relativa e GHI no entorno da primeira ocorrência de imputação de cada variável. O preenchimento propaga a última observação válida por até dois dias consecutivos, utilizando exclusivamente informações passadas. Os marcadores identificam os valores imputados. Os exemplos ilustram o procedimento e não constituem uma avaliação de sua precisão.
 
 Fonte: elaboração própria com os arquivos e procedimentos identificados no manifesto.
 
@@ -22,7 +22,7 @@ Fonte: elaboração própria com os arquivos e procedimentos identificados no ma
 
 Cobertura intradiária dos alvos australianos usados
 
-95% é apenas uma referência descritiva, não um filtro aplicado no experimento. Treino: 10 de 3392 alvos abaixo de 95%; validação: 84 de 352. A média de leituras disponíveis pode diferir da média integral das 24 horas; o controle diário não elimina essa limitação.
+Distribuição dos alvos de treino e validação segundo a proporção de leituras de potência disponíveis em relação às 288 leituras esperadas por dia. Apresentam cobertura inferior a 95% dez dos 3392 alvos de treino e 84 dos 352 alvos de validação. O limiar de 95% é descritivo e não foi aplicado como critério de exclusão. A média das leituras disponíveis pode diferir da média integral de 24 horas.
 
 Fonte: elaboração própria com os arquivos e procedimentos identificados no manifesto.
 
@@ -30,7 +30,7 @@ Fonte: elaboração própria com os arquivos e procedimentos identificados no ma
 
 Consistência dos contadores e reprovação de dias brasileiros
 
-A dispersão inclui apenas pares com ambos os contadores finitos; a falta das bordas também reprova dias e é contabilizada à direita. Exigem-se oito inversores consistentes por dia. Os motivos se sobrepõem e não devem ser somados para obter 81 dias. Concordância interna não substitui medição independente.
+Comparação entre a energia do contador diário e a diferença do contador acumulado por inversor, restrita aos pares com valores numéricos finitos. O painel direito apresenta a frequência dos critérios de reprovação diária, incluindo ausência das observações necessárias nas bordas do dia. A aprovação exige concordância dos oito inversores. Os critérios podem ocorrer simultaneamente; suas contagens não são aditivas. A concordância representa consistência interna dos contadores.
 
 Fonte: elaboração própria com os arquivos e procedimentos identificados no manifesto.
 
@@ -38,15 +38,15 @@ Fonte: elaboração própria com os arquivos e procedimentos identificados no ma
 
 Disponibilidade após reconstrução brasileira e meteorologia pública
 
-Há 19 dias sem registros de inversores e 62 dias com registros que não satisfazem a validação: 81 dias sem alvo final; 284 aprovados. Cada variável ERA5 tem 364 dias completos; 01/01 permanece ausente. Não se imputam alvos diários nem se combinam medições da estação com ERA5 nesta versão.
+Classificação dos 365 dias de 2025 quanto à reconstrução do alvo brasileiro: 19 dias sem registros, 62 dias com registros reprovados e 284 dias aprovados. As três variáveis meteorológicas do ERA5 apresentam 364 dias completos, permanecendo ausentes em 01/01/2025. Os alvos diários não recebem imputação; as covariáveis meteorológicas provêm integralmente da reanálise.
 
 Fonte: elaboração própria com os arquivos e procedimentos identificados no manifesto.
 
 ## fig_3_3_06_alvos_diarios
 
-Séries diárias após os procedimentos vigentes
+Séries de potência média diária após o pré-processamento
 
-As lacunas permanecem no calendário e interrompem as linhas. Austrália: média aritmética das amostras presentes. Brasil: soma dos contadores diários de oito inversores aprovados dividida por 24 horas. As definições e os períodos diferem; esta figura não comprova equivalência de qualidade dos alvos.
+Potência média diária australiana calculada pela média aritmética das leituras disponíveis e potência média equivalente brasileira calculada pela soma da energia diária dos oito inversores aprovados dividida por 24 horas. As lacunas são preservadas no calendário e interrompem as séries. As bases apresentam períodos de observação e procedimentos de construção do alvo distintos.
 
 Fonte: elaboração própria com os arquivos e procedimentos identificados no manifesto.
 
@@ -54,7 +54,7 @@ Fonte: elaboração própria com os arquivos e procedimentos identificados no ma
 
 Disponibilidade de alvos e de janelas consecutivas
 
-A previsão de um dia recebe três dias civis anteriores completos; não se comprimem as datas e não se atravessam dias sem potência válida. São 3744 janelas australianas e 230 brasileiras (160/26/44 em treino/validação/teste). Janelas sobrepostas não são amostras estatisticamente independentes.
+Disponibilidade relativa ao calendário diário em três etapas: calendário completo, alvo disponível e janela elegível com três dias anteriores consecutivos e um alvo. São obtidas 3744 janelas australianas e 230 brasileiras; estas se distribuem em 160, 26 e 44 janelas de treino, validação e teste. O calendário é preservado e as janelas não atravessam dias sem potência válida. Janelas sobrepostas apresentam dependência temporal.
 
 Fonte: elaboração própria com os arquivos e procedimentos identificados no manifesto.
 
@@ -62,7 +62,7 @@ Fonte: elaboração própria com os arquivos e procedimentos identificados no ma
 
 Normalização física e padronização estatística
 
-À esquerda, capacidades AC adotadas no projeto, ainda sujeitas à confirmação técnica. À direita, históricos de potência das janelas brasileiras; as mesmas média/desvio do treino são aplicadas à validação e ao teste, sem reajuste. Repetições de um dia em janelas sobrepostas entram no ajuste, conforme implementação. Chronos usa entradas em p.u./unidades físicas e não recebe este padronizador externo.
+À esquerda, distribuições da potência diária normalizada pelas capacidades AC adotadas de 24 kW e 1000 kW, respectivamente para Austrália e Brasil, sujeitas à confirmação documental. À direita, distribuições do histórico brasileiro após padronização pela média e pelo desvio padrão ajustados exclusivamente nas janelas de treino e mantidos na validação e no teste. Dias repetidos em janelas sobrepostas participam do ajuste. A padronização externa é utilizada nas MLP/LSTM locais; o Chronos recebe potência em p.u. e meteorologia em unidades físicas.
 
 Fonte: elaboração própria com os arquivos e procedimentos identificados no manifesto.
 

@@ -1,13 +1,13 @@
 {
-  "escopo": "Somente CSVs crus; Austrália integral 2013–2025; Brasil código 07-07FX em calendário de 2025",
+  "escopo": "Somente CSVs originais; Austrália integral 2013 a 2025; Brasil código 07-07FX em calendário de 2025",
   "imputacao": false,
   "correcao_de_valores": false,
   "remocao_de_duplicatas": false,
   "agregacao_de_alvos": false,
-  "denominadores": "288 intervalos [t,t+5min) por dia civil e equipamento; comparação separada com chaves de timestamp exato",
-  "disponibilidade": "Existência em intervalo de cinco minutos e de valor finito. Apenas máscaras de contagem; nenhum valor duplicado é consolidado e os timestamps crus são preservados.",
+  "denominadores": "288 intervalos [t,t+5min) por dia e equipamento; comparação separada com chaves de timestamp exato",
+  "disponibilidade": "Existência em intervalo de cinco minutos e de valor finito. Apenas máscaras de contagem; nenhum valor duplicado é consolidado e os timestamps originais são preservados.",
   "ressalvas": [
-    "Grade civil completa é uma referência; bordas do arquivo e períodos anteriores ao início da aquisição não comprovam falha.",
+    "Grade diária completa é uma referência; bordas do arquivo e períodos anteriores ao início da aquisição não comprovam falha.",
     "Valores negativos e fora das faixas de triagem permanecem nas estatísticas e distribuições.",
     "Inventário de todas as colunas; estudo detalhado nas variáveis de potência, contadores e meteorologia, sem vento.",
     "Umidade não aparece no arquivo da estação brasileira; ausência de variável não é perda de leituras.",
@@ -17,13 +17,13 @@
   "fontes_sha256": {
     "data\\raw\\australia\\87-Site_DKA-M9_A+C-Phases.csv": "adebe983a30f58c5900247308790ed0659de9fdff2a4fd59f6e464147e3c2d14",
     "data\\raw\\brasil\\Leopoldo-fixa-inv.csv": "598ede357558a5655894945c9d3aed845dd3fb5ed9e61e25d1f70cbec8611314",
-    "data\\raw\\brasil\\Leopoldo-fixa-est.csv": "c51aaf7f7486c8af703bbaaa01c99105b1c5cbd3d73a9543ee93494fae3158be"
+    "data\\raw\\brasil\\Leopoldo-fixa-est.csv": "deb6db2f755db69f1a435ec0f13bda11056bfd0952cea063a759e26b0cfef903"
   },
-  "codigo_sha256": "1732272e61e417167c5d8e583470b692c11c6613eb3a772d83f53b8d2d878d87",
+  "codigo_sha256": "8e052021df69c508b432c7cf1036530cf4993300987446645b39f97128ef3c18",
   "fontes": {
     "australia": {
       "fonte": "Austrália",
-      "arquivo": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\raw\\australia\\87-Site_DKA-M9_A+C-Phases.csv",
+      "arquivo": "C:\\Users\\camil\\Documents\\transfer-learning-energy-forecast-tcc\\data\\raw\\australia\\87-Site_DKA-M9_A+C-Phases.csv",
       "linhas_arquivo": 1256431,
       "linhas_selecionadas": 1256431,
       "codigo_selecionado": null,
@@ -51,8 +51,8 @@
       "dias_com_registros_parciais": 202
     },
     "brasil_inversores": {
-      "fonte": "Brasil — inversores",
-      "arquivo": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\raw\\brasil\\Leopoldo-fixa-inv.csv",
+      "fonte": "Brasil: inversores",
+      "arquivo": "C:\\Users\\camil\\Documents\\transfer-learning-energy-forecast-tcc\\data\\raw\\brasil\\Leopoldo-fixa-inv.csv",
       "linhas_arquivo": 793607,
       "linhas_selecionadas": 733389,
       "codigo_selecionado": "07-07FX",
@@ -90,8 +90,8 @@
       "dias_com_registros_parciais": 340
     },
     "brasil_estacao": {
-      "fonte": "Brasil — estação",
-      "arquivo": "C:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\raw\\brasil\\Leopoldo-fixa-est.csv",
+      "fonte": "Brasil: estação",
+      "arquivo": "C:\\Users\\camil\\Documents\\transfer-learning-energy-forecast-tcc\\data\\raw\\brasil\\Leopoldo-fixa-est.csv",
       "linhas_arquivo": 35535,
       "linhas_selecionadas": 35535,
       "codigo_selecionado": "07-07FX",

@@ -1,36 +1,27 @@
-﻿# Material para as seções 3.2 e 3.3 do TCC
+# Material para as seções 3.2 e 3.3 do TCC
 
-Os dois notebooks seguem a divisão proposta. A seção 3.2 caracteriza arquivos crus;
-a seção 3.3 reproduz o protocolo diário aplicado, com as respectivas limitações.
-Os arquivos originais e os resultados preditivos não são alterados.
+O [03_02](../../notebooks/tcc/03_02_caracterizacao_dados_crus.ipynb) utiliza a potência por sistema e os canais meteorológicos. No Brasil, a fonte é `Leopoldo_base_consolidada_5min.csv`, fornecida pelo pesquisador. A potência é `total_active_power_w` dividida por 1000, e as demais variáveis são os canais físicos da estação existentes no mesmo CSV. Na Austrália, utiliza-se Active_Power e os canais meteorológicos do arquivo. Contadores de energia e outras grandezas elétricas não entram nessa caracterização.
 
-| Seção | Notebook | Material |
+O 03_02 apenas lê o CSV manual, sem executar ou modificar `data.ipynb`. Não refaz o merge nem substitui a fonte pelo CSV alternativo gerado pelo [03_01](../../notebooks/tcc/03_01_brasil_merge_horarios.ipynb). A [auditoria original anterior](../../reports/tcc/caracterizacao_dados_crus/) permanece separada. O protocolo diário documentado no 03_03 e seus alvos não são alterados.
+
+## 3.2: figuras e tabelas atuais
+
+Pasta: [caracterizacao_sistemas](../../reports/tcc/caracterizacao_sistemas/).
+
+| Subseção | Figuras | Tabelas |
 |---|---|---|
-| 3.2 Caracterização das bases | [03_02_caracterizacao_dados_crus.ipynb](../../notebooks/tcc/03_02_caracterizacao_dados_crus.ipynb) | 9 figuras; tabelas descritivas, ausências por dia/variável e inventário de colunas |
-| 3.3 Tratamento e pré-processamento | [03_03_tratamento_e_preprocessamento.ipynb](../../notebooks/tcc/03_03_tratamento_e_preprocessamento.ipynb) | 8 figuras; contagens por etapa, validação de contadores, alvos diários, janelas e parâmetros de escala |
+| 3.2.1 Base australiana | 3.2-01: cobertura diária e mensal de Active_Power | resumo_fontes.csv; dicionario_cobertura.csv, filtrado por fonte |
+| 3.2.2 Base brasileira | 3.2-02: cobertura da potência total; 3.2-03: canais da estação | auditoria_csv_brasil.csv; dicionario_cobertura.csv; brasil_potencia_estacao_5min.csv |
+| 3.2.3 Descritiva e disponibilidade | 3.2-04: distribuições de potência; 3.2-05: disponibilidade individual | estatisticas.csv; *_cobertura_diaria.csv; *_cobertura_mensal.csv |
+| 3.2.4 Ausências e inconsistências | 3.2-06: lacunas de potência; 3.2-07: perfil horário da potência | lacunas_potencia.csv; flags.csv; auditoria_csv_brasil.csv |
 
-## 3.2 — onde usar cada figura e tabela
+Os valores brasileiros são preservados como informados no CSV manual. O gerador `data.ipynb` usa a grade completa de cinco minutos como base e associa cada fonte independentemente. Potência existente é preservada mesmo sem meteorologia. A soma com `min_count=1` admite contribuição parcial; `n_inversores_potencia` identifica a quantidade de parcelas. Indicadores separados distinguem a presença de estação e inversores. Cada canal da estação possui cobertura independente dos inversores e das demais variáveis. Os canais totalmente vazios permanecem no dicionário. Valores negativos finitos são preservados e sinalizados; a disponibilidade não comprova qualidade física.
 
-Pasta: [caracterizacao_dados_crus](../../reports/tcc/caracterizacao_dados_crus/).
+As duas potências são apresentadas em kW. Não se aplica normalização por capacidade nesta etapa. Unidades meteorológicas pendentes permanecem identificadas, especialmente a escala do GHI brasileiro e os canais GRI. A meteorologia é descritiva e não entra no cenário univariado.
 
-| Subseção | Figuras sugeridas | Tabelas principais |
-|---|---|---|
-| 3.2.1 Base australiana | 3.2-01: cobertura diária/mensal do arquivo integral | `resumo_fontes.csv`, `australia_inventario_colunas.csv` |
-| 3.2.2 Base brasileira | 3.2-02: inversores; 3.2-03: calendário da coleta | `resumo_fontes.csv`, inventários brasileiros |
-| 3.2.3 Descritiva e disponibilidade | 3.2-05: distribuições cruas; 3.2-04: presença/ausência; 3.2-09: disponibilidade horária | `estatisticas.csv`, `taxas.csv`, `disponibilidade_mensal.csv` |
-| 3.2.4 Ausências e inconsistências | 3.2-06: campos vazios; 3.2-07: duplicatas e valores suspeitos; 3.2-08: duração das lacunas | `flags.csv`, `lacunas.csv`, `lacunas_dia.csv`, tabelas `*_por_dia.csv` |
+A Austrália é caracterizada de 25/07/2013 a 23/08/2025; o modelo diário utiliza somente o recorte até 2023. O Brasil utiliza o calendário de 2025. A disponibilidade de potência de cinco minutos não equivale à aprovação dos alvos diários pelos contadores.
 
-Nesta seção, distinguir três situações: campo vazio em uma linha presente, intervalo
-sem registro e timestamp desalinhado. A presença em intervalos [t,t+5min) é uma
-contagem de aquisição, sem corrigir timestamps ou consolidar valores. Os registros
-crus continuam nas estatísticas, inclusive duplicatas e valores sinalizados.
-
-O arquivo australiano integral tem 4413 dias civis, entre 25/07/2013 e 23/08/2025.
-Já a aplicação diária usa somente 3812 dias até 31/12/2023. No Brasil, o inventário
-explicita os dois códigos existentes no CSV dos inversores antes de detalhar 07-07FX.
-Não confundir período de coleta, recorte de experimento e número de dias utilizáveis.
-
-## 3.3 — onde usar cada figura e tabela
+## 3.3 : onde usar cada figura e tabela
 
 Pasta: [preprocessamento_diario](../../reports/tcc/preprocessamento_diario/).
 
@@ -61,3 +52,5 @@ Todas as figuras têm PNG em 300 dpi e PDF vetorial. Cada pasta inclui
 A numeração é provisória; a ordem de aparição no TCC determina a numeração definitiva.
 As legendas descrevem denominadores e ressalvas para evitar interpretar disponibilidade
 como validação física ou somar motivos de reprovação sobrepostos.
+
+CSV principal de cinco minutos: [brasil_merge_5_minutos.csv](../../data/interim/brasil/brasil_merge_5_minutos.csv), gerado pelo 03_01 com potências AC/DC, contadores de energia somados e os canais da estação. Esse CSV alternativo não é a fonte brasileira do 03_02, que utiliza exclusivamente o arquivo manual Leopoldo_base_consolidada_5min.csv.

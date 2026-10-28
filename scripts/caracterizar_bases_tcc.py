@@ -7,7 +7,7 @@ matplotlib.use("Agg")
 
 RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ/"src"))
-from energia_transfer.caracterizacao_bases_tcc import preparar_caracterizacao, gerar_figuras
+from energia_transfer.caracterizacao_sistemas_tcc import preparar_caracterizacao_sistemas as preparar_caracterizacao, gerar_figuras_sistemas as gerar_figuras
 
 if __name__ == "__main__":
     dados = preparar_caracterizacao(RAIZ)

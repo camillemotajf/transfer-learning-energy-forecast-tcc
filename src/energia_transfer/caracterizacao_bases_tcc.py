@@ -1,4 +1,4 @@
-﻿"""Auditoria descritiva dos CSVs crus: nenhuma imputação ou correção de valores."""
+﻿"""Auditoria descritiva dos CSVs originais: nenhuma imputação ou correção de valores."""
 import json
 from pathlib import Path
 import numpy as np
@@ -34,7 +34,7 @@ def extrair_lacunas(ausente, passo='1D'):
 
 
 def cobertura_por_chave(instantes, equipamentos, finitos, grade, lista_equipamentos):
-    """Conta existência por chave; não calcula média/mediana nem altera valores crus.
+    """Conta existência por chave; não calcula média/mediana nem altera valores originais.
 
     A máscara booleana ANY evita que duplicatas inflem cobertura. A disponibilidade
     pode ser verdadeira mesmo se outra linha da mesma chave estiver vazia.
@@ -155,20 +155,42 @@ def _auditar(path, nome, cols, tempo, equipamento=None, codigo=None, ano=None):
                 duplicatas_dia=repetidas_dia,cobertura_horaria=hora,cobertura=cobertura)
 
 
+def tabelas_cobertura_potencia_australia(diario):
+    """Cobertura exclusiva de Active_Power, independente das outras variáveis."""
+    diaria = diario[['posicoes_esperadas', 'posicoes_com_Active_Power']].rename(columns={
+        'posicoes_esperadas': 'intervalos_esperados',
+        'posicoes_com_Active_Power': 'intervalos_com_potencia'})
+    diaria.index.name = 'data'
+    mensal = diaria.resample('MS').sum()
+    mensal.index.name = 'mes'
+    for tabela in (diaria, mensal):
+        tabela['cobertura_potencia_pct'] = 100 * tabela.intervalos_com_potencia / tabela.intervalos_esperados
+    esperados = int(diaria.intervalos_esperados.sum())
+    presentes = int(diaria.intervalos_com_potencia.sum())
+    resumo = pd.DataFrame([dict(variavel='Active_Power', inicio=str(diaria.index.min().date()),
+        fim=str(diaria.index.max().date()), intervalos_esperados=esperados,
+        intervalos_com_potencia=presentes, intervalos_sem_potencia=esperados-presentes,
+        cobertura_potencia_pct=100*presentes/esperados)])
+    return {'australia_cobertura_potencia_diaria': diaria.reset_index(),
+            'australia_cobertura_potencia_mensal': mensal.reset_index(),
+            'australia_cobertura_potencia_resumo': resumo}
+
+
 def preparar_caracterizacao(raiz):
     raiz=Path(raiz).resolve(); pasta=raiz/'reports/tcc/caracterizacao_dados_crus'
     figuras=pasta/'figuras'; tabelas=pasta/'tabelas'
     figuras.mkdir(parents=True,exist_ok=True);tabelas.mkdir(exist_ok=True)
     specs=[('australia','Austrália',raiz/'data/raw/australia/87-Site_DKA-M9_A+C-Phases.csv',COLUNAS_AU,'timestamp',None,None,None),
-           ('brasil_inversores','Brasil — inversores',raiz/'data/raw/brasil/Leopoldo-fixa-inv.csv',COLUNAS_INV,'datetime','equipment_name','07-07FX',2025),
-           ('brasil_estacao','Brasil — estação',raiz/'data/raw/brasil/Leopoldo-fixa-est.csv',COLUNAS_EST,'datetime','equipment_name','07-07FX',2025)]
+           ('brasil_inversores','Brasil: inversores',raiz/'data/raw/brasil/Leopoldo-fixa-inv.csv',COLUNAS_INV,'datetime','equipment_name','07-07FX',2025),
+           ('brasil_estacao','Brasil: estação',raiz/'data/raw/brasil/Leopoldo-fixa-est.csv',COLUNAS_EST,'datetime','equipment_name','07-07FX',2025)]
     hashes={str(s[2].relative_to(raiz)):sha256(s[2]) for s in specs}
     dados={}
     for key,nome,path,cols,tempo,equip,codigo,ano in specs:
-        print(f'Lendo arquivo cru: {nome}',flush=True)
+        print(f'Lendo arquivo original: {nome}',flush=True)
         dados[key]=_auditar(path,nome,cols,tempo,equip,codigo,ano)
     resumo=pd.DataFrame([d['meta'] for d in dados.values()])
     tabelas_dados={'resumo_fontes':resumo}
+    tabelas_dados.update(tabelas_cobertura_potencia_australia(dados['australia']['diario']))
     for nome in ['estatisticas','taxas','flags','lacunas','lacunas_dia']:
         tabelas_dados[nome]=pd.concat([d[nome] for d in dados.values()],ignore_index=True)
     for key,d in dados.items():
@@ -176,11 +198,11 @@ def preparar_caracterizacao(raiz):
         tabelas_dados[f'{key}_inventario_colunas']=d['inventario']
         tabelas_dados[f'{key}_cobertura_por_equipamento']=d['matriz'].reset_index()
     for nome,t in tabelas_dados.items(): t.to_csv(tabelas/f'{nome}.csv',index=False)
-    meta=dict(escopo='Somente CSVs crus; Austrália integral 2013–2025; Brasil código 07-07FX em calendário de 2025',
+    meta=dict(escopo='Somente CSVs originais; Austrália integral 2013 a 2025; Brasil código 07-07FX em calendário de 2025',
               imputacao=False,correcao_de_valores=False,remocao_de_duplicatas=False,agregacao_de_alvos=False,
-              denominadores='288 intervalos [t,t+5min) por dia civil e equipamento; comparação separada com chaves de timestamp exato',
-              disponibilidade='Existência em intervalo de cinco minutos e de valor finito. Apenas máscaras de contagem; nenhum valor duplicado é consolidado e os timestamps crus são preservados.',
-              ressalvas=['Grade civil completa é uma referência; bordas do arquivo e períodos anteriores ao início da aquisição não comprovam falha.',
+              denominadores='288 intervalos [t,t+5min) por dia e equipamento; comparação separada com chaves de timestamp exato',
+              disponibilidade='Existência em intervalo de cinco minutos e de valor finito. Apenas máscaras de contagem; nenhum valor duplicado é consolidado e os timestamps originais são preservados.',
+              ressalvas=['Grade diária completa é uma referência; bordas do arquivo e períodos anteriores ao início da aquisição não comprovam falha.',
                          'Valores negativos e fora das faixas de triagem permanecem nas estatísticas e distribuições.',
                          'Inventário de todas as colunas; estudo detalhado nas variáveis de potência, contadores e meteorologia, sem vento.',
                          'Umidade não aparece no arquivo da estação brasileira; ausência de variável não é perda de leituras.',
@@ -208,29 +230,29 @@ def gerar_figuras(r):
     with plt.rc_context(estilo):
         fig,ax=plt.subplots(2,1,figsize=(11.7,7),gridspec_kw={'height_ratios':[1,1.3]})
         d=au['diario']
-        ax[0].plot(d.index,d.cobertura_registro_pct,lw=.65,color=CORES[0])
-        ax[0].set(title='Austrália: cobertura do arquivo cru em cada dia civil',ylabel='Intervalos com registro / 288 (%)',ylim=(-2,102));ax[0].grid(alpha=.2)
-        mensal=d.posicoes_com_registro.groupby([d.index.year,d.index.month]).sum()/d.posicoes_esperadas.groupby([d.index.year,d.index.month]).sum()*100
+        ax[0].plot(d.index,d.cobertura_Active_Power_pct,lw=.65,color=CORES[0])
+        ax[0].set(title='Austrália: cobertura diária dos dados originais de potência',ylabel='Intervalos com potência disponível (%)',ylim=(-2,102));ax[0].grid(alpha=.2)
+        mensal=d.posicoes_com_Active_Power.groupby([d.index.year,d.index.month]).sum()/d.posicoes_esperadas.groupby([d.index.year,d.index.month]).sum()*100
         mat=mensal.unstack().reindex(columns=range(1,13))
         im=ax[1].imshow(np.ma.masked_invalid(mat),aspect='auto',vmin=0,vmax=100,cmap='cividis')
         ax[1].set_xticks(range(12),MESES);ax[1].set_yticks(range(len(mat)),mat.index)
-        ax[1].set(ylabel='Ano',xlabel='Mês',title='Cobertura mensal dos registros originais')
-        fig.colorbar(im,ax=ax[1],label='Posições com registro (%)',pad=.01)
-        salvar(fig,'fig_3_2_01_australia_crua','Disponibilidade do arquivo australiano integral',
-               'Contagem de intervalos de cinco minutos com registros, sem filtro de valores ou imputação. Os timestamps australianos estão alinhados à grade exata. O período integral do arquivo é usado; não há corte em 2023. Dias civis completos são a referência, inclusive nas bordas parciais do arquivo. Branco: mês fora do intervalo.')
+        ax[1].set(ylabel='Ano',xlabel='Mês',title='Cobertura mensal dos dados originais de potência')
+        fig.colorbar(im,ax=ax[1],label='Intervalos com potência disponível (%)',pad=.01)
+        salvar(fig,'fig_3_2_01_cobertura_australia','Cobertura temporal dos dados originais de potência da base australiana',
+               'Cobertura diária e mensal da variável Active_Power entre 25/07/2013 e 23/08/2025. A cobertura corresponde à proporção de intervalos de cinco minutos com ao menos um valor numérico finito de potência, considerando 288 intervalos esperados por dia, inclusive nas datas inicial e final. Intervalos sem registro ou sem potência numérica finita são considerados indisponíveis; zeros são observações disponíveis. As demais variáveis não participam deste indicador. As regiões em branco representam meses externos ao período de observação.')
 
         fig,ax=plt.subplots(2,1,figsize=(11.7,7),sharex=True)
         mat=inv['matriz'];x0=mdates.date2num(mat.index[0]);x1=mdates.date2num(mat.index[-1]+pd.Timedelta(days=1))
         im=ax[0].imshow(mat.to_numpy().T,aspect='auto',origin='lower',extent=[x0,x1,-.5,len(mat.columns)-.5],vmin=0,vmax=100,cmap='cividis')
-        ax[0].set_yticks(range(len(mat.columns)),[c.replace('inverter','Inv. ') for c in mat.columns]);ax[0].set(title='Brasil: presença de potência crua por inversor',ylabel='Equipamento')
+        ax[0].set_yticks(range(len(mat.columns)),[c.replace('inverter','Inv. ') for c in mat.columns]);ax[0].set(title='Brasil: cobertura dos dados originais de potência por inversor',ylabel='Equipamento')
         fig.colorbar(im,ax=ax[0],label='Posições com valor finito / 288 (%)',pad=.01)
-        dd=inv['diario'];ax[1].plot(dd.index,dd.cobertura_total_active_power_w_pct,label='Fração de posições inversor–horário',color=CORES[1],lw=.9)
+        dd=inv['diario'];ax[1].plot(dd.index,dd.cobertura_total_active_power_w_pct,label='Cobertura por equipamento e intervalo',color=CORES[1],lw=.9)
         ax[1].plot(dd.index,dd.cobertura_todos_equipamentos_pct,label='Intervalos com os oito inversores',color=CORES[2],lw=.8)
         ax[1].plot(dd.index,dd.cobertura_registro_exato_pct,label='Registros em timestamp exato (diagnóstico)',color='#777777',lw=.6,ls='--')
         ax[1].set(ylabel='Cobertura (%)',xlabel='Mês de 2025',ylim=(-2,103));ax[1].legend();ax[1].grid(alpha=.2)
         ax[1].xaxis.set_major_locator(mdates.MonthLocator());ax[1].xaxis.set_major_formatter(mdates.DateFormatter('%m'))
-        salvar(fig,'fig_3_2_02_inversores_crus','Disponibilidade dos registros crus dos inversores',
-               'Código 07-07FX e datas locais de 2025. As curvas coloridas contam existência em intervalos [t,t+5min): 2304 posições inversor–intervalo por dia, ou 288 intervalos com os oito inversores presentes. A linha cinza exige timestamp exato e mostra o efeito do desalinhamento temporal; não implica ausência real de coleta. Presença no mesmo intervalo não exige o mesmo segundo. Nenhum valor ou timestamp cru é corrigido, somado ou imputado.')
+        salvar(fig,'fig_3_2_02_cobertura_inversores','Cobertura temporal dos dados originais dos inversores brasileiros',
+               'Disponibilidade de potência dos oito inversores da usina 07-07FX no calendário local de 2025. O painel superior apresenta a cobertura por equipamento; o inferior compara a cobertura sobre 2304 combinações de equipamento e intervalo por dia, a presença simultânea dos oito inversores em 288 intervalos diários e a presença de registros nos horários exatos da grade. A contagem por intervalos [t, t + 5 min) admite diferenças de segundos entre registros, sem modificar seus horários ou valores.')
 
         fig,ax=plt.subplots(1,2,figsize=(11.7,5.6),sharey=True)
         for a,d,c,titulo in [(ax[0],inv,'total_active_power_w','Potência dos inversores (2304 posições/dia)'),(ax[1],est,'air_temperature_med','Temperatura da estação (288 posições/dia)')]:
@@ -239,8 +261,8 @@ def gerar_figuras(r):
             im=a.imshow(np.ma.masked_invalid(m),aspect='auto',vmin=0,vmax=100,cmap='cividis')
             a.set_xticks([0,4,9,14,19,24,30],[1,5,10,15,20,25,31]);a.set_yticks(range(12),MESES)
             a.set(title=titulo,xlabel='Dia do mês',ylabel='Mês de 2025');fig.colorbar(im,ax=a,label='Posições com valor finito (%)',orientation='horizontal',pad=.14,fraction=.05)
-        salvar(fig,'fig_3_2_03_calendario_brasil_cru','Calendário da disponibilidade original brasileira',
-               'Ausências e coberturas parciais antes de qualquer reconstrução diária ou imputação. Zero significa nenhuma posição com valor finito da variável; branco indica dia inexistente no mês. A referência de calendário inclui dias sem aquisição e a borda final parcial do arquivo.')
+        salvar(fig,'fig_3_2_03_calendario_brasil','Calendário de cobertura dos dados originais brasileiros',
+               'Cobertura diária de potência dos inversores e temperatura da estação meteorológica em 2025, anterior ao tratamento. Os denominadores são 2304 combinações de equipamento e intervalo para os inversores e 288 intervalos para a estação. A cobertura considera a presença de valores numéricos finitos. Zero indica ausência de valores disponíveis; células em branco correspondem a datas inexistentes no mês.')
 
         fig,ax=plt.subplots(1,3,figsize=(11.7,5.7),sharey=True)
         labels=[['Potência','Temperatura','Umidade','GHI'],['Potência','Contador diário','Contador total'],['Temperatura','GHI']]
@@ -251,8 +273,8 @@ def gerar_figuras(r):
             a.set_xticks(x,lab,rotation=50,ha='right');a.set(title=d['meta']['fonte'],ylabel='Posições esperadas (%)',ylim=(0,100))
             a.grid(axis='y',alpha=.15)
         handles,ls=ax[0].get_legend_handles_labels();fig.legend(handles,ls,loc='upper center',bbox_to_anchor=(.5,.99),ncol=3,frameon=False)
-        salvar(fig,'fig_3_2_04_ausencias_cruas','Ausência de registros e ausência de valores dentro dos registros',
-               'Classes mutuamente exclusivas em intervalos [t,t+5min) por equipamento. Várias linhas no mesmo intervalo não multiplicam a cobertura: basta uma com valor finito. Valores finitos suspeitos, negativos ou fora das faixas de triagem continuam na classe verde; presença não equivale a validade. A classificação é uma contagem, sem consolidar valores ou modificar timestamps crus. As tabelas também mostram vazios nas linhas do CSV e timestamps exatos, com outras definições.')
+        salvar(fig,'fig_3_2_04_disponibilidade_variaveis','Disponibilidade das variáveis nos intervalos de aquisição esperados',
+               'Distribuição dos intervalos esperados entre ausência de registro, registro sem valor numérico finito e presença de ao menos um valor numérico finito. As classes são mutuamente exclusivas e calculadas por equipamento em intervalos de cinco minutos. Registros repetidos não aumentam a cobertura. Valores finitos fora dos limites de triagem permanecem classificados como disponíveis; disponibilidade não implica validade física.')
 
         fig,ax=plt.subplots(2,3,figsize=(11.7,7.2))
         series=[(au,'Active_Power','Potência australiana (kW)'),(inv,'total_active_power_w','Potência por inversor brasileiro (W)'),(au,'Weather_Relative_Humidity','Umidade australiana (%)'),
@@ -262,10 +284,10 @@ def gerar_figuras(r):
             a.hist(s,bins=60,density=True,histtype='step',lw=1.3,color=CORES[[au is d,inv is d,est is d].index(True)],label=d['meta']['fonte'])
             if c=='Weather_Temperature_Celsius':
                 ss=est['numericos'].air_temperature_med;ss=ss[np.isfinite(ss)]
-                a.hist(ss,bins=60,density=True,histtype='step',lw=1.3,color=CORES[2],label='Brasil — estação')
+                a.hist(ss,bins=60,density=True,histtype='step',lw=1.3,color=CORES[2],label='Brasil: estação')
             a.set(xlabel=titulo,ylabel='Densidade');a.legend(fontsize=7);a.grid(alpha=.2)
-        salvar(fig,'fig_3_2_05_distribuicoes_cruas','Distribuições dos valores originais registrados',
-               'Todas as linhas com valores numéricos finitos entram, inclusive duplicatas e valores suspeitos. Não há normalização por capacidade, conversão da escala de GHI brasileira, remoção de negativos ou preenchimento. Potência brasileira é por inversor em W; australiana é a variável do sistema em kW. Infinitos e textos não numéricos ficam fora do histograma e são contados nas tabelas.')
+        salvar(fig,'fig_3_2_05_distribuicoes_originais','Distribuições das variáveis nos dados originais',
+               'Histogramas de densidade dos valores numéricos finitos, preservando registros duplicados, zeros, valores negativos e observações sinalizadas na triagem. A potência australiana representa o sistema em kW; a brasileira representa cada inversor em W. O GHI da estação brasileira é apresentado na escala original, sem correção de unidade ou calibração. Os períodos de observação diferem entre as fontes.')
 
         fig,ax=plt.subplots(1,3,figsize=(11.7,5.3))
         for a,d,lab in zip(ax,[au,inv,est],labels):
@@ -274,7 +296,7 @@ def gerar_figuras(r):
             a.set_xticks(range(len(t)),lab,rotation=50,ha='right');a.set(title=d['meta']['fonte'],ylabel='Linhas do CSV com campo vazio (%)',ylim=(0,max(5,pct.max()*1.4)))
             a.grid(axis='y',alpha=.2)
         salvar(fig,'fig_3_2_06_campos_vazios','Campos vazios nas linhas presentes dos arquivos originais',
-               'Denominador: linhas existentes na seleção de cada CSV, preservadas as duplicatas. Linhas inteiras que não foram registradas não entram aqui. Por isso, poucos NaN no arquivo podem coexistir com grandes lacunas temporais. Não há umidade no esquema da estação brasileira; essa variável não é adicionada artificialmente à contagem.')
+               'Número e proporção de campos vazios nas linhas existentes de cada fonte, incluindo registros duplicados. O denominador corresponde às linhas selecionadas do arquivo, sem contabilizar intervalos sem registro. A umidade relativa não integra o esquema da estação brasileira e não é incluída nesta contagem.')
 
         fig,ax=plt.subplots(1,2,figsize=(11.7,6.6),gridspec_kw={'width_ratios':[1,1.65]})
         metas=[d['meta'] for d in [au,inv,est]]
@@ -285,8 +307,8 @@ def gerar_figuras(r):
         curtos=['AU potência','AU temperatura','AU umidade','AU GHI','BR potência/inversor','BR contador diário','BR contador total','BR temperatura','BR GHI']
         ax[1].bar_label(bars,padding=3);ax[1].set_yticks(yy,curtos)
         ax[1].invert_yaxis();ax[1].set(title='Valores sinalizados, preservados no arquivo',xlabel='Linhas sinalizadas (ver critérios na tabela)');ax[1].margins(x=.18)
-        salvar(fig,'fig_3_2_07_duplicatas_suspeitos','Duplicatas e sinais de inconsistência nos dados crus',
-               'Duplicata significa mesma chave temporal e equipamento, não necessariamente linhas idênticas. Critérios de triagem: temperatura fora de −20 a 60 °C; umidade fora de 0 a 100%; negativos nos demais campos selecionados. Não se afirma que todo valor sinalizado seja erro de sensor e nenhum valor é removido. Divergência entre duplicatas é auditada nas tabelas, incluindo diferenças entre ausência e presença de valor.')
+        salvar(fig,'fig_3_2_07_duplicatas_suspeitos','Duplicatas e sinais de inconsistência nos dados originais',
+               'À esquerda, número de registros excedentes para a mesma combinação de horário e equipamento. À direita, observações sinalizadas pelos critérios de triagem: temperatura fora de −20 a 60 °C, umidade relativa fora de 0 a 100% e valores negativos nas demais variáveis selecionadas. A sinalização identifica observações para inspeção e não determina sua exclusão ou comprova erro de medição.')
 
         fig,ax=plt.subplots(2,1,figsize=(11.7,7.3))
         for d,cor in zip([au,inv,est],CORES):
@@ -296,19 +318,19 @@ def gerar_figuras(r):
             h=d['lacunas_dia']
             if len(h):ax[1].hist(h.dias,bins=np.arange(.5,max(2,r['tabelas']['lacunas_dia'].dias.max())+1.5),histtype='step',lw=1.5,color=cor,label=f"{d['meta']['fonte']} ({len(h)} períodos)")
         ax[0].set(xscale='log',yscale='log',xlabel='Duração sem valor finito da variável principal (horas; escala log)',ylabel='Número de lacunas (escala log)',title='Interrupções na grade de cinco minutos')
-        ax[1].set(xlabel='Dias civis consecutivos sem qualquer registro da fonte',ylabel='Número de períodos',title='Interrupções de dias inteiros')
+        ax[1].set(xlabel='Dias consecutivos sem qualquer registro da fonte',ylabel='Número de períodos',title='Interrupções de dias inteiros')
         for a in ax:a.legend();a.grid(alpha=.2)
-        salvar(fig,'fig_3_2_08_lacunas_cruas','Duração das lacunas antes do tratamento',
-               'No painel superior: intervalos [t,t+5min) sem valor finito de potência australiana, potência por inversor brasileiro e temperatura da estação. Cada inversor tem sua própria sequência; as contagens de oito sequências não são diretamente comparáveis às de uma estação. Duração = número de intervalos ausentes × cinco minutos. No inferior, conta-se ausência de todos os registros da fonte, inclusive fora dos minutos exatos. Bordas do calendário estão incluídas; não se interpreta lacuna como falha física comprovada.')
+        salvar(fig,'fig_3_2_08_lacunas_originais','Distribuição da duração das lacunas nos dados originais',
+               'O painel superior apresenta sequências de intervalos de cinco minutos sem valor numérico finito de potência australiana, potência por inversor brasileiro ou temperatura da estação. A duração corresponde ao número de intervalos consecutivos multiplicado por cinco minutos. O painel inferior apresenta sequências de dias sem qualquer registro da fonte. As lacunas dos inversores são contadas separadamente por equipamento; ambos os painéis incluem as bordas do calendário.')
 
         fig,a=plt.subplots(figsize=(10,4.8))
         for d,cor in zip([au,inv,est],CORES):a.plot(d['cobertura_horaria'].index,d['cobertura_horaria'],marker='o',ms=3,lw=1.2,label=d['meta']['fonte'],color=cor)
         a.set(xticks=range(0,24,2),xlabel='Hora registrada na Austrália / hora local no Brasil',ylabel='Posições com valor finito (%)',ylim=(-2,103),title='Disponibilidade da variável principal ao longo das 24 horas')
         a.legend();a.grid(alpha=.2)
         salvar(fig,'fig_3_2_09_disponibilidade_horaria','Perfil horário da disponibilidade original',
-               'A grade considera as 24 horas. Zero de potência é um valor observado e não é marcado como faltante. Reduções noturnas de disponibilidade podem refletir política de aquisição; a figura não determina a causa. Austrália mantém a convenção temporal do arquivo sem fuso explícito; Brasil usa a apresentação local America/Sao_Paulo dos timestamps UTC.')
+               'Proporção de intervalos de cinco minutos com valor numérico finito por hora do dia, considerando potência australiana, potência dos inversores brasileiros e temperatura da estação. Valores nulos de potência são contabilizados como observados. Os horários seguem a convenção do arquivo australiano e o fuso America/Sao_Paulo para os registros brasileiros. O perfil descreve a disponibilidade sem atribuir causas às interrupções.')
     salvar_json(r['pasta']/'indice_figuras.json',indice)
-    texto='# Legendas das figuras — dados crus\n\nPNG em 300 dpi e PDF vetorial. Numeração a ajustar ao TCC.\n\n'
+    texto='# Legendas das figuras: caracterização dos dados originais\n\nPNG em 300 dpi e PDF vetorial. Numeração provisória.\n\n'
     for item in indice:texto+=f"## {item['arquivo']}\n\n{item['titulo']}\n\n{item['legenda']}\n\nFonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.\n\n"
     (r['pasta']/'legendas_figuras.md').write_text(texto,encoding='utf-8')
     r['indice_figuras']=indice

@@ -1,0 +1,67 @@
+fonte,variavel,significado_pt,unidade,intervalos_esperados,intervalos_com_registro,intervalos_sem_registro,registro_sem_valor_disponivel,intervalos_disponiveis,cobertura_pct,preenchimento_nos_intervalos_com_registro_pct,zeros,negativos
+Austrália,Active_Power,Potência ativa do sistema fotovoltaico australiano,kW,1270944,1256431,14513,26826,1229605,96.74737832666112,97.86490463861526,606646,18675
+Austrália,Wind_Speed,Velocidade do vento,a confirmar,1270944,1256431,14513,915516,340915,26.823762494649646,27.13360303908452,5079,6
+Austrália,Weather_Temperature_Celsius,Temperatura meteorológica,°C,1270944,1256431,14513,32374,1224057,96.31085240577083,97.4233364187926,5132,11932
+Austrália,Weather_Relative_Humidity,Umidade relativa do ar,%,1270944,1256431,14513,32365,1224066,96.31156054082635,97.42405273349671,5132,0
+Austrália,Global_Horizontal_Radiation,Irradiância global horizontal (GHI),W/m²,1270944,1256431,14513,32326,1224105,96.31462912606692,97.42715676388119,5132,1
+Austrália,Diffuse_Horizontal_Radiation,Irradiância difusa horizontal,"W/m², a confirmar",1270944,1256431,14513,32326,1224105,96.31462912606692,97.42715676388119,5132,0
+Austrália,Wind_Direction,Direção do vento,"graus, a confirmar",1270944,1256431,14513,32320,1224111,96.31510121610394,97.42763430701726,5135,6154
+Austrália,Weather_Daily_Rainfall,Precipitação diária,"mm, a confirmar",1270944,1256431,14513,32317,1224114,96.31533726112245,97.42787307858529,1120230,0
+Austrália,Radiation_Global_Tilted,Irradiância global no plano inclinado,"W/m², a confirmar",1270944,1256431,14513,150351,1106080,87.02822468967948,88.03348532470147,0,3
+Austrália,Radiation_Diffuse_Tilted,Irradiância difusa no plano inclinado,"W/m², a confirmar",1270944,1256431,14513,108224,1148207,90.34284752121258,91.3863952735964,33353,1
+Brasil: CSV consolidado,potencia_total_kw,Potência agregada informada em total_active_power_w no CSV manual,kW (W do CSV divididos por 1000),105120,84235,20885,0,84235,80.13222983257229,100.0,41490,0
+Brasil: CSV consolidado,indice_albedo_medio,Índice de albedo medio,"adimensional, a confirmar",105120,33383,71737,33383,0,0.0,0.0,0,0
+Brasil: CSV consolidado,gri_kwh_day_est,"Irradiação do canal GRI (plano/componente a confirmar), diária, estimada","kWh/m², a confirmar",105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,0
+Brasil: CSV consolidado,albedo_tracker,Albedo associado ao rastreador solar,"adimensional, a confirmar",105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,1
+Brasil: CSV consolidado,gri_irr_med,"Irradiância do canal GRI (plano/componente a confirmar), média",unidade e escala a confirmar,105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,1
+Brasil: CSV consolidado,poa_kwh_hour,"Irradiação no plano dos módulos, horária","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,141,14936
+Brasil: CSV consolidado,precipitacao_acc,Precipitação acumulada,"mm, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,26667,0
+Brasil: CSV consolidado,dir_vento,Direção do vento,"graus, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,poa_irradiancia,Irradiância no plano dos módulos,unidade e escala a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,23,15369
+Brasil: CSV consolidado,poa_irr_med,"Irradiância no plano dos módulos, média",unidade e escala a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,0,15364
+Brasil: CSV consolidado,air_speed_max,Velocidade máxima do vento,a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,0,7017
+Brasil: CSV consolidado,air_temperature_med,Temperatura média do ar,"°C, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,indice_albedo_tracker,Índice de albedo tracker,"adimensional, a confirmar",105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,1
+Brasil: CSV consolidado,gri_kwh_acc,"Irradiação do canal GRI (plano/componente a confirmar), acumulada","kWh/m², a confirmar",105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,0
+Brasil: CSV consolidado,poa_irr_max,"Irradiância no plano dos módulos, máxima",unidade e escala a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,18,15223
+Brasil: CSV consolidado,temperatura_ambiente,Temperatura ambiente,"°C, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,poa_kwh_min,"Irradiação no plano dos módulos, por minuto (janela a confirmar)","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,15364
+Brasil: CSV consolidado,tensao_bateria,Tensão da bateria da estação,"V, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,calculo_albedo_medio,Campo de cálculo do albedo médio,"adimensional, a confirmar",105120,33383,71737,33383,0,0.0,0.0,0,0
+Brasil: CSV consolidado,vel_vento,Velocidade do vento,a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,0,9403
+Brasil: CSV consolidado,ghi_irr_max,"Irradiância global horizontal, máxima",unidade e escala a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,369,5428
+Brasil: CSV consolidado,air_temperature_min,Temperatura mínima do ar,"°C, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,ghi_irr_med,"Irradiância global horizontal, média",unidade e escala a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,0,10420
+Brasil: CSV consolidado,ghi_irr_min,"Irradiância global horizontal, mínima",unidade e escala a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,225,13980
+Brasil: CSV consolidado,ghi_kwh_min,"Irradiação global horizontal, por minuto (janela a confirmar)","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,10420
+Brasil: CSV consolidado,gri_irradiancia,Irradiância do canal GRI (plano/componente a confirmar),unidade e escala a confirmar,105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,1
+Brasil: CSV consolidado,temperatura_painel,Temperatura do painel fotovoltaico,"°C, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,indice_albedo_maximo,Índice de albedo maximo,"adimensional, a confirmar",105120,33383,71737,33383,0,0.0,0.0,0,0
+Brasil: CSV consolidado,ghi_kwh_day,"Irradiação global horizontal, diária","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,2981,0
+Brasil: CSV consolidado,gri_irr_min,"Irradiância do canal GRI (plano/componente a confirmar), mínima",unidade e escala a confirmar,105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,1
+Brasil: CSV consolidado,ghi_kwh_day_est,"Irradiação global horizontal, diária, estimada","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,2981,0
+Brasil: CSV consolidado,pv_temperatura_med,Temperatura média do sistema fotovoltaico,"°C, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,poa_irr_min,"Irradiância no plano dos módulos, mínima",unidade e escala a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,15,15471
+Brasil: CSV consolidado,ghi_kwh_hour,"Irradiação global horizontal, horária","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,141,10748
+Brasil: CSV consolidado,ghi_irradiancia,Irradiância global horizontal,unidade e escala a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,359,10115
+Brasil: CSV consolidado,dir_vento_med,Direção média do vento,"graus, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,precipitacao_acc_hour,"Precipitação acumulada, horária","mm, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,33048,0
+Brasil: CSV consolidado,gri_kwh_day,"Irradiação do canal GRI (plano/componente a confirmar), diária","kWh/m², a confirmar",105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,0
+Brasil: CSV consolidado,poa_kwh_day_est,"Irradiação no plano dos módulos, diária, estimada","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,2981,0
+Brasil: CSV consolidado,poa_kwh_acc,"Irradiação no plano dos módulos, acumulada","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,air_temperature_max,Temperatura máxima do ar,"°C, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,ghi_kwh_acc,"Irradiação global horizontal, acumulada","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,precipitacao_acc_min,"Precipitação acumulada, por minuto (janela a confirmar)","mm, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,33380,0
+Brasil: CSV consolidado,poa_kwh_day,"Irradiação no plano dos módulos, diária","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,2981,0
+Brasil: CSV consolidado,pv_temperatura_max,Temperatura máxima do sistema fotovoltaico,"°C, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,air_speed_med,Velocidade média do vento,a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,0,8536
+Brasil: CSV consolidado,indice_albedo_minimo,Índice de albedo minimo,"adimensional, a confirmar",105120,33383,71737,33383,0,0.0,0.0,0,0
+Brasil: CSV consolidado,gri_kwh_min,"Irradiação do canal GRI (plano/componente a confirmar), por minuto (janela a confirmar)","kWh/m², a confirmar",105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,1
+Brasil: CSV consolidado,gri_kwh_hour,"Irradiação do canal GRI (plano/componente a confirmar), horária","kWh/m², a confirmar",105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,0
+Brasil: CSV consolidado,pv_temperatura_min,Temperatura mínima do sistema fotovoltaico,"°C, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,air_speed_min,Velocidade mínima do vento,a confirmar,105120,33383,71737,0,33383,31.757039573820396,100.0,0,12901
+Brasil: CSV consolidado,precipitacao_acc_day,"Precipitação acumulada, diária","mm, a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,31342,0
+Brasil: CSV consolidado,poa_kwh_acc_est,"Irradiação no plano dos módulos, acumulada, estimada","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,gri_irr_max,"Irradiância do canal GRI (plano/componente a confirmar), máxima",unidade e escala a confirmar,105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,1
+Brasil: CSV consolidado,ghi_kwh_acc_est,"Irradiação global horizontal, acumulada, estimada","kWh/m², a confirmar",105120,33383,71737,0,33383,31.757039573820396,100.0,0,0
+Brasil: CSV consolidado,gri_kwh_acc_est,"Irradiação do canal GRI (plano/componente a confirmar), acumulada, estimada","kWh/m², a confirmar",105120,33383,71737,33321,62,0.058980213089802135,0.18572327232423688,56,0

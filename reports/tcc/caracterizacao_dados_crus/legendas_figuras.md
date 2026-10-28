@@ -1,44 +1,44 @@
-# Legendas das figuras — dados crus
+# Legendas das figuras: caracterização dos dados originais
 
-PNG em 300 dpi e PDF vetorial. Numeração a ajustar ao TCC.
+PNG em 300 dpi e PDF vetorial. Numeração provisória.
 
-## fig_3_2_01_australia_crua
+## fig_3_2_01_cobertura_australia
 
-Disponibilidade do arquivo australiano integral
+Cobertura temporal dos dados originais de potência da base australiana
 
-Contagem de intervalos de cinco minutos com registros, sem filtro de valores ou imputação. Os timestamps australianos estão alinhados à grade exata. O período integral do arquivo é usado; não há corte em 2023. Dias civis completos são a referência, inclusive nas bordas parciais do arquivo. Branco: mês fora do intervalo.
-
-Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
-
-## fig_3_2_02_inversores_crus
-
-Disponibilidade dos registros crus dos inversores
-
-Código 07-07FX e datas locais de 2025. As curvas coloridas contam existência em intervalos [t,t+5min): 2304 posições inversor–intervalo por dia, ou 288 intervalos com os oito inversores presentes. A linha cinza exige timestamp exato e mostra o efeito do desalinhamento temporal; não implica ausência real de coleta. Presença no mesmo intervalo não exige o mesmo segundo. Nenhum valor ou timestamp cru é corrigido, somado ou imputado.
+Cobertura diária e mensal da variável Active_Power entre 25/07/2013 e 23/08/2025. A cobertura corresponde à proporção de intervalos de cinco minutos com ao menos um valor numérico finito de potência, considerando 288 intervalos esperados por dia, inclusive nas datas inicial e final. Intervalos sem registro ou sem potência numérica finita são considerados indisponíveis; zeros são observações disponíveis. As demais variáveis não participam deste indicador. As regiões em branco representam meses externos ao período de observação.
 
 Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
 
-## fig_3_2_03_calendario_brasil_cru
+## fig_3_2_02_cobertura_inversores
 
-Calendário da disponibilidade original brasileira
+Cobertura temporal dos dados originais dos inversores brasileiros
 
-Ausências e coberturas parciais antes de qualquer reconstrução diária ou imputação. Zero significa nenhuma posição com valor finito da variável; branco indica dia inexistente no mês. A referência de calendário inclui dias sem aquisição e a borda final parcial do arquivo.
-
-Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
-
-## fig_3_2_04_ausencias_cruas
-
-Ausência de registros e ausência de valores dentro dos registros
-
-Classes mutuamente exclusivas em intervalos [t,t+5min) por equipamento. Várias linhas no mesmo intervalo não multiplicam a cobertura: basta uma com valor finito. Valores finitos suspeitos, negativos ou fora das faixas de triagem continuam na classe verde; presença não equivale a validade. A classificação é uma contagem, sem consolidar valores ou modificar timestamps crus. As tabelas também mostram vazios nas linhas do CSV e timestamps exatos, com outras definições.
+Disponibilidade de potência dos oito inversores da usina 07-07FX no calendário local de 2025. O painel superior apresenta a cobertura por equipamento; o inferior compara a cobertura sobre 2304 combinações de equipamento e intervalo por dia, a presença simultânea dos oito inversores em 288 intervalos diários e a presença de registros nos horários exatos da grade. A contagem por intervalos [t, t + 5 min) admite diferenças de segundos entre registros, sem modificar seus horários ou valores.
 
 Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
 
-## fig_3_2_05_distribuicoes_cruas
+## fig_3_2_03_calendario_brasil
 
-Distribuições dos valores originais registrados
+Calendário de cobertura dos dados originais brasileiros
 
-Todas as linhas com valores numéricos finitos entram, inclusive duplicatas e valores suspeitos. Não há normalização por capacidade, conversão da escala de GHI brasileira, remoção de negativos ou preenchimento. Potência brasileira é por inversor em W; australiana é a variável do sistema em kW. Infinitos e textos não numéricos ficam fora do histograma e são contados nas tabelas.
+Cobertura diária de potência dos inversores e temperatura da estação meteorológica em 2025, anterior ao tratamento. Os denominadores são 2304 combinações de equipamento e intervalo para os inversores e 288 intervalos para a estação. A cobertura considera a presença de valores numéricos finitos. Zero indica ausência de valores disponíveis; células em branco correspondem a datas inexistentes no mês.
+
+Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
+
+## fig_3_2_04_disponibilidade_variaveis
+
+Disponibilidade das variáveis nos intervalos de aquisição esperados
+
+Distribuição dos intervalos esperados entre ausência de registro, registro sem valor numérico finito e presença de ao menos um valor numérico finito. As classes são mutuamente exclusivas e calculadas por equipamento em intervalos de cinco minutos. Registros repetidos não aumentam a cobertura. Valores finitos fora dos limites de triagem permanecem classificados como disponíveis; disponibilidade não implica validade física.
+
+Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
+
+## fig_3_2_05_distribuicoes_originais
+
+Distribuições das variáveis nos dados originais
+
+Histogramas de densidade dos valores numéricos finitos, preservando registros duplicados, zeros, valores negativos e observações sinalizadas na triagem. A potência australiana representa o sistema em kW; a brasileira representa cada inversor em W. O GHI da estação brasileira é apresentado na escala original, sem correção de unidade ou calibração. Os períodos de observação diferem entre as fontes.
 
 Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
 
@@ -46,23 +46,23 @@ Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no 
 
 Campos vazios nas linhas presentes dos arquivos originais
 
-Denominador: linhas existentes na seleção de cada CSV, preservadas as duplicatas. Linhas inteiras que não foram registradas não entram aqui. Por isso, poucos NaN no arquivo podem coexistir com grandes lacunas temporais. Não há umidade no esquema da estação brasileira; essa variável não é adicionada artificialmente à contagem.
+Número e proporção de campos vazios nas linhas existentes de cada fonte, incluindo registros duplicados. O denominador corresponde às linhas selecionadas do arquivo, sem contabilizar intervalos sem registro. A umidade relativa não integra o esquema da estação brasileira e não é incluída nesta contagem.
 
 Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
 
 ## fig_3_2_07_duplicatas_suspeitos
 
-Duplicatas e sinais de inconsistência nos dados crus
+Duplicatas e sinais de inconsistência nos dados originais
 
-Duplicata significa mesma chave temporal e equipamento, não necessariamente linhas idênticas. Critérios de triagem: temperatura fora de −20 a 60 °C; umidade fora de 0 a 100%; negativos nos demais campos selecionados. Não se afirma que todo valor sinalizado seja erro de sensor e nenhum valor é removido. Divergência entre duplicatas é auditada nas tabelas, incluindo diferenças entre ausência e presença de valor.
+À esquerda, número de registros excedentes para a mesma combinação de horário e equipamento. À direita, observações sinalizadas pelos critérios de triagem: temperatura fora de −20 a 60 °C, umidade relativa fora de 0 a 100% e valores negativos nas demais variáveis selecionadas. A sinalização identifica observações para inspeção e não determina sua exclusão ou comprova erro de medição.
 
 Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
 
-## fig_3_2_08_lacunas_cruas
+## fig_3_2_08_lacunas_originais
 
-Duração das lacunas antes do tratamento
+Distribuição da duração das lacunas nos dados originais
 
-No painel superior: intervalos [t,t+5min) sem valor finito de potência australiana, potência por inversor brasileiro e temperatura da estação. Cada inversor tem sua própria sequência; as contagens de oito sequências não são diretamente comparáveis às de uma estação. Duração = número de intervalos ausentes × cinco minutos. No inferior, conta-se ausência de todos os registros da fonte, inclusive fora dos minutos exatos. Bordas do calendário estão incluídas; não se interpreta lacuna como falha física comprovada.
+O painel superior apresenta sequências de intervalos de cinco minutos sem valor numérico finito de potência australiana, potência por inversor brasileiro ou temperatura da estação. A duração corresponde ao número de intervalos consecutivos multiplicado por cinco minutos. O painel inferior apresenta sequências de dias sem qualquer registro da fonte. As lacunas dos inversores são contadas separadamente por equipamento; ambos os painéis incluem as bordas do calendário.
 
 Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
 
@@ -70,7 +70,7 @@ Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no 
 
 Perfil horário da disponibilidade original
 
-A grade considera as 24 horas. Zero de potência é um valor observado e não é marcado como faltante. Reduções noturnas de disponibilidade podem refletir política de aquisição; a figura não determina a causa. Austrália mantém a convenção temporal do arquivo sem fuso explícito; Brasil usa a apresentação local America/Sao_Paulo dos timestamps UTC.
+Proporção de intervalos de cinco minutos com valor numérico finito por hora do dia, considerando potência australiana, potência dos inversores brasileiros e temperatura da estação. Valores nulos de potência são contabilizados como observados. Os horários seguem a convenção do arquivo australiano e o fuso America/Sao_Paulo para os registros brasileiros. O perfil descreve a disponibilidade sem atribuir causas às interrupções.
 
 Fonte: elaboração própria com os CSVs originais identificados por SHA-256 no manifesto.
 

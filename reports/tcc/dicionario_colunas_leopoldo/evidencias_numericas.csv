@@ -1,0 +1,14 @@
+﻿tipo,campos,pares,resultado,limite
+Janela de um minuto,ghi_kwh_min; ghi_irr_med,14333,99.53% compatíveis com kWh_min = irradiância média / 60000,"Filtro |irr_med| > 10; rtol=1e-4, atol=0,05 W/m²; evidência numérica, não calibração."
+Temporalidade diária,ghi_kwh_day,140,114 dias têm um único valor diário repetido; 26 têm mais de um,Valor repetido não comprova que o total estava disponível naquele horário; fechamento e fuso do contador precisam de confirmação.
+Variante est,ghi_kwh_day; ghi_kwh_day_est,33383,100.00% de pares numericamente iguais,Igualdade neste arquivo não documenta o significado de est nem demonstra previsão independente.
+Variante est,ghi_kwh_acc; ghi_kwh_acc_est,33383,100.00% de pares numericamente iguais,Igualdade neste arquivo não documenta o significado de est nem demonstra previsão independente.
+Janela de um minuto,poa_kwh_min; poa_irr_med,16624,99.39% compatíveis com kWh_min = irradiância média / 60000,"Filtro |irr_med| > 10; rtol=1e-4, atol=0,05 W/m²; evidência numérica, não calibração."
+Temporalidade diária,poa_kwh_day,140,114 dias têm um único valor diário repetido; 26 têm mais de um,Valor repetido não comprova que o total estava disponível naquele horário; fechamento e fuso do contador precisam de confirmação.
+Variante est,poa_kwh_day; poa_kwh_day_est,33383,100.00% de pares numericamente iguais,Igualdade neste arquivo não documenta o significado de est nem demonstra previsão independente.
+Variante est,poa_kwh_acc; poa_kwh_acc_est,33383,100.00% de pares numericamente iguais,Igualdade neste arquivo não documenta o significado de est nem demonstra previsão independente.
+Janela de um minuto,gri_kwh_min; gri_irr_med,5,100.00% compatíveis com kWh_min = irradiância média / 60000,"Filtro |irr_med| > 10; rtol=1e-4, atol=0,05 W/m²; evidência numérica, não calibração."
+Temporalidade diária,gri_kwh_day,15,15 dias têm um único valor diário repetido; 0 têm mais de um,Valor repetido não comprova que o total estava disponível naquele horário; fechamento e fuso do contador precisam de confirmação.
+Variante est,gri_kwh_day; gri_kwh_day_est,62,100.00% de pares numericamente iguais,Igualdade neste arquivo não documenta o significado de est nem demonstra previsão independente.
+Variante est,gri_kwh_acc; gri_kwh_acc_est,62,100.00% de pares numericamente iguais,Igualdade neste arquivo não documenta o significado de est nem demonstra previsão independente.
+Escala do albedo,albedo_tracker; indice_albedo_tracker,62,Maior diferença em relação a 100 × albedo_tracker: 0.077715,Escala percentual sugerida; igualdade exata e fórmula não confirmadas.

@@ -1,0 +1,3 @@
+fonte,variavel_potencia,inicio,fim,intervalos_esperados,intervalos_com_potencia,cobertura_potencia_pct,variaveis_meteorologicas
+australia,Active_Power,2013-07-25 00:00:00,2025-08-23 23:55:00,1270944,1229605,96.74737832666112,9
+brasil,potencia_total_kw,2025-01-01 00:00:00,2025-12-31 23:55:00,105120,84235,80.13222983257229,55

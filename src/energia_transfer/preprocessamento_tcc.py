@@ -118,18 +118,18 @@ def gerar_figuras_preprocessamento(r):
         for k,(c,l,cor) in enumerate([('ausentes_calendario','Ausentes no calendário','#777777'),('invalidos_adicionais','Inválidos adicionais','#b34d3e'),('ffill','Preenchidos pelo passado','#3c8b72'),('ausentes_finais','Ausentes finais','#2166a1')]):
             b=a.bar(x+(k-1.5)*largura,g[c],largura,label=l,color=cor);a.bar_label(b,padding=2,fontsize=8)
         a.set_xticks(x,NOMES);a.set(ylabel='Número de dias',title='Austrália: efeito das etapas diárias',ylim=(0,47));a.legend(ncol=2);a.grid(axis='y',alpha=.2)
-        salvar(fig,'fig_3_3_01_etapas_australia','Ausências em cada etapa australiana',
-               'Recorte de 3812 dias até 2023. Ausentes finais = ausentes de calendário + inválidos adicionais − preenchidos. As barras representam etapas e não devem ser somadas entre si. Os limites são aplicados às médias diárias; potência não é imputada.')
+        salvar(fig,'fig_3_3_01_etapas_australia','Efeito das etapas de pré-processamento sobre a disponibilidade da base australiana',
+               'Número de dias com valores ausentes, invalidados, preenchidos e ausentes após o tratamento, no calendário de 3812 dias até 31/12/2023. As ausências finais correspondem às ausências iniciais acrescidas das invalidações e descontadas as imputações. Os limites operacionais são aplicados às médias diárias. Apenas as variáveis meteorológicas recebem preenchimento; a potência permanece sem imputação.')
 
         fig,ax=plt.subplots(3,1,figsize=(10,8.2))
         for a,c,nome in zip(ax,COLS[1:],['Temperatura (°C)','Umidade relativa (%)','GHI (W/m²)']):
             d=r['au_imputados'].index[r['au_imputados'][c]][0];ini=d-pd.Timedelta(days=4);fim=d+pd.Timedelta(days=5)
             a.plot(r['au_original'].loc[ini:fim].index,r['au_original'].loc[ini:fim,c],marker='o',lw=.9,color='#777777',label='Média diária recebida')
-            a.plot(r['au'].loc[ini:fim].index,r['au'].loc[ini:fim,c],marker='.',lw=1,color='#2166a1',label='Após QC + ffill')
+            a.plot(r['au'].loc[ini:fim].index,r['au'].loc[ini:fim,c],marker='.',lw=1,color='#2166a1',label='Após controle e preenchimento')
             m=r['au_imputados'].loc[ini:fim,c];a.scatter(m.index[m],r['au'].loc[m.index[m],c],s=65,marker='x',color='#b34d3e',label='Preenchido pelo passado',zorder=4)
             a.set(ylabel=nome,title=f'Exemplo ao redor de {d.date()}');a.grid(alpha=.2);a.legend(loc='best',ncol=3)
         salvar(fig,'fig_3_3_02_exemplos_ffill','Exemplos do preenchimento causal meteorológico',
-               'Para cada variável, mostra-se a primeira ocorrência de preenchimento no recorte. O último valor válido é propagado por no máximo dois dias consecutivos; não se usa informação futura. São exemplos, não uma validação quantitativa da precisão dos valores imputados.')
+               'Séries diárias de temperatura, umidade relativa e GHI no entorno da primeira ocorrência de imputação de cada variável. O preenchimento propaga a última observação válida por até dois dias consecutivos, utilizando exclusivamente informações passadas. Os marcadores identificam os valores imputados. Os exemplos ilustram o procedimento e não constituem uma avaliação de sua precisão.')
 
         fig,a=plt.subplots(figsize=(9,5.3));g=t['australia_cobertura_alvos'];x=np.arange(2);base=np.zeros(2)
         for c,l,cor in [('menos_95pct','<95%','#b34d3e'),('entre_95_e_100','95% a <100%','#e5b451'),('completos','100%','#3c8b72')]:
@@ -140,28 +140,28 @@ def gerar_figuras_preprocessamento(r):
         a.text(.03,.98,'Treino: 10 dias <95%; 43 dias entre 95% e <100%',transform=a.transAxes,va='top',fontsize=8,bbox=dict(facecolor='white',alpha=.9,edgecolor='none'))
         a.set_xticks(x,['Treino (3392 alvos)','Validação (352 alvos)']);a.set(ylabel='Alvos da partição (%)',title='Cobertura das leituras de potência no alvo australiano',ylim=(0,101));a.legend(loc='upper center',bbox_to_anchor=(.5,-.08),ncol=3)
         salvar(fig,'fig_3_3_03_cobertura_alvos','Cobertura intradiária dos alvos australianos usados',
-               '95% é apenas uma referência descritiva, não um filtro aplicado no experimento. Treino: 10 de 3392 alvos abaixo de 95%; validação: 84 de 352. A média de leituras disponíveis pode diferir da média integral das 24 horas; o controle diário não elimina essa limitação.')
+               'Distribuição dos alvos de treino e validação segundo a proporção de leituras de potência disponíveis em relação às 288 leituras esperadas por dia. Apresentam cobertura inferior a 95% dez dos 3392 alvos de treino e 84 dos 352 alvos de validação. O limiar de 95% é descritivo e não foi aplicado como critério de exclusão. A média das leituras disponíveis pode diferir da média integral de 24 horas.')
 
         fig,ax=plt.subplots(1,2,figsize=(11.7,5.6));q=r['por_inv'];ok=np.isfinite(q.energia_dia_kwh)&np.isfinite(q.energia_pelo_acumulado)
         for flag,cor,label in [(True,'#3c8b72','Aprovado'),(False,'#b34d3e','Reprovado')]:
             s=q[ok&q.consistente.eq(flag)];ax[0].scatter(s.energia_dia_kwh,s.energia_pelo_acumulado,s=7,alpha=.5,color=cor,label=f'{label} (n={len(s)})')
         ax[0].plot([0,1200],[0,1200],ls='--',color='gray',lw=1);ax[0].set(xlabel='Máximo do contador diário após 06h (kWh)',ylabel='Diferença dos acumulados (kWh)',title='Concordância entre contadores por inversor');ax[0].legend();ax[0].grid(alpha=.2)
-        labels=['Sem registros em algum inversor','Sem contador diário após 06h','Sem borda inicial (<04h)','Sem borda final (≥19h)','Energia fora de 0–1600 kWh','Acumulado negativo','Contadores divergentes']
+        labels=['Sem registros em algum inversor','Sem contador diário após 06h','Sem borda inicial (<04h)','Sem borda final (≥19h)','Energia fora de 0 a 1600 kWh','Acumulado negativo','Contadores divergentes']
         g=t['brasil_motivos'];b=ax[1].barh(range(len(g)),g.dias_com_motivo,color='#b45f06');ax[1].bar_label(b,padding=3);ax[1].set_yticks(range(len(g)),labels);ax[1].invert_yaxis();ax[1].set(title='Motivos de reprovação (podem se sobrepor)',xlabel='Dias com ao menos um inversor na condição');ax[1].margins(x=.15)
         salvar(fig,'fig_3_3_04_contadores_brasil','Consistência dos contadores e reprovação de dias brasileiros',
-               'A dispersão inclui apenas pares com ambos os contadores finitos; a falta das bordas também reprova dias e é contabilizada à direita. Exigem-se oito inversores consistentes por dia. Os motivos se sobrepõem e não devem ser somados para obter 81 dias. Concordância interna não substitui medição independente.')
+               'Comparação entre a energia do contador diário e a diferença do contador acumulado por inversor, restrita aos pares com valores numéricos finitos. O painel direito apresenta a frequência dos critérios de reprovação diária, incluindo ausência das observações necessárias nas bordas do dia. A aprovação exige concordância dos oito inversores. Os critérios podem ocorrer simultaneamente; suas contagens não são aditivas. A concordância representa consistência interna dos contadores.')
 
         fig,ax=plt.subplots(1,2,figsize=(11.7,4.8));g=t['brasil_estados'].estado.value_counts().reindex(['Sem registros','Reprovado com registros','Aprovado'],fill_value=0)
         b=ax[0].bar(range(3),g,color=['#a63535','#e5b451','#3c8b72']);ax[0].bar_label(b,padding=3);ax[0].set_xticks(range(3),['Sem registros','Com registros,\nreprovado','Aprovado']);ax[0].set(ylabel='Dias de 2025',title='Resultado da validação diária',ylim=(0,320))
         g=t['meteorologia_era5'];b=ax[1].bar(range(3),g.dias_completos,color='#2166a1');ax[1].bar_label(b,padding=3);ax[1].set_xticks(range(3),NOMES[1:]);ax[1].set(ylabel='Dias de 2025',title='Meteorologia ERA5 disponível por dia',ylim=(0,410));ax[1].axhline(365,color='gray',ls='--',lw=1,label='Calendário: 365 dias');ax[1].legend(loc='lower left')
         salvar(fig,'fig_3_3_05_base_brasileira','Disponibilidade após reconstrução brasileira e meteorologia pública',
-               'Há 19 dias sem registros de inversores e 62 dias com registros que não satisfazem a validação: 81 dias sem alvo final; 284 aprovados. Cada variável ERA5 tem 364 dias completos; 01/01 permanece ausente. Não se imputam alvos diários nem se combinam medições da estação com ERA5 nesta versão.')
+               'Classificação dos 365 dias de 2025 quanto à reconstrução do alvo brasileiro: 19 dias sem registros, 62 dias com registros reprovados e 284 dias aprovados. As três variáveis meteorológicas do ERA5 apresentam 364 dias completos, permanecendo ausentes em 01/01/2025. Os alvos diários não recebem imputação; as covariáveis meteorológicas provêm integralmente da reanálise.')
 
         fig,ax=plt.subplots(2,1,figsize=(11.7,6.7))
         for a,d,nome,cor in [(ax[0],r['au'],'Austrália: média das leituras disponíveis','#2166a1'),(ax[1],r['br'],'Brasil: energia validada / 24 h','#b45f06')]:
             a.plot(d.index,d.Active_Power,lw=.75,color=cor);a.set(title=nome,ylabel='Potência média diária (kW)',xlabel='Data');a.grid(alpha=.2)
-        salvar(fig,'fig_3_3_06_alvos_diarios','Séries diárias após os procedimentos vigentes',
-               'As lacunas permanecem no calendário e interrompem as linhas. Austrália: média aritmética das amostras presentes. Brasil: soma dos contadores diários de oito inversores aprovados dividida por 24 horas. As definições e os períodos diferem; esta figura não comprova equivalência de qualidade dos alvos.')
+        salvar(fig,'fig_3_3_06_alvos_diarios','Séries de potência média diária após o pré-processamento',
+               'Potência média diária australiana calculada pela média aritmética das leituras disponíveis e potência média equivalente brasileira calculada pela soma da energia diária dos oito inversores aprovados dividida por 24 horas. As lacunas são preservadas no calendário e interrompem as séries. As bases apresentam períodos de observação e procedimentos de construção do alvo distintos.')
 
         fig,ax=plt.subplots(1,2,figsize=(11.7,5.2))
         for a,dom,cor in zip(ax,['Austrália','Brasil'],['#2166a1','#b45f06']):
@@ -169,7 +169,7 @@ def gerar_figuras_preprocessamento(r):
             a.bar_label(b,labels=[f'{n}\n({p:.1f}%)' for n,p in zip(g.n,g.pct)],padding=3,fontsize=9)
             a.set_xticks(range(3),['Calendário','Alvo disponível','Três dias anteriores\n+ alvo']);a.set(title=dom,ylabel='Fração do calendário (%)',ylim=(0,117));a.grid(axis='y',alpha=.2)
         salvar(fig,'fig_3_3_07_janelas','Disponibilidade de alvos e de janelas consecutivas',
-               'A previsão de um dia recebe três dias civis anteriores completos; não se comprimem as datas e não se atravessam dias sem potência válida. São 3744 janelas australianas e 230 brasileiras (160/26/44 em treino/validação/teste). Janelas sobrepostas não são amostras estatisticamente independentes.')
+               'Disponibilidade relativa ao calendário diário em três etapas: calendário completo, alvo disponível e janela elegível com três dias anteriores consecutivos e um alvo. São obtidas 3744 janelas australianas e 230 brasileiras; estas se distribuem em 160, 26 e 44 janelas de treino, validação e teste. O calendário é preservado e as janelas não atravessam dias sem potência válida. Janelas sobrepostas apresentam dependência temporal.')
 
         fig,ax=plt.subplots(1,2,figsize=(11.7,5.1))
         for d,label,cor in [(r['au_pu'],'Austrália: divisão por 24 kW','#2166a1'),(r['br_pu'],'Brasil: divisão por 1000 kW','#b45f06')]:ax[0].hist(d.Active_Power.dropna(),bins=30,density=True,histtype='step',lw=1.5,label=label,color=cor)
@@ -180,7 +180,7 @@ def gerar_figuras_preprocessamento(r):
         ax[1].set(xlabel='Histórico de potência padronizado (z)',ylabel='Densidade',title='MLP/LSTM: parâmetros ajustados só no treino');ax[1].legend()
         for a in ax:a.grid(alpha=.2)
         salvar(fig,'fig_3_3_08_escalas','Normalização física e padronização estatística',
-               'À esquerda, capacidades AC adotadas no projeto, ainda sujeitas à confirmação técnica. À direita, históricos de potência das janelas brasileiras; as mesmas média/desvio do treino são aplicadas à validação e ao teste, sem reajuste. Repetições de um dia em janelas sobrepostas entram no ajuste, conforme implementação. Chronos usa entradas em p.u./unidades físicas e não recebe este padronizador externo.')
+               'À esquerda, distribuições da potência diária normalizada pelas capacidades AC adotadas de 24 kW e 1000 kW, respectivamente para Austrália e Brasil, sujeitas à confirmação documental. À direita, distribuições do histórico brasileiro após padronização pela média e pelo desvio padrão ajustados exclusivamente nas janelas de treino e mantidos na validação e no teste. Dias repetidos em janelas sobrepostas participam do ajuste. A padronização externa é utilizada nas MLP/LSTM locais; o Chronos recebe potência em p.u. e meteorologia em unidades físicas.')
     salvar_json(r['pasta']/'indice_figuras.json',indice)
     texto='# Legendas para a seção 3.3\n\nPNG: 300 dpi; PDF: vetorial. Numeração provisória.\n\n'
     for item in indice:texto+=f"## {item['arquivo']}\n\n{item['titulo']}\n\n{item['legenda']}\n\nFonte: elaboração própria com os arquivos e procedimentos identificados no manifesto.\n\n"

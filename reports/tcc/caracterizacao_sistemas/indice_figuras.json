@@ -1,0 +1,37 @@
+[
+  {
+    "arquivo": "fig_3_2_01_cobertura_australia",
+    "titulo": "Cobertura temporal da potência do sistema: Austrália",
+    "legenda": "Proporção de intervalos de cinco minutos com potência numérica finita, considerando 288 intervalos esperados por dia. Os dois painéis representam exclusivamente potência; zeros observados são contabilizados como disponíveis. A variável australiana é Active_Power; o período integral do arquivo é apresentado, enquanto o experimento diário utiliza somente dados até 2023. Regiões em branco representam meses externos ao período analisado."
+  },
+  {
+    "arquivo": "fig_3_2_02_cobertura_brasil",
+    "titulo": "Cobertura temporal da potência do sistema: Brasil",
+    "legenda": "Proporção de intervalos de cinco minutos com potência numérica finita, considerando 288 intervalos esperados por dia. Os dois painéis representam exclusivamente potência; zeros observados são contabilizados como disponíveis. A potência brasileira é a coluna total_active_power_w de Leopoldo_base_consolidada_5min.csv, convertida para kW. O arquivo utiliza uma grade completa e preserva potência mesmo sem meteorologia; n_inversores_potencia identifica somas completas e parciais. A cobertura inclui todas as potências finitas informadas, sem exigir oito contribuintes. Regiões em branco representam meses externos ao período analisado."
+  },
+  {
+    "arquivo": "fig_3_2_03_estacao_solarimetrica",
+    "titulo": "Cobertura mensal dos canais da estação solarimétrica brasileira",
+    "legenda": "Proporção de intervalos do calendário completo de 2025 com valor numérico finito em cada canal físico da estação, utilizando exclusivamente Leopoldo_base_consolidada_5min.csv. Os valores são lidos sem nova consolidação ou imputação. Cada variável possui contagem independente. Canais totalmente ausentes são preservados no inventário; sua ausência não comprova falha de sensor. Nenhuma variável ERA5 é incluída."
+  },
+  {
+    "arquivo": "fig_3_2_04_distribuicoes_potencia",
+    "titulo": "Distribuições de potência dos sistemas australiano e brasileiro",
+    "legenda": "Histogramas de densidade da potência em kW, utilizando todos os intervalos disponíveis, inclusive zeros e valores negativos finitos. No Brasil, utiliza-se a potência agregada informada no CSV consolidado manual, sem exigir novamente oito contribuintes ou refazer as somas. As escalas de potência e os períodos de observação diferem entre os sistemas; não se aplica normalização por capacidade nesta etapa."
+  },
+  {
+    "arquivo": "fig_3_2_05_disponibilidade_variaveis",
+    "titulo": "Disponibilidade da potência e de variáveis meteorológicas selecionadas",
+    "legenda": "Distribuição dos intervalos esperados entre ausência de registro da fonte, registro presente sem valor disponível e presença de valor numérico finito. No Brasil, os indicadores tem_registro_inversores e tem_registro_estacao identificam a presença de cada fonte independentemente das linhas da grade completa. As tabelas apresentam todos os canais meteorológicos; a figura seleciona temperatura, umidade disponível na Austrália e GHI."
+  },
+  {
+    "arquivo": "fig_3_2_06_lacunas_potencia",
+    "titulo": "Distribuição da duração das lacunas de potência por sistema",
+    "legenda": "Sequências consecutivas de intervalos de cinco minutos sem potência numérica finita. No Brasil, incluem-se tanto os horários sem linha no CSV consolidado manual quanto as linhas com potência ausente. A duração corresponde ao número de intervalos consecutivos multiplicado por cinco minutos. Incluem-se as bordas do calendário. Os eixos utilizam escala logarítmica."
+  },
+  {
+    "arquivo": "fig_3_2_07_disponibilidade_horaria",
+    "titulo": "Perfil horário da disponibilidade de potência dos sistemas",
+    "legenda": "Proporção de intervalos com potência numérica finita por hora do dia, incluindo as 24 horas e os zeros observados. A Austrália mantém a convenção temporal do arquivo; o Brasil utiliza America/Sao_Paulo após conversão dos horários UTC. O perfil é descritivo e não atribui causa às ausências."
+  }
+]
