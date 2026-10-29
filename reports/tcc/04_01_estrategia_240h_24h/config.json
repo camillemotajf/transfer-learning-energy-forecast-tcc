@@ -1,0 +1,12 @@
+{
+  "historico_horas": 240,
+  "saida_horas": 24,
+  "frequencia": "h",
+  "stride_treino_horas": 1,
+  "emissao_validacao_teste_hora_local": 0,
+  "treino_aceita_alvos_tratados": true,
+  "validacao_teste_exige_24_alvos_sem_alteracao": true,
+  "historico_e_alvo_na_mesma_particao": true,
+  "escala_potencia": "pu_capacidade_adotada",
+  "escala_meteorologia": "z_score_so_treino"
+}

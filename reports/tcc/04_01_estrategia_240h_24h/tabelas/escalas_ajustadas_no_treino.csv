@@ -1,0 +1,7 @@
+variavel,metodo,media,escala,n_ajuste,dominio
+Global_Horizontal_Radiation,z_score_treino,263.66502220076217,353.4325889420319,18697,australia
+Weather_Temperature_Celsius,z_score_treino,21.10346946641909,9.497748078414986,18697,australia
+Weather_Relative_Humidity,z_score_treino,35.86368836370277,22.754140135008864,18697,australia
+Wind_Speed,z_score_treino,2.309853648044694,1.3039379895088319,18697,australia
+Active_Power,pu_capacidade,0.0,24.0,0,australia
+Active_Power,pu_capacidade,0.0,1000.0,0,brasil

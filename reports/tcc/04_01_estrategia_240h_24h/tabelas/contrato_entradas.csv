@@ -1,0 +1,7 @@
+dominio,entrada,ordem_canal,escala
+australia,Global_Horizontal_Radiation,0,z-score do treino
+australia,Weather_Temperature_Celsius,1,z-score do treino
+australia,Weather_Relative_Humidity,2,z-score do treino
+australia,Wind_Speed,3,z-score do treino
+australia,Active_Power,4,AP/capacidade adotada
+brasil,Active_Power,0,AP/capacidade adotada

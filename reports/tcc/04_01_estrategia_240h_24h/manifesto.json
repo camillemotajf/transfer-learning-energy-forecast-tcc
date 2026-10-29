@@ -1,0 +1,220 @@
+{
+  "config": {
+    "historico_horas": 240,
+    "saida_horas": 24,
+    "frequencia": "h",
+    "stride_treino_horas": 1,
+    "emissao_validacao_teste_hora_local": 0,
+    "treino_aceita_alvos_tratados": true,
+    "validacao_teste_exige_24_alvos_sem_alteracao": true,
+    "historico_e_alvo_na_mesma_particao": true,
+    "escala_potencia": "pu_capacidade_adotada",
+    "escala_meteorologia": "z_score_so_treino"
+  },
+  "features": {
+    "australia": [
+      "Global_Horizontal_Radiation",
+      "Weather_Temperature_Celsius",
+      "Weather_Relative_Humidity",
+      "Wind_Speed",
+      "Active_Power"
+    ],
+    "brasil": [
+      "Active_Power"
+    ]
+  },
+  "entradas_comuns": [
+    "Active_Power"
+  ],
+  "capacidades_adotadas_kw": {
+    "australia": 24.0,
+    "brasil": 1000.0
+  },
+  "referencia": {
+    "doi": "10.1109/ACCESS.2025.3591040",
+    "tabela": "5",
+    "gerador": "https://github.com/gist-ailab/transfer-learning-PV-forecasting/blob/main/data_provider/data_loader.py"
+  },
+  "adaptacoes": [
+    "Partições cronológicas herdadas do 03_03; histórico e alvo na mesma partição.",
+    "Não atravessa blocos nem usa interpolações indisponíveis na emissão.",
+    "Treino horário aceita alvos tratados com máscaras; validação/teste diários exigem 24 alvos sem alteração.",
+    "AP em p.u. pela capacidade adotada; meteorologia com z-score ajustado somente no treino.",
+    "Brasil univariado, Austrália com cinco variáveis; nenhuma arquitetura foi treinada ou transferida."
+  ],
+  "fontes_sha256": {
+    "reports\\tcc\\preprocessamento_horario_bak2025\\manifesto.json": "c1ca9faebb69ae50119730a129cfdb4631dba9b82bf15e6d8361c1441393647a",
+    "notebooks\\tcc\\03_03_tratamento_e_preprocessamento.ipynb": "73f50b8a1344a4c2d2b4f72b2203d6d3ba2547521c72310855b91f8b3007679c",
+    "reports\\tcc\\preprocessamento_horario_bak2025\\tabelas\\escalas_treino.csv": "e73a82c5545eb96bca6125f4dc703ad6a7f23344afd3f4dd24cf8b761b70926c",
+    "data\\processed\\australia\\australia_horario_bak2025_todos_blocos.csv.gz": "7fe2a438987721ee63ebccda051406cd2dbb71ffc24b64152046a96336504b44",
+    "data\\processed\\brasil\\brasil_horario_bak2025_todos_blocos.csv.gz": "34a47032a03666fc4017133986817b82876e813940c74104478cbb25c521f42b"
+  },
+  "notebook": "notebooks\\tcc\\04_01_estrategia_entrada_240h_24h.ipynb",
+  "codigo_sha256": "ecd9e2a25fc0e90ddfe3b07a7f48f11ccfae5c2fb1a35ba076caa65495b0f510",
+  "tensores": {
+    "australia_treino": {
+      "arquivo": "data\\processed\\janelas_240h_24h\\australia_treino_L240_H24.npz",
+      "amostras": 16876,
+      "shape_X": [
+        16876,
+        240,
+        5
+      ],
+      "shape_y": [
+        16876,
+        24
+      ],
+      "sha256": "ed92df50955769c5c7923f949e2718302ca751f7f2d10e29fd19e39ebc540775",
+      "megabytes": 1.39
+    },
+    "australia_validacao": {
+      "arquivo": "data\\processed\\janelas_240h_24h\\australia_validacao_L240_H24.npz",
+      "amostras": 63,
+      "shape_X": [
+        63,
+        240,
+        5
+      ],
+      "shape_y": [
+        63,
+        24
+      ],
+      "sha256": "9b0c700faec15e07bbb4d3f309c3eabf108999a3011efa5aca5b9dcac7b187fe",
+      "megabytes": 0.07
+    },
+    "australia_teste": {
+      "arquivo": "data\\processed\\janelas_240h_24h\\australia_teste_L240_H24.npz",
+      "amostras": 62,
+      "shape_X": [
+        62,
+        240,
+        5
+      ],
+      "shape_y": [
+        62,
+        24
+      ],
+      "sha256": "7d39f4d0492ac1a4047fea0e8373d1295b233512b76c65e42d94606feb0c9ca7",
+      "megabytes": 0.07
+    },
+    "brasil_treino": {
+      "arquivo": "data\\processed\\janelas_240h_24h\\brasil_treino_L240_H24.npz",
+      "amostras": 1227,
+      "shape_X": [
+        1227,
+        240,
+        1
+      ],
+      "shape_y": [
+        1227,
+        24
+      ],
+      "sha256": "4e3d634625364b35b53f7f3d2a48c9341f9e4e1e0908d19691343413a5509762",
+      "megabytes": 0.06
+    },
+    "brasil_validacao": {
+      "arquivo": "data\\processed\\janelas_240h_24h\\brasil_validacao_L240_H24.npz",
+      "amostras": 17,
+      "shape_X": [
+        17,
+        240,
+        1
+      ],
+      "shape_y": [
+        17,
+        24
+      ],
+      "sha256": "f45f0998bc9d342c1a728956f6747b348fab2d7847a82e5d7ed48bfb4f22cc7f",
+      "megabytes": 0.01
+    },
+    "brasil_teste": {
+      "arquivo": "data\\processed\\janelas_240h_24h\\brasil_teste_L240_H24.npz",
+      "amostras": 9,
+      "shape_X": [
+        9,
+        240,
+        1
+      ],
+      "shape_y": [
+        9,
+        24
+      ],
+      "sha256": "bfe6e67b4a18923e4fe4eecdb94758e1cf94575e2d682a4874492a955d720797",
+      "megabytes": 0.01
+    }
+  },
+  "contagens": [
+    {
+      "dominio": "australia",
+      "particao": "treino",
+      "candidatos_antes_disponibilidade": 16879,
+      "rejeitados_borda_futura": 3,
+      "candidatas_horarias": 16876,
+      "emissoes_diarias": 709,
+      "diarias_24_alvos_observados": 215,
+      "selecionadas_protocolo": 16876,
+      "passo": "1 hora",
+      "vetores_treino_com_alvo_tratado": 11716
+    },
+    {
+      "dominio": "australia",
+      "particao": "validacao",
+      "candidatos_antes_disponibilidade": 2284,
+      "rejeitados_borda_futura": 1,
+      "candidatas_horarias": 2283,
+      "emissoes_diarias": 98,
+      "diarias_24_alvos_observados": 63,
+      "selecionadas_protocolo": 63,
+      "passo": "1 dia, 00h",
+      "vetores_treino_com_alvo_tratado": 0
+    },
+    {
+      "dominio": "australia",
+      "particao": "teste",
+      "candidatos_antes_disponibilidade": 1924,
+      "rejeitados_borda_futura": 4,
+      "candidatas_horarias": 1920,
+      "emissoes_diarias": 84,
+      "diarias_24_alvos_observados": 62,
+      "selecionadas_protocolo": 62,
+      "passo": "1 dia, 00h",
+      "vetores_treino_com_alvo_tratado": 0
+    },
+    {
+      "dominio": "brasil",
+      "particao": "treino",
+      "candidatos_antes_disponibilidade": 1229,
+      "rejeitados_borda_futura": 2,
+      "candidatas_horarias": 1227,
+      "emissoes_diarias": 56,
+      "diarias_24_alvos_observados": 54,
+      "selecionadas_protocolo": 1227,
+      "passo": "1 hora",
+      "vetores_treino_com_alvo_tratado": 65
+    },
+    {
+      "dominio": "brasil",
+      "particao": "validacao",
+      "candidatos_antes_disponibilidade": 420,
+      "rejeitados_borda_futura": 1,
+      "candidatas_horarias": 419,
+      "emissoes_diarias": 18,
+      "diarias_24_alvos_observados": 17,
+      "selecionadas_protocolo": 17,
+      "passo": "1 dia, 00h",
+      "vetores_treino_com_alvo_tratado": 0
+    },
+    {
+      "dominio": "brasil",
+      "particao": "teste",
+      "candidatos_antes_disponibilidade": 193,
+      "rejeitados_borda_futura": 0,
+      "candidatas_horarias": 193,
+      "emissoes_diarias": 9,
+      "diarias_24_alvos_observados": 9,
+      "selecionadas_protocolo": 9,
+      "passo": "1 dia, 00h",
+      "vetores_treino_com_alvo_tratado": 0
+    }
+  ]
+}

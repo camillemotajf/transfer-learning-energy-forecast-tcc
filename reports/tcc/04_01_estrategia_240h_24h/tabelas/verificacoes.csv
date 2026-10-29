@@ -1,0 +1,7 @@
+dominio,particao,amostras,arquivo_reaberto,saida_24_horas
+australia,treino,16876,True,True
+australia,validacao,63,True,True
+australia,teste,62,True,True
+brasil,treino,1227,True,True
+brasil,validacao,17,True,True
+brasil,teste,9,True,True

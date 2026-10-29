@@ -1,0 +1,7 @@
+dominio,particao,candidatos_antes_disponibilidade,rejeitados_borda_futura,candidatas_horarias,emissoes_diarias,diarias_24_alvos_observados,selecionadas_protocolo,passo,vetores_treino_com_alvo_tratado
+australia,treino,16879,3,16876,709,215,16876,1 hora,11716
+australia,validacao,2284,1,2283,98,63,63,"1 dia, 00h",0
+australia,teste,1924,4,1920,84,62,62,"1 dia, 00h",0
+brasil,treino,1229,2,1227,56,54,1227,1 hora,65
+brasil,validacao,420,1,419,18,17,17,"1 dia, 00h",0
+brasil,teste,193,0,193,9,9,9,"1 dia, 00h",0

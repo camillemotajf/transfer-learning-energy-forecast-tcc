@@ -69,3 +69,33 @@ As legendas descrevem denominadores e ressalvas para evitar interpretar disponib
 como validação física ou somar motivos de reprovação sobrepostos.
 
 CSV principal de cinco minutos: [brasil_merge_5_minutos.csv](../../data/interim/brasil/brasil_merge_5_minutos.csv), gerado pelo 03_01 com potências AC/DC, contadores de energia somados e os canais da estação. Esse CSV alternativo não é a fonte brasileira do 03_02, que utiliza exclusivamente o arquivo manual Leopoldo_base_consolidada_5min.csv.
+
+## 4.1: estratégia de entrada para previsão de um dia completo
+
+Notebook: [04_01_estrategia_entrada_240h_24h.ipynb](../../notebooks/tcc/04_01_estrategia_entrada_240h_24h.ipynb).
+Relatório: [04_01_estrategia_240h_24h](../../reports/tcc/04_01_estrategia_240h_24h/).
+
+A estratégia usa 240 horas anteriores e devolve um vetor com as próximas 24 potências
+horárias. É baseada nos comprimentos de entrada e saída da Tabela 5 de Bak et al. (2025).
+O passo de amostragem de uma hora não é o stride dos patches internos do Transformer.
+Treino horário; validação e teste diários às 00h, com todos os alvos sem alteração.
+Nenhuma janela atravessa blocos, partições ou utiliza interpolação indisponível na emissão.
+
+| Figura | Uso no texto | Tabelas associadas |
+|---|---|---|
+| 04.01-1: entrada e saída | Definição das 240 horas e das 24 saídas consecutivas | `contrato_entradas.csv`, `formatos_tensores.csv` |
+| 04.01-2: contagens | Redução de amostras com histórico longo e avaliação diária | `contagem_janelas.csv`, `*_segmentos_blocos_particoes.csv` |
+| 04.01-3: calendário de emissões | Disponibilidade das previsões por partição e qualidade dos alvos | `*_indice_candidatas.csv`, `*_indice_selecionadas.csv` |
+
+Os índices incluem início/fim do histórico e do vetor-alvo, emissão, bloco, partição e
+qualidade dos 24 alvos. Os seis NPZ estão em `data/processed/janelas_240h_24h/`.
+AP é expressa em p.u. pela capacidade adotada e as covariáveis australianas recebem
+z-score ajustado somente no treino. Não se afirma reprodução integral da normalização
+do artigo. As capacidades e a unidade original do vento australiano requerem confirmação.
+
+Brasil: 1.227 amostras horárias de treino, 17 dias de validação e 9 de teste.
+São contagens sob o critério conservador de manter histórico e alvo na mesma partição.
+O tamanho reduzido do teste e a dependência entre amostras sobrepostas devem acompanhar
+as futuras métricas. Este notebook não treina modelos; as séries e a preparação do 03_03
+permanecem preservadas. O cenário com cinco entradas na origem e uma no destino requer
+uma arquitetura de transferência compatível, a ser definida na etapa de modelagem.

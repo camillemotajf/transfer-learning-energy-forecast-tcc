@@ -5,6 +5,7 @@
 | [03_01_brasil_merge_horarios.ipynb](03_01_brasil_merge_horarios.ipynb) | Gera o CSV de cinco minutos com potência e energia somadas dos oito inversores e canais da estação | 1 |
 | [03_02_caracterizacao_dados_crus.ipynb](03_02_caracterizacao_dados_crus.ipynb) | Potência e meteorologia; Brasil a partir de Leopoldo_base_consolidada_5min.csv fornecido pelo pesquisador | 7 |
 | [03_03_tratamento_e_preprocessamento.ipynb](03_03_tratamento_e_preprocessamento.ipynb) | Tratamento horário em todos os blocos; Brasil com AP, Austrália com AP/GHI/temperatura/RH/vento; código e diagnóstico nas células | 10 |
+| [04_01_estrategia_entrada_240h_24h.ipynb](04_01_estrategia_entrada_240h_24h.ipynb) | Sliding window: 240 horas anteriores → vetor das próximas 24 horas; treino horário e avaliação diária | 3 |
 
 O [mapa de figuras e tabelas](../../docs/tcc/02_mapa_notebooks_e_figuras.md) indica
 qual material usar em cada subseção. Os notebooks contêm explicações, saídas com
@@ -83,3 +84,26 @@ blocos, partições e disponibilidade das interpolações. As partições 70/15/
 cronológicas sobre todas as horas elegíveis; nenhum modelo foi treinado. AP é a
 entrada comum entre domínios: utilizar cinco entradas no modelo de origem exige
 uma arquitetura de adaptação explícita para o Brasil univariado.
+
+## Estratégia 04_01: previsão das próximas 24 horas
+
+O [04_01](04_01_estrategia_entrada_240h_24h.ipynb) consome as bases horárias de todos os
+blocos do 03_03 e preserva suas partições. Cada amostra contém 240 horas de histórico
+e um vetor-alvo de 24 potências horárias futuras, conforme o comprimento de entrada
+e saída da Tabela 5 de Bak et al. (2025). O avanço no treino é de uma hora; validação
+e teste principais usam emissão às 00h e exigem os 24 alvos sem alteração/interpolação.
+Histórico e alvo permanecem no mesmo bloco e na mesma partição. A disponibilidade
+da borda direita das interpolações também é verificada.
+
+Austrália: `X=(N,240,5)` com GHI, temperatura, RH, vento e AP; Brasil: `X=(N,240,1)`.
+`X_potencia` prepara o cenário univariado também na origem, e `y=(N,24)` nos dois países.
+A potência usa p.u. pela capacidade adotada; meteorologia recebe z-score só no treino.
+São escolhas explícitas de preparação, sem implementação de PatchTST, destilação ou treino.
+
+- [Tensores NPZ](../../data/processed/janelas_240h_24h/): seis arquivos, separados por país e partição;
+- [Relatório e figuras](../../reports/tcc/04_01_estrategia_240h_24h/): contagens, índices, escalas, verificações e manifesto.
+
+Brasil: **1.227 janelas horárias de treino, 17 dias de validação e 9 dias de teste**.
+As contagens dependem das fronteiras conservadoras herdadas. Janelas sobrepostas não
+são amostras independentes. O treino conserva máscaras dos alvos tratados; a avaliação
+principal utiliza somente vetores sem alteração, mantendo indicadores de soma parcial.
