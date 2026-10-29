@@ -1,0 +1,13 @@
+regra,coluna,horas_sinalizadas,novos_nan,dominio
+potencia_negativa_entre_menos005_e_zero_convertida_zero,Active_Power,3072,0,australia
+potencia_normalizada_menor_menos005,Active_Power,0,0,australia
+ghi_maior_2000,Global_Horizontal_Radiation,0,0,australia
+temperatura_menor_menos10,Weather_Temperature_Celsius,255,255,australia
+vento_negativo,Wind_Speed,6,6,australia
+umidade_fora_0_100,Weather_Relative_Humidity,1184,1184,australia
+potencia_normalizada_ate005_ghi_acima200,Active_Power,10,10,australia
+potencia_normalizada_acima01_ghi_abaixo10,Active_Power,152,152,australia
+potencia_nao_nula_repetida_10_comparacoes,Active_Power,0,0,australia
+potencia_negativa_entre_menos005_e_zero_convertida_zero,Active_Power,0,0,brasil
+potencia_normalizada_menor_menos005,Active_Power,0,0,brasil
+potencia_nao_nula_repetida_10_comparacoes,Active_Power,0,0,brasil

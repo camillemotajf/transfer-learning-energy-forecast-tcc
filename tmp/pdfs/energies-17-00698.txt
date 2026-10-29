@@ -1,0 +1,707 @@
+
+=== PAGE 1 ===
+energies
+Article
+A Novel Dual-Channel Temporal Convolutional Network for
+Photovoltaic Power Forecasting
+XiaoyingRen1,2 ,FeiZhang1,2,YongruiSun2andYongqianLiu1,*
+1 SchoolofRenewableEnergy,NorthChinaElectricPowerUniversity,Beijing100000,China;
+huhurenxy@sohu.com(X.R.);rollrocket@imust.edu.cn(F.Z.)
+2 CollegeofInformationEngineering,InnerMongoliaUniversityofScienceandTechnology,
+Baotou014010,China;s1287207482@163.com
+* Correspondence:yqliu@ncepu.edu.cn
+Abstract:Alargeproportionofphotovoltaic(PV)powergenerationisconnectedtothepowergrid,
+anditsvolatilityandstochasticityhavesignificantimpactsonthepowersystem.AccuratePVpower
+forecastingisofgreatsignificanceinoptimizingthesafeoperationofthepowergridandpower
+markettransactions.Inthispaper,anoveldual-channelPVpowerforecastingmethodbasedona
+temporalconvolutionalnetwork(TCN)isproposed.ThemethoddeeplyintegratesthePVstation
+featuredatawiththemodelcomputingmechanismthroughthedual-channelmodelarchitecture;
+utilizesthecombinationofmultiheadattention(MHA)andTCNtoextractthemultidimensional
+spatio-temporalfeaturesbetweenothermeteorologicalvariablesandthePVpower;andutilizesa
+singleTCNtofullyextractthetemporalconstraintsofthepowersequenceelements.Theweighted
+fusionofthedual-channelfeaturedataultimatelyyieldstheidealforecastingresults. Theexperi-
+mentaldatainthisstudyarefroma26.52kWPVpowerplantincentralAustralia.Theexperiments
+werecarriedoutoversevendifferentinputwindowwidths,andthetwomodelsthatcurrentlyshow
+superiorperformancewithinthefieldofPVpowerforecasting:theconvolutionalneuralnetwork
+(CNN),andtheconvolutionalneuralnetworkcombinedwithalongandshort-termmemorynetwork
+(CNN_LSTM),areusedasthebaselinemodels. Theexperimentalresultsshowthattheproposed
+modelandthebaselinemodelsbothobtainedthebestforecastingperformanceovera1-dayinput
+windowwidth,whiletheproposedmodelexhibitedsuperiorforecastingperformancecomparedto
+thebaselinemodel.Italsoshowsthatdesigningmodelarchitecturesthatdeeplyintegratethedata
+inputmethodwiththemodelmechanismhasresearchpotentialinthefieldofPVpowerforecasting.
+Citation:Ren,X.;Zhang,F.;Sun,Y.;
+Liu,Y.ANovelDual-Channel
+Keywords:photovoltaicpowerforecasting;deeplearning;TCN;multiheadattention
+TemporalConvolutionalNetworkfor
+PhotovoltaicPowerForecasting.
+Energies2024,17,698. https://
+doi.org/10.3390/en17030698
+1. Introduction
+AcademicEditor:AlonKuperman
+In 2022, solar photovoltaic (PV) generation increased by a record 270 TWh (26%
+Received:19December2023 growth)tonearly1300TWh. In2022,solarPVhadthelargestabsolutegenerationgrowth
+Revised:23January2024 ofanyrenewableenergytechnology, surpassingwindforthefirsttimeinhistory. This
+Accepted:29January2024 rateofgrowthinelectricitygenerationmatchesthelevelsenvisionedinthenet-zeroCO
+2
+Published:1February2024
+emissionsscenariofor2050,fortheperiod2023to2030[1]. WiththelargeproportionofPV
+powergenerationconnectedtothepowersystem,itsinherentvolatilityandstochasticity
+simultaneouslyputscorrespondingtechnicalpressureonthesafeandstableoperationof
+thegrid[2]. AccuratePVpowerforecastingcanpredicttheimpactofPVaccessonthe
+Copyright: © 2024 by the authors.
+gridatdifferenttimescalesinthefuture,thusprovidingadvanceapplicationdecisions
+Licensee MDPI, Basel, Switzerland.
+fordifferentapplicationscenarios,andenablingefficient,economical,andsafeoperation
+Thisarticleisanopenaccessarticle
+ofthepowersystem. AccuratePVpowerforecastingcanimprovetheproportionofgrid
+distributed under the terms and
+acceptanceofPVpowergeneration,andprovidetechnicalsupportfortherealizationofthe
+conditionsoftheCreativeCommons
+Attribution(CCBY)license(https:// net-zeroemissiontargetin2050.
+creativecommons.org/licenses/by/ Therearemanyclassificationmethodsforphotovoltaicpowerforecasting. According
+4.0/). totheclassificationofforecastingprocesses,photovoltaicpowerforecastingcanbedivided
+Energies2024,17,698.https://doi.org/10.3390/en17030698 https://www.mdpi.com/journal/energies
+
+=== PAGE 2 ===
+Energies2024,17,698 2of19
+intodirectforecastingandindirectforecasting. Accordingtotheclassificationofforecasting
+spatialscale,itcanbedividedintosinglefieldforecastingandregionalforecasting. Accord-
+ingtotheclassificationoftimescale,itcanbedividedintoultra-short-termforecasting,
+short-termforecasting,medium-termforecasting,andlong-termforecasting. According
+totheclassificationofforecastingforms,itcanbedividedintopointforecasting,interval
+forecasting,andprobabilityforecasting[3]. Therearemanyfactorsthataffectphotovoltaic
+powerforecasting,suchasforecastingsequencelength,featureselection,performanceof
+the forecasting model and so on. Since the accuracy of PV power forecasting depends
+onthetypeofmodelused,theforecastingmodelisdescribedbelow. Severalmodeling
+methodsforPVpowerforecastingincludephysical,statistical,anddeeplearningmeth-
+ods[4]. AccordingtotherelativepositionbetweenaPVpowerstationandthesun,the
+physicalmethodcomprehensivelyanalyzesthecharacteristicsofPVpanels,inverters,and
+other equipment in the PV power station, to obtain the physical relationship between
+PVpowergenerationpowerandrelevantmeteorologicalelements. Itthenpredictsthe
+powerofthePVpowerstationaccordingtothepredictedvaluesofvariousmeteorological
+elementsinnumericalweatherforecasting(NWP).Theadvantageofthismethodisthatit
+establishesaclear,physical,interpretablemodelanddoesnotrequirehistoricaloperation
+data, but the disadvantage is that it is highly dependent on NWP and lacks sufficient
+spatialandtemporalresolution,whichhasbeenprovedbyDolaraetal.[5]tobeoneof
+themainerrorsourcesofphysicalmethods. Inaddition,theparametersprovidedbyPV
+manufacturersareoftenmissingandtheiraccuracyisnotfullyguaranteed. Theaccuracyof
+thePVmaximumpowerpointtracking(MPPT)algorithmalsodirectlyaffectstheaccuracy
+ofPVoutputpower[6];duetothelimitationsofthecognitivelevel,therearecertainerrors
+intheestablishedphysicalmodels,andthemodelsaredependentonempiricalparameters.
+Becausetherearesomedifferencesintheempiricalparametersindifferentgeographical
+areas,thiscanlimitthelocalanti-interferenceabilityofthemodelandmaketherobustness
+ofthemodelweaker[7]. Statisticaltechniquescanbedividedintoforecastingtechniques
+basedontimeseries,andforecastingtechniquesbasedonmachinelearning. Timeseries
+forecastingisbasedonstatisticalinformationprovidedbythetimeseriestopredictthe
+targetelement. Theobservedvaluesarerecordedatfixedtimeintervalsoveraperiodof
+time,dependingontheresponseoftheobservedvaluestotime. Someofthecommonly
+usedtechniquesare: exponentialaveraging,autoregressivemovingaverage(ARMA),and
+autoregressiveintegratedmovingaverage(ARIMA).Incontrast,machinelearningmethods
+rely on AI forecasting techniques to learn from historical data and enhance forecasting
+abilitythroughmultipletrainingiterations. Theseincludemultilayerperceptronneural
+networks(MLP);extremelearningmachines(ELM);artificialneuralnetworks(ANN)[8];
+andradialbasisfunctionneuralnetworks(RBFNN).
+Some scholars[9–11] havedemonstrated that deep learningmethods have greater
+forecastingpotentialthantheshallowmachinelearningmodelsdescribedabove. Deep
+learningisessentiallyamachinelearningmethodthatmimicsthehumanbrain’smecha-
+nismforinterpretingdata[12],usingmultiplehiddenlayerstoconvertinitiallow-level
+featuresintoabstracthigh-levelfeatures[10]. Comparedwithtraditionalmachinelearning
+methods,itcanbeusedtodealwithlargetrainingsamplesandcomplexinitialfeatures[13],
+and has stronger generalization ability and unsupervised self-learning ability. Typical
+deeplearningmodelsincludetherecurrentclassofneuralnetworks(e.g.,longshort-term
+memory(LSTM)[14];gatedrecurrentunit(GRU)[15]);deepbeliefnetwork(DBN)[16];
+autoencoder(AE)[17,18];generativeadversarialnetworks(GAN)[19];andconvolutional
+neuralnetworks(CNN)[2],etc. XuekaiZhangetal.[20]appliedaCNNmodeltoregional
+PV power generation forecasting, and compared it with SVM and BP neural networks
+(bottom-upandtop-downregionalforecastingmethods,respectively). Theresultsshow
+thatCNNhasthehighestaccuracy,whichprovesthegoodperformanceofCNNindata
+miningforPVpowergenerationprediction. VishnuSureshetal.[21]predictedPVpower
+generationforonehour,oneday,andoneweekinthefutureusingavarietyofCNNstruc-
+turesandcomparedtheresultswiththoseoftheautoregressivemovingaveragemodel
+
+=== PAGE 3 ===
+Energies2024,17,698 3of19
+(AMAM)andthemultivariatelinearregressionmodel(MLRM),andtheresultsshowthat
+CNNandCNN_LSTMperformbestinbothsummerandwinter. Therefore,inrecentyears,
+moreandmoreresearchershaveusedconvolutionalneuralnetworksandtheirvariantsas
+timeseriesforecastingmodels.
+Asanetworkstructureforprocessingtimeseriesdata,TCNhasbeenwidelyusedin
+recentyears,butithasrarelybeenappliedinPVpowerprediction. ShaojieBaietal.[22]
+proposedaCNN-basedTCN,whichshowedthatconvolutionalarchitectureoutperforms
+typicalrecurrentnetworksonavarietyoftasksanddatasets,andthattheflexiblesense
+fieldexhibitslongereffectivememory. Theyconcludedthataconvolutionalneuralnetwork
+shouldbeusedasanaturalstartingpointforsequencemodelingtasksatthesametime.
+PradeepHewageetal.[23]developedaweatherforecastingsystemusingweatherstation
+data using a TCN network, and the experimental results showed that, compared with
+LSTMandotherclassicalmachinelearningmethods,theuseofTCNcanproducebetter
+forecasts. PedroLara-Benítezetal.[24]studiedtwoenergy-relatedtimeseriesfromSpain
+forforecastingnationalpowerdemandandpowerdemandofelectricvehiclecharging
+stations. AlargenumberofexperimentsshowedthattheforecastingaccuracyofTCNwas
+betterthanthatofLSTMonbothdatasets,andthatTCNisaverypowerfulalternative
+toLSTM.TheeffectivenessofTCNintimeseriesforecastingisreflectedbythefactthat
+causaldilationconvolutionismoreeffectiveincapturingtimedependence; Compared
+toLSTM,TCNislesssensitivetoparameterselection,andtheconvolutionalstructurein
+TCNprovidesmorereliableperformanceeveniftheparameterschosenaremoredifferent.
+TCNprovidesbetterresultswhenusinglongerinputsequences. HaifengLouetal.[25]
+proposed a multi-step wind power forecasting method utilizing an improved TCN to
+correctcumulativeerror. ThismethodimprovedthefeatureextractioncapabilityofTCN
+forinputsequencesandtheabilitytominethemappingrelationshipbetweenmultiple
+inputsandmultipleoutputs.
+In the field of photovoltaic power forecasting, Yang Lin et al. [26] investigated the
+applicationofTCNinsolarpowerforecasting. Experimentswereconductedtocompare
+the performance of TCN with multilayer feed-forward neural networks, and recurrent
+networksincludingstate-of-the-artLSTMandGRUrecurrentnetworks. Theexperimental
+resultsshowedthatTCNoutperformstheothermodelsintermsofaccuracyandisableto
+retainalongerhistoryofvaliddata. Thestudyalsoshowedthepotentialofthisparticular
+convolutionalstructureforsolarenergyforecastingtasks. Limouni,Tariqetal.[27]pro-
+posedanewmodelforforecastingphotovoltaic(PV)powergenerationusingLSTM-TCN.
+The model consisted of a combination of LSTM and TCN models. LSTM was used to
+extracttemporalfeaturesfromtheinputdataandthencombinedwithTCNtocreatealink
+betweenthefeaturesandtheoutput. BetterforecastingperformancethanthatofLSTM
+andTCNwasachievedinbothsingle-stepandmulti-stepforecasting.
+In this paper, the task of power forecasting for day-ahead photovoltaic power is
+investigated. Theday-aheadshort-termphotovoltaicpowerforecastprovidesimportant
+datasupportfortheformulationofapowergenerationplan[28]. Currently,therearea
+numberofresearcherswhohaveconductedrelevantstudiesonday-aheadpowerprediction.
+In terms of the impact of input series length on forecasting performance, Wang Kejun
+et al. [29] studied the impact of different lengths of data on forecasting accuracy. As
+thelengthofthehistoricaltimeseriesdataincreased,theforecastaccuracyofthemodel
+improved. However,whenthelengthofthedatareachedacertainpoint,theimprovement
+oftheforecastaccuracywasnolongerobvious—evenanegativeimprovementwasnoted,
+andaninflectionpointoccurredatthreeyears.JiaqiQuetal.[30]conductedalargenumber
+of experiments on time series data with different memory lengths (from 0.5 to 3 days)
+underdifferentpredictionranges(1hto13h),andtheresultsofthestudyshowedthat
+theproposedALSMmodelhadahigherforecastingaccuracythanothermodelsunder
+theMRTPPmodel. Inthisexperimentalstudy,differentmemorylengths(i.e.,timesteps
+rangingfrom1to7days)wereusedtopredictthePVpowerseriesfrom0to24honthe
+followingday. Intheresearchonhybridmodels,alargenumberofstudieshaveshownthat
+
+=== PAGE 4 ===
+Energies2024,17,698 4of19
+specifichybridforecastingmodels,suchasCNN_LSTM,CNN_GRU,andGAN-baseddeep
+learningmodels[31–39],havebetterforecastingaccuraciesthanasinglemodel,whichis
+importantfortheimprovementofday-aheadshort-termPVpowerforecasting.
+Fromtheinvestigationoftheaboveliterature,itcanbeunderstoodthatdeeplearning
+methodshavebeenwidelyusedinthefieldofPVpowerforecastingandhaveachieved
+goodforecastingperformance. TCNhasdemonstratedgoodperformanceinextracting
+thelong-termtemporaldependenceofatimeseriesbecauseofitscausalconvolutionand
+inflationaryconvolutionmodules. Inalltheabovestudies, theinputstothemodelare
+eitherallthefeaturesatthesametimeasinputs,orasinglehistoricalpowerseriesasinputs,
+butacombinationofthetwoinputmethodshasnotbeenseen. Moreover,asingleTCN
+focusesmoreonthelongtimecorrelationofsequences,butpaysrelativelylimitedattention
+tothespatio-temporalcorrelationbetweenmultidimensionalfeatures. Inviewoftheabove
+reasons,thispaperproposesanovelTCN-basedPVpowerforecastingmethodthattakes
+bothoftheabovesituationsintoaccount. Themaincontributionsareasfollows:
+(1) AnovelmodelDC_TCNforday-aheadPVpowerforecastingisproposed. itsdual-
+channelmodelingstructureisabletolearnthespatio-temporalcorrelationbetween
+multiplefeatures,aswellasthetemporalcorrelationbetweenhistoricalpowerand
+currentpower.
+(2) A Multihead Attention (MHA) and TCN cascade channel that takes multivariate
+featuresasinputs,andextractstemporallyandspatiallyconstrainedrelationships
+betweenelementswithinthehistoricalpowerseriesandbetweenhistoricalpower
+andothermeteorologicalseries,whilepayingattentiontoimportantfeatures.
+(3) AsingleTCNchannelwithunivariatefeatures(historicalpower)asinputsistargeted
+toextractlong-termtemporaldependenciesbetweentargetsequenceelements. Dual-
+channelfeaturefusionthusobtainbetterforecastingperformance.
+(4) In this paper, the effect of different input window widths on model performance
+isalsoinvestigated. Optimalforecastingperformanceisachievedforshorterinput
+windowwidths.
+Thesubsequentsectionsofthispaperareorganizedasfollows: Section2introduces
+themethodsandtheoriescoveredinthispaperanddescribesindetailthestructureand
+principlesoftheproposedmethod;Section3presentstheevaluationindexusedtoevaluate
+theproposedmodel;Section4describesindetailtheexperimentalprocedureandresultsof
+alltheresearchworkinthispaper;andSection5givestheconclusions.
+2. Methodology
+TheblockdiagramoftheresearchframeworkofthispaperisshowninFigure1. The
+structureofeachpartisbrieflydescribedasfollows:
+(1) Rawdatawasimportedanddatapre-processingwasperformed: theinputphoto-
+voltaicdatawaspreprocessed,includingfillingmissingvaluesandoutlierswiththe
+adjacentvalues,andnormalizingthedata.
+(2) Convertingdataformat: aslidingwindowwasusedtochangetheformofthedatato
+achievedynamicforecasting,andsatisfytheshape(sample,timestep,andfeature)
+requiredforthedatainputofthedeeplearningmodel. Then,theobtaineddatawere
+filteredtoensurethatthetargetfeaturedatacorrespondingtodifferentsamplesdo
+notoverlap,whichfacilitatedtheevaluationoftheforecastingmodel.
+(3) Trainingthemodels:theproposedDC_TCNmodelwascomparedwiththebenchmark
+model(whichcurrentlyhassuperiorforecastingperformanceinthedomain),and
+thenablationexperimentswereperformed. Theoptimalweightsforeachmodelwere
+obtainedbytrainingandtuningthehyperparameters.
+(4) Experimentandanalysis:theexperimentalresultswerevisualized,andtheforecasting
+resultsofeachmodelwereevaluatedbyMAE,RMSEandR2.
+
+=== PAGE 5 ===
+E nergies2024,17,698 5of19
+F F i i g g u u r r e e 1 1 . .B Blloocckkd diiaaggrraammo offr reesseeaarrcchhf rfraammeewwoorrkko offt hthisisp paappeer.r.
+2.1. MultiHeadAttention
+MHAisbasedontheself-attentionmechanism(selfattention)[40],whichisamethod
+for obtaining contextual information by calculating the correlations between different
+positionsinaninputsequence.Sincetherearemanydifferentformsofcorrelationandmany
+differentdefinitions,itissometimesnotpossibletofocusonjustoneformofcorrelation,
+butratheronmultipleformsofcorrelation. TheMHAallowsthemodeltolearndifferent
+featurerepresentationsatdifferentheadsofattentionbylearningmultipleself-attention
+weight matrices simultaneously. As an example of a three-head attention mechanism,
+Figure2illustratesthestructureofanMHA.
+Figure2.Structureofthemultiheadattentionmechanism.
+Energies 2024, 17, x. https://doi.org/10.3390/xxxxx www.mdpi.com/journal/energies
+
+=== PAGE 6 ===
+Energies2024,17,698 6of19
+2.2. TCN
+TCNiscomposedofcausalconvolution,dilationconvolution,andresidualblocks.
+TCNnotonlyhastheadvantagesofparallelismandtemporalcausality,butalsocanflexibly
+adjustthereceptivefield, soitisverysuitableforprocessingtimeseriesdata. Figure3
+showstheblockdiagramofTCNstructure.
+Figure3.BlockdiagramofTCNstructure.
+CausalconvolutioncanbevisualizedinFigure3(left). Thedifferencewithtraditional
+CNNisthatcausalconvolutioncannotseefuturedata,andonlywiththepreviouscause
+canwehavethesubsequenteffect,astrictlytime-constrainedmodel. Adilatedconvolution
+increasesthereceptivefieldbyinjectingholesinthestandardconvolutiontocapturelonger
+temporaldependencies. Inordertoreduceproblemssuchasgradientvanishingbrought
+bytoodeepanetwork,TCNintroducesaresidualblockdesign. Theresidualblockofthe
+TCNisshowninFigure3(right).
+Accordingtotheabovedescriptionandrelatedpapers,aTCNnetworkisverysuitable
+forthePVpowertimeseriesdataforecastingtask.
+2.3. DC_TCNModel
+SincetheconvolutionalkernelsizeofTCNisfixed,inordertoreducethedifficulty
+ofextractingmultidimensionalspatio-temporalfeaturesfromtheinputsequencesandto
+enhancethefeatureinformation,thisstudydeeplyintegratestheinputfeaturedatawith
+themodeloperationmechanism,andinnovativelyproposesaTCN-basedday-aheadpho-
+tovoltaicpowerforecastingmodelwithatwo-channelstructure,DC_TCN.Thestructureof
+theproposedmodelisshowninFigure4.
+Thedual-channelarchitectureisdesignedwiththeupperlimitofthelearningability
+of the deep learning model itself in mind. A suitable model’s architecture, and rich
+input feature information, both help to increase the upper limit of the deep learning
+model’s learning ability, enabling the model to better adapt to complex patterns and
+relationships. Thisstudyprovideddiverseinputfeatureinformationtothemodelthrough
+twochannels. Attheinputfeaturelevel,theunivariateinputchannelwasusedtoprovide
+thedeeplearningmodelwithpurelytemporalfeatureinformationbetweenthesequence
+elementsofthetargetvariables,andthemultivariateinputchannelwasusedtoprovidethe
+deeplearningmodelwithspatio-temporalfeatureinformationbetweenmultiplefeature
+variables;andatthelevelofthechannelmodelselection,theMHA_TCNmodelwasused
+tosimultaneouslylearnspatio-temporalconstraintsbetweenotherfeaturevariablesand
+the target variables, and the TCN model was used to learn the temporal dependencies
+betweenthesequenceelementsofthetargetvariablesalone. Morespecifically,themodel
+learningprocesswasasfollows:
+
+=== PAGE 7 ===
+Energies2024,17,698 7of19
+InputChannel1oftheproposedmodelwasacombinationofthemultiheadattention
+(MHA)mechanismandtheTCN.Thetargetsequence(PVpower)andothermeteorological
+sequencestogetherservedasitsinput. Therefore,theinputreceivedbytheTCNinthis
+channel was a multidimensional vector, and the vector elements were related in both
+temporal and spatial dimensions, but the actual training was not effective due to the
+inabilitytofullyutilizetherelationshipsbetweentheseinputs,e.g.,partialautocorrelation
+betweentheinternalelementsofthePVpowergenerationsequence,andthecorrelation
+betweenthissequenceandothermeteorologicalsequences. Therefore,inthispaper,MHA
+was introduced before the TCN, to focus on the spatial correlation between sequences
+whilefocusingonthecorrelationbetweentheelementsofeachsequence. MHAmapped
+the multi-feature data to different dimensions, and established a non-linear mapping
+relationshipbetweenPVpowerandothermeteorologicalvariables,payingattentionto
+important spatio-temporal features. These attended features were then used as inputs
+totheTCN.AlthoughthekernelsizeoftheTCNisfixed,duetoitscausalandinflated
+convolutional structure, it can still learn the long-term dependencies of these features
+through an increasing receptive field according to the temporal constraints of the time
+Energies 2024, 17, x FOR PEER REVIEW 2 of 2
+seriesfrombacktofront. Finally,afullyconnectedneuralnetwork(FC)wasusedtofurther
+assignweightstothefeaturesextractedbytheTCN.
+Figure 4. Structure of proposed model.
+Figure4.Structureofproposedmodel.
+InputChannel2oftheproposedmodelwasasingleTCNwhichfeaturedonlythe
+targetsequence(PVpower)asinput. ThecausalanddilatedconvolutionoftheTCNwas
+utilizedtotargettheextractionoflong-termdependenciesbetweentheelementsofthe
+PVpowersequence. Similarly,anFCwasusedtofurtherassignweightstothefeatures
+extractedbytheTCN.
+
+=== PAGE 8 ===
+Energies2024,17,698 8of19
+Finally,thefeaturesextractedfromthetwochannelsweremerged,andtheforecasting
+results were obtained by assigning weights to them through a fully connected neural
+network,andmatchingthelengthoftheoutputforecastsequence.
+Thedual-channelandcombinedMHAstructuraldesignachievedthedeepfusionof
+PVpowergenerationdatawiththeTCN,whichenabledthemodeltoextractmorediverse
+and finer important spatio-temporal features, and reduced the difficulty of the TCN in
+extractingmulti-scalespatio-temporalfeaturesfromtheinputsequences.
+AlltheparametersinvolvedintheproposedmodelaredescribedindetailinSection4.3
+andwillnotberepeatedhere.
+3. PerformanceEvaluationIndex
+Inordertoevaluatetheforecastingperformanceoftheproposedmodel,themeanab-
+soluteerror(MAE),therootmeansquareerror(RMSE),andthecoefficientofdetermination
+(R2)areusedintheexperiments. Eacherrorisexpressedasfollows:
+1∑ n
+MAE = |y −yˆ | (1)
+i i
+n
+i=1
+(cid:115)
+RMSE =
+1∑ n
+(y −yˆ )2 (2)
+i i
+n
+i=1
+∑ (y −yˆ )2
+R2 =1− i i i (3)
+∑ (y −y )2
+i i period
+4. CaseStudy
+4.1. ExperimentalInputData
+Inthisexperiment,thedataoftheDKASC,AliceSpringsPVSystemSite2incentral
+Australia,wereselectedforstudy. PVsystem-specificinformationisshowninFigure5.
+Thedatadownloadaddressis[41]. DatafromJanuary2014toJanuary2016wereselected
+forthisexperiment. Thedataresolutionwas15minforatotalof70,080datasamples. The
+dataconsistedofhistoricalpowerdataandotherhistoricalmeteorologicaldata(collected
+from the site’s meteorological observatories), and included a total of 12 features. Most
+previousstudieshaveusedthePearsoncorrelationcoefficientmethodandtheSpearman
+correlationcoefficientmethodasthebasisforinputfeatureselection. ThePearsoncorrela-
+tioncoefficientmethodrequiresthatthevariablesobeyanormaldistributionandcanonly
+detectlinearrelationships;fornonlinearrelationships,itmaynotaccuratelydescribethe
+relationshipbetweentwovariables. TheSpearmancorrelationcoefficientisanonparamet-
+ricmethodthatdoesnotrequireassumptionsaboutthedistributionofthedata,butitcan
+onlycapturemonotonicrelationshipsbetweenvariablesandcannotdetectnonmonotonic
+relationships. Itisunabletodescribecomplexnonlinearrelationships. Inviewoftheabove
+reasons,andconsideringthatdeeplearningnetworkshaveexcellentnonlinearfeatureex-
+tractioncapabilities,thisstudydidnotusecorrelationanalysisaloneforfeaturescreening,
+butratherconsideredallthefeatures,andultimatelyselectedtheoptimalcombinationof
+featuresthroughexperimentaltrialanderror. Finally,activepower(kW);globalhorizontal
+radiation (w/m2 × sr); weather temperature (◦C); wind speed (m/s); weather relative
+humidity(%;anddiffusehorizontalradiation(w/m2 ×sr)wereselectedasinputfeatures.
+ThedistributionofeachselectedfeatureovertimeisshowninFigure6. Atotalof90%of
+theoriginaldatawasusedasatrainingset,where80%wasusedasthetrainingdataset
+and20%wasusedasthevalidationdataset. Atotalof10%oftheoriginaldatawasusedas
+thetestset.
+
+=== PAGE 9 ===
+Energies2024,17,698 9of19
+Figure5.AliceSpringsPVSystemSite2specificinformation.
+Figure6.Distributionofeachselectedfeatureovertime.
+4.2. DataProcessing
+In data preprocessing, firstly, the missing values and outliers in the dataset were
+replacedbyusingthepriorfillingmethod. Secondly,sincedifferentfeatureshavedifferent
+magnitudes,andfeaturedatavarygreatly,MinMaxScalernormalizationwasperformed
+onthetrainingsetandtestset,respectively,toeliminatethemagnitudesinordertospeed
+uptheconvergenceofthemodelandimprovethetrainingefficiency. Finally,thesliding
+window was utilized to change the input dataset into the input shape (sample, spatio-
+temporal,andfeature)ofthedeeplearningneuralnetwork,andthenthedataformthat
+wasconvenientforday-aheadforecastingwasobtainedthroughsamplingandscreening.
+Thisstudyperformedaday-aheadPVpowerforecastingtask,i.e.,amultistep(96time
+steps)powerforecastingtaskthatforecaststhenext24hwithatimeresolutionof15min.In
+ordertoinvestigatetheeffectoftheinputslidingwindowwidthonthemodelperformance,
+seven widths of sliding windows (input time steps) were set, which were 96 timesteps
+(1day);192timesteps(2days);288timesteps(3days);384timesteps(4days);480timesteps
+(5days);576timesteps(6days);and672timesteps(7days),respectively. Asanexample
+ofthethree-dayslidingwindowsegmentationmethod,Table1demonstratesthespecific
+windowsequencesegmentationmethod.
+
+=== PAGE 10 ===
+Energies2024,17,698 10of19
+Table1.Trainingsetdataattimesteps=288(1daypredictedevery3days).
+Samples Time
+Startandendtimeofmulti-featuredata: 1/1/20140:00–3/1/201423:45(288)
+Group1SampleData
+Startandendtimeoftargetfeaturedata: 4/1/20140:00–4/1/201423:45(96)
+Startandendtimeofmulti-featuredata: 2/1/20140:00–4/1/201423:45(288)
+Group2SampleData
+Startandendtimeoftargetfeaturedata: 5/1/20140:00–5/1/201423:45(96)
+Startandendtimeofmulti-featuredata: ...
+...
+Startandendtimeoftargetfeaturedata: ...
+Startandendtimeofmulti-featuredata: 15/10/20150:00–17/10/201523:45(288)
+Group653SampleData
+Startandendtimeoftargetfeaturedata: 18/10/20150:00–18/10/201523:45(96)
+4.3. ExperimentsandAnalysis
+Inthispaper,twosetsofexperimentswereconducted.(1)Toverifytheperformanceof
+theproposedmodel’sdual-channelstructure,ablationexperimentswereimplemented,and
+theexperimentalresultsshowedthatthedual-channelstructurewasabletoobtainricher,
+morediversefeatures,andmoreaccurateforecastingresultswereachieved. (2)Toverify
+thecomprehensiveperformanceoftheproposedmodel,modelcomparisonexperiments
+wereconducted,andtheforecastingresultsoftheproposedmodelwerecomparedwith
+those of the current dominant and superior performance of the stacked CNN, and the
+hybrid CNN_LSTM. CNN and hybrid CNN_LSTM. The experimental results showed
+thattheproposedmodelobtainedsignificantaccuracyimprovement. Thedataflowand
+parametersettingsoftheproposedmodelandthebaselinemodelareshowninFigure7.
+Allparameterswereoptimallysetbytrialanderror.
+Figure7.Blockdiagramofdataflowandparametersettingsforproposedmodelandbaselinemodel.
+First,ablationexperimentswereconducted. TheMHA_TCNmodelforchannel1took
+bothtargetsequencesandothermeteorologicalsequencesasinputfeatures,andtheTCN
+modelforchannel2tookonlythetargetsequencesasinputfeatures. Table2showsthe
+forecast performance metrics of the proposed model and the 2-branch channel models
+whenforecastingindividuallyunder7differentinputwindowwidths(timesteps). The
+bestperformancemetricsofeachmodelforeachinputwindowwidtharemarkedwith
+correspondingcolors. Figures8and9showtheMAEandRMSEofthe3modelsfor7input
+timesteps,respectively. Fromtheaboveresults,itcanbeseenthattheproposedmodel
+obtainedthebestforecastingresultsfor1day’sinputwindowwidth(96samples),both
+
+=== PAGE 11 ===
+Energies2024,17,698 11of19
+whencomparedhorizontally(7windowwidths),andvertically(3models). TheMAEwas
+0.906,whichwasanimprovementof5.2%withrespecttothebestMAEforthe2branching
+channelmodels,whichwas0.956;theRMSEwas1.776,whichwas4.6%higherthanthe
+bestRMSEofthe2-branchmodel,with1.861;andtheR2was0.868,whichwas0.8%higher
+thanthebestR2ofthe2-branchmodel,with0.861.
+Table2.AblationExperimentResults.
+Evaluation Timesteps
+Models
+Indicators
+1Day 2Days 3Days 4Days 5Days 6Days 7Days
+MAE 0.985 1.004 1.005 0.986 1.019 1.025 1.034
+TCN RMSE 1.870 1.871 1.861 1.881 1.923 1.917 1.950
+R2 0.854 0.848 0.851 0.852 0.843 0.845 0.838
+MAE 0.956 1.017 1.050 1.001 1.030 0.973 0.981
+MHA_TCN RMSE 1.919 1.914 1.987 1.969 1.900 2.206 2.073
+R2 0.861 0.846 0.844 0.849 0.839 0.847 0.843
+MAE 0.906 0.987 0.996 0.977 0.999 1.026 1.029
+DC_TCN RMSE 1.776 1.864 1.907 1.881 1.961 1.915 1.882
+R2 0.868 0.856 0.852 0.857 0.842 0.847 0.848
+Differentcolorfontsrepresentdifferentinputwindowwidths;boldfontsofdifferentcolorsrepresentthatthe
+modelobtainedthebestforecastingperformancefortheinputwindowwidthcorrespondingtothatcolor;grey
+backgroundboldfontsrepresentthebestforecastingresultsinallmodelsandatalltimesteps.
+Figure8.MAEofforecastingresultsforeachmodelover7windowwidthsinablationexperiments.
+Figure9.RMSEofforecastingresultsforeachmodelover7windowwidthsinablationexperiments.
+
+=== PAGE 12 ===
+Energies2024,17,698 12of19
+Then, experiments comparing the performance with the baseline model were con-
+ducted. Table3showstheforecastingresultsofallthemodelsfor7inputwindowwidths.
+Figures 10 and 11 show the histograms of MAE and RMSE for each model over the 7
+inputwindowwidths,respectively,fromwhichitcanbeseenthatallmodelsachievedthe
+bestforecastingresultsataninputwindowwidthof1day(Graybackgroundcolumns
+inTable3). Comparedtotheother2models,theproposedmodelachievedthebestfore-
+casting performance. It can also be seen that for the MAE metric, the performance of
+theproposedmodelandCNNshowedadecreasingtrendwiththeincreaseoftheinput
+windowwidth,withtheproposedmodelshowingthemostsignificantdecrease,indicating
+thattheproposedmodelwasrelativelysensitivetothewindowlength. Theperformanceof
+theCNN_LSTMdidnotshowasignificantdecrease,showingaweakersensitivity. Forthe
+RMSEmetrics,similarly,theperformanceofall3modelsshowedadecreasingtrendwith
+theincreaseofinputwindowwidth,whiletheCNN_LSTMperformancehadmoreupsand
+downsandshowedtheworstperformance. Inordertoexpressthesuperiorperformance
+oftheproposedmodelmorefinely,Figure12demonstratesthepercentageaccuracyim-
+provementoftheproposedmodelrelativetothebaselinemodelwhenthewindowlength
+is1day: theMAEimprovedby5.3%andtheRMSEimprovedby2.6%comparedtothe
+CNN;andtheMAEimprovedby4.3%andtheRMSEimprovedby2.9%comparedtothe
+CNN_LSTM.Theproposedmodelshowedsuperiorforecastingperformance. Figure13
+showstheR2ofeachmodel,fromwhichitcanbeseenthattheproposedmodelexhibited
+thebestfittothedataovera1-dayinputwindowlength.
+Table3.ComparativeexperimentalresultsofCNN,CNN-LSTM,andDC-TCNatdifferenttimesteps.
+Evaluation Timesteps
+Models
+Indexes
+1Day 2Days 3Days 4Days 5Days 6Days 7Days
+MAE 0.957 0.981 0.957 1.010 0.955 1.034 1.036
+CNN RMSE 1.824 1.849 1.836 1.917 1.888 1.932 1.932
+R2 0.859 0.852 0.858 0.848 0.843 0.838 0.836
+MAE 0.947 0.970 0.972 0.941 0.950 0.944 0.991
+CNN_LSTM RMSE 1.829 1.844 1.847 2.016 2.022 2.004 1.869
+R2 0.859 0.857 0.854 0.857 0.854 0.853 0.849
+MAE 0.906 0.987 0.996 0.977 0.999 1.026 1.029
+DC_TCN RMSE 1.776 1.864 1.907 1.881 1.961 1.915 1.882
+R2 0.868 0.856 0.852 0.857 0.842 0.847 0.848
+Figure10.MAEofforecastingresultsfor3modelsover7windowwidths.
+
+=== PAGE 13 ===
+Energies2024,17,698 13of19
+Figure11.RMSEofforecastingresultsfor3modelsover7windowwidths.
+Figure12.MAEandRMSEboostpercentagesforDC_TCN.
+Figure13.R2linechartofthreemodels.
+In order to demonstrate the forecasting performance of the proposed model more
+intuitively,Figures14–19showthecurvesandscatterplotsoftheforecastresultsversus
+theactualpower, for5consecutivedaysunderthethreeweatherpatterns, respectively.
+Figures14and15showthecurvesandscatterplotsundersunnyweatherpatterns. As
+can be seen from Figure 14, the proposed model exhibited the best fitting performance
+comparedtothebaselinemodelforthemajorityoftheday(powerriseandfallphases),
+whiletheperformanceisslightlyworsethanthebaselinemodelforasmallperiodoftime
+afterthepowerreacheditsmaximumvalue. Theenlargedareaofthefigureshowsthatthe
+forecastingcurveoftheproposedmodelisclosertotheactualpowerduringthepowerrise
+phasecomparedtotheothertwobaselinemodels,whichhavemoredelays;theproposed
+model is slightly ahead of the baseline model during the power fall phase, while the
+baselinemodel’sforecastingwasstillslightlydelayed. Figure15showsthecorresponding
+scatterplotoftheforecastingresults,anditcanalsobeseenfromthescatterdistribution
+
+=== PAGE 14 ===
+Energies2024,17,698 14of19
+that the proposed model showed the optimal forecasting performance throughout the
+forecastingtimeperiod,andonlyperformedpoorlynearthepowermaximum.
+Figures16and17showthecurvesandscatterplotsforcloudyweatherpatterns. From
+Figure16,itcanbeseenthatnoneofthe3modelscouldforecastthefastrampswell,butthe
+proposedmodelwasthebestpredictoramongthem,fittingthetrendoftheactualpower
+better,whichwasmostsignificantathigherpower. Figure17showsthecorresponding
+scatterplotoftheforecastingresults,anditcanalsobeseenfromthescatterdistribution
+thatduringlargepowerfluctuations,theforecastingresultsofthethreemodelsweremore
+dispersedfromtheactualpowervalue,whileinthehigherpower,thedistributionofthe
+forecastingvaluesoftheproposedmodelwasclosertotheactualpower.
+Figures 18 and 19 show the curves and scatter plots for rainy weather patterns. It
+canbeseenthattheforecastperformanceofthe3modelswasclosertothatofthecloudy
+weatherpatterns,andingeneral,theproposedmodelstillhadthebestoverallperformance.
+Figure14.Forecastingresultsfor3modelsonsunnydays.
+Figure15.Scatterplotofsunnydayforecastresultsfor3models.
+
+=== PAGE 15 ===
+Energies2024,17,698 15of19
+Figure16.Forecastingresultsfor3modelsoncloudydays.
+Figure17.Scatterplotofcloudydayforecastresultsforthreemodels.
+Figure18.Forecastingresultsforthreemodelsonrainydays.
+
+=== PAGE 16 ===
+Energies2024,17,698 16of19
+Figure19.Scatterplotofrainydayforecastresultsfor3models.
+Inconclusion,theproposedmodelshowedthebestforecastingperformanceregardless
+of weather patterns. This indicates that the proposed method can extract more useful
+informationfromtherawPVpowergenerationdata,whichmakesthemodelbetterableto
+fulfillthetaskofday-aheadPVpowerforecasting.
+5. Conclusions
+In this paper, a novel temporal convolutional neural network (TCN)-based photo-
+voltaic power forecasting method, DC_TCN, is proposed to be applied to a day-ahead
+photovoltaicpowerforecastingtask. Theproposedmodelinnovativelydesignstwoinput
+channelstoprovidethemodelwithfeaturescontainingdifferentinformationtoenrichthe
+featurerepresentation.TheunivariateinputchannelutilizestheTCN’sinflatedconvolution
+andcausalconvolutionstructurestotargetlong-termdependenciesbetweentheelements
+of the historical PV power series. The multivariate input channel utilizes the superior
+multi-featureattentionofthemultiheadattentionmechanism(MHA)tolearnthecorre-
+lationbetweenPVpowergenerationdataandothermeteorologicaldata,whichreduces
+thedifficultyfortheTCNinextractingmultidimensionalspatio-temporalfeaturesfrom
+theinputsequences,andimprovesthefeatureinformation. WhencombinedwithTCNto
+learnthelong-termspatio-temporaldependencebetweenmultivariatesequenceelements,
+ultimately,thefeatureslearnedfromthedual-channelstructurearefusedandweightedto
+obtaintheforecastingresults. Theexperimentalresultsshowedthattheproposedmodel
+exhibitsgoodforecastingperformanceonthetaskoftheday-aheadPVpowerforecasting.
+Thespecificfindingsofthispaperareasfollows:
+(1) Inordertoverifytheeffectofinputwindowwidthonmodelperformance,allthe
+experimentsinthispaperwereconductedunderseveninputwindowwidths,andall
+theexperimentalresultsshowedthatallthemodelsobtainthebestperformanceunder
+a window width of 1 day (96 time steps). The performance of all models showed
+adecreasingtrendwithincreasinginputwindowwidth,withtheproposedmodel
+beingthemostsensitivetothewidthoftheinputwindow.
+(2) Ablation experiments were carried out in order to verify the feature extraction ca-
+pabilityoftheproposedmodel’sdual-channelstructure. Theexperimentalresults
+showedthattheproposedmodelobtainedbetterforecastingresultscomparedtothe
+two-branchmodels,singleTCN,andmultiheadattentioncombinedwiththeTCN,
+which also indicates that the design of the dual-channel results can provide more
+usefulfeatureinformationforthemodelandincreasetheinterpretabilityofthemodel.
+(3) Inordertoverifytheforecastingperformanceoftheproposedmodel,comparison
+experimentswerecarriedout. Theexperimentalresultsshowedthattheproposed
+modelachievedbetterforecastingperformancethanCNNandCNN_LSTM,which
+
+=== PAGE 17 ===
+Energies2024,17,698 17of19
+hadbetterperformanceinPVpowerforecasting,withamaximumimprovementof
+5.3%inMAE,and2.9%inRMSE.
+(4) In addition, it was found that none of the models can forecast fast ramps well on
+the 15 min resolution data used in the study. While it can be applied to specific
+application scenarios that do not require high day-ahead ramp forecasting, such
+asday-aheadgenerationplanning;unitdeployment;andday-aheadpowermarket
+trading, the forecasting value is still insufficient for those day-ahead application
+scenariosthataresensitivetopowerrampchanges. Inthefollow-upstudy,wewill
+continuetoinvestigatetheforecastingperformanceoftheproposedmodelinterms
+ofbothreducingthedataresolution,andimprovingtheupperlimitofthemodel’s
+learningcapability,withaviewtobeingabletoapplythemodeltoawiderrangeof
+applicationscenariosandimproveitsapplicability.
+Inconclusion,thispaperintegratesamodelcomputingmechanismwithPVpower
+generation data; innovatively designs the model architecture; provides richer feature
+informationforthemodel;fullyexploitstheadvantagesofeachmodule;andimproves
+thelearningabilityofthemodel. Theproposedmodelobtainsgoodperformanceonthe
+day-ahead PV power forecasting task. In future work, model architectures that can be
+appliedtomoretimescaleswillbeinvestigatedandappliedtoPVpowerforecastingtasks
+indifferentapplicationscenarios.
+AuthorContributions:Conceptualization,X.R.,Y.L.andF.Z.;Datacuration,Y.S.;Fundingacquisition,
+X.R.andY.L.;Methodology,Y.L.,F.Z.andY.S.;Software,X.R.;Visualization,F.Z.;Writing—original
+draft,X.R.Allauthorshavereadandagreedtothepublishedversionofthemanuscript.
+Funding: This research work was supported by the National Key Research and Development
+ProgramofChina,No.2019YFE0104800;andtheInnerMongoliaAutonomousRegionKeyR&Dand
+AchievementTransformationProgramProject,No.2022YFSJ0033.
+Data Availability Statement: The experimental data for this paper were downloaded from the
+AustralianDesertKnowledgeCentre,AliceSprings.URL:http://dkasolarcentre.com.au/download,
+accessedon16October2022.
+ConflictsofInterest:Theauthorsdeclarenoconflictsofinterest.
+References
+1. NetZeroby2050–Analysis-IEA.Availableonline:https://www.iea.org/reports/net-zero-by-2050(accessedon16December
+2023).
+2. Ren,X.;Zhang,F.;Zhu,H.;Liu,Y.Quad-kerneldeepconvolutionalneuralnetworkforintra-hourphotovoltaicpowerforecasting.
+Appl.Energy2022,323,119682.[CrossRef]
+3. Antonanzas,J.;Osorio,N.;Escobar,R.;Urraca,R.;Martinez-de-Pison,F.J.;Antonanzas-Torres,F.Reviewofphotovoltaicpower
+forecasting.Sol.Energy2016,136,78–111.[CrossRef]
+4. Ahmed,R.;Sreeram,V.;Mishra,Y.;Arif,M.D.Areviewandevaluationofthestate-of-the-artinPVsolarpowerforecasting:
+Techniquesandoptimization.Renew.Sustain.EnergyRev.2020,124,109792.[CrossRef]
+5. Dolara,A.;Leva,S.;Manzolini,G.ComparisonofdifferentphysicalmodelsforPVpoweroutputforecasting.Sol.Energy2015,
+119,83–99.[CrossRef]
+6. Celikel,R.;Yilmaz,M.;Gundogdu,A.Avoltagescanning-basedMPPTmethodforPVpowersystemsundercomplexpartial
+shadingconditions.Renew.Energy2022,184,361–373.[CrossRef]
+7. Raza,M.Q.;Nadarajah,M.;Ekanayake,C.OnrecentadvancesinPVoutputpowerforecast. Sol. Energy2016,136,125–144.
+[CrossRef]
+8. Yilmaz,M.;Celikel,R.;Gundogdu,A.EnhancedPhotovoltaicSystemsPerformance:Anti-WindupPIControllerinANN-Based
+ARVMPPTMethod.IEEEAccess2023,11,90498–90509.[CrossRef]
+9. Srivastava, S.; Lessmann, S.AComparativeStudyofLstmNeuralNetworksinForecastingDay-AheadGlobalHorizontal
+IrradiancewithSatelliteData.Sol.Energy2018,162,232–247.[CrossRef]
+10. Wang, H.; Liu, Y.; Zhou, B.; Li, C.; Cao, G.; Voropai, N.; Barakhtenko, E. Taxonomy research of artificial intelligence for
+deterministicsolarpowerforecasting.EnergyConvers.Manag.2020,214,112909.[CrossRef]
+11. Wang,H.;Yi,H.;Peng,J.;Wang,G.;Liu,Y.;Jiang,H.;Liu,W.Deterministicandprobabilisticforecastingofphotovoltaicpower
+basedondeepconvolutionalneuralnetwork.EnergyConvers.Manag.2017,153,409–422.[CrossRef]
+
+=== PAGE 18 ===
+Energies2024,17,698 18of19
+12. Li,G.;Yang,Y.;Qu,X.Deeplearningapproachesonpedestriandetectioninhazyweather.IEEETrans.Ind.Electron.2019,67,
+8889–8899.[CrossRef]
+13. Guo,Z.;Zhou,K.;Zhang,X.;Yang,S.Adeeplearningmodelforshort-termpowerloadandprobabilitydensityforecasting.
+Energy2018,160,1186–1200.[CrossRef]
+14. Abdel-Nasser,M.;Mahmoud,K.AccuratephotovoltaicpowerforecastingmodelsusingdeepLSTM-RNN.NeuralComput.Appl.
+2017,31,2727–2740.[CrossRef]
+15. Yao,G.;Lei,T.;Zhong,J.AReviewofConvolutional-Neural-Network-BasedActionRecognition.PatternRecogn.Lett.2019,118,
+14–22.[CrossRef]
+16. Zhang,J.;Ling,C.;Li,S.EMGSignalsbasedHumanActionRecognitionviaDeepBeliefNetworks.IFACPap.Online2019,52,
+271–276.[CrossRef]
+17. Chen,S.;Yu,J.;Wang,S.One-dimensionalconvolutionalauto-encoder-basedfeaturelearningforfaultdiagnosisofmultivariate
+processes.J.ProcessControl2020,87,54–67.[CrossRef]
+18. Yang,X.;Cao,M.;Li,C.;Zhao,H.;Yang,D.LearningImplicitNeuralRepresentationforSatelliteObjectMeshReconstruction.
+RemoteSens.2023,15,4163.[CrossRef]
+19. Liu,L.M.;Ren,X.Y.;Zhang,F.;Gao,L.;Hao,B.Dual-dimensionTime-GGANdataaugmentationmethodforimprovingthe
+performanceofdeeplearningmodelsforPVpowerforecasting.EnergyRep.2023,9,6419–6433.[CrossRef]
+20. Zhang,X.;Yang,Y.;Wang,H.;Zhao,F.;Yan,F.;Wang,M.AConvolutionalNeuralNetworkforRegionalPhotovoltaicGeneration
+PointForecast.E3SWebConf.2020,185,01079.[CrossRef]
+21. Suresh,V.;Janik,P.;Rezmer,J.;Leonowicz,Z.ForecastingsolarPVoutputusingconvolutionalneuralnetworkswithasliding
+windowalgorithm.Energies2020,13,723.[CrossRef]
+22. Bai,S.;Kolter,J.Z.;Koltun,V.Anempiricalevaluationofgenericconvolutionalandrecurrentnetworksforsequencemodeling.
+arXiv2018,arXiv:1803.01271.
+23. Hewage,P.; Behera,A.; Trovati,M.; Pereira,E.; Ghahremani,M.; Palmieri,F.; Liu,Y.Temporalconvolutionalneural(TCN)
+network for an effective weather forecasting using time-series data from the local weather station. Soft Comput. 2020, 24,
+16453–16482.[CrossRef]
+24. Lara-Benítez,P.;Carranza-García,M.;Luna-Romera,J.M.;Riquelme,J.Temporalconvolutionalnetworksappliedtoenergy-related
+timeseriesforecasting.Appl.Sci.2020,10,2322.[CrossRef]
+25. Luo,H.;Dou,X.;Sun,R.;Wu,S.AMulti-StepforecastingMethodforWindPowerBasedonImprovedTCNtoCorrectCumulative
+Error.Front.EnergyRes.2021,9,723319.[CrossRef]
+26. Lin,Y.;Koprinska,I.;Rana,M.TemporalConvolutionalNeuralNetworksforSolarPowerForecasting.InProceedingsofthe2020
+InternationalJointConferenceonNeuralNetworks(IJCNN),Glasgow,UK,19–24July2020;pp.1–8.
+27. Limouni,T.;Yaagoubi,R.;Khalid,B.;Khalid,G.;ElHoussain,B.Accurateonestepandmultistepforecastingofveryshort-term
+PVpowerusingLSTM-TCNmodel.Renew.Energy2023,205,1010–1024.[CrossRef]
+28. Sobri,S.;Koohi-Kamali,S.;AbdRahim,N.Solarphotovoltaicgenerationforecastingmethods:Areview.EnergyConvers.Manag.
+2018,156,459–497.[CrossRef]
+29. Wang,K.;Qi,X.;Liu,H.Acomparisonofday-aheadphotovoltaicpowerforecastingmodelsbasedondeeplearningneural
+network.Appl.Energy2019,251,113315.[CrossRef]
+30. Qu,J.;Zheng,Q.;Pei,Y.Day-aheadhourlyphotovoltaicpowerforecastingusingattention-basedCNN-LSTMneuralnetwork
+embeddedwithmultiplerelevantandtargetvariablesforecastingpattern.Energy2021,232,120996.[CrossRef]
+31. Li,P.;Zhou,K.;Lu,X.;Yang,S.Ahybriddeeplearningmodelforshort-termPVpowerforecasting. Appl. Energy2020,259,
+114216.[CrossRef]
+32. Li,Z.;Xu,R.;Luo,X.;Cao,X.;Du,S.;Sun,H.Short-termphotovoltaicpowerforecastingbasedonmodalreconstructionand
+hybriddeeplearningmodel.EnergyRep.2022,8,9919–9932.[CrossRef]
+33. Tovar,M.; Robles,M.; Rashid,F.PVPowerforecasting,UsingCNN-LSTMHybridNeuralNetworkModel. CaseofStudy:
+Temixco-Morelos,México.Energies2020,13,6512.[CrossRef]
+34. Zang,H.; Cheng,L.; Ding,T.; Cheung,K.W.; Liang,Z.; Wei,Z.; Sun,G.Hybridmethodforshort-termphotovoltaicpower
+forecastingbasedondeepconvolutionalneuralnetwork.IETGener.Transm.Distrib.2018,12,4557–4567.[CrossRef]
+35. deJesús,D.A.R.;Mandal,P.;Chakraborty,S.;Senjyu,T.SolarPVPowerforecastingUsingaNewApproachBasedonHybrid
+DeepNeuralNetwork.InProceedingsofthe2019IEEEPower&EnergySocietyGeneralMeeting(PESGM),Atlanta,GA,USA,
+4–8August2019;pp.1–5.
+36. deJesús,D.A.R.;Mandal,P.;Velez-Reyes,M.;Chakraborty,S.;Senjyu,T.DataFusionBasedHybridDeepNeuralNetwork
+MethodforSolarPVPowerForecasting.InProceedingsofthe2019NorthAmericanPowerSymposium(NAPS),Wichita,KS,
+USA,13–15October2019;pp.1–6.
+37. Agga,A.;Abbou,A.;Labbadi,M.;ElHoum,Y.;Ali,I.H.CNN-LSTM:Anefficienthybriddeeplearningarchitectureforpredicting
+short-termphotovoltaicpowerproduction.Electr.PowerSyst.Res.2022,208,107908.[CrossRef]
+38. Tang,Y.;Yang,K.;Zhang,S.;Zhang,Z.Photovoltaicpowerforecasting:Ahybriddeeplearningmodelincorporatingtransfer
+learningstrategy.Renew.Sustain.EnergyRev.2022,162,112473.[CrossRef]
+39. Li,F.;Zheng,H.;Li,X.Anovelhybridmodelformulti-stepaheadphotovoltaicpowerforecastingbasedonconditionaltime
+seriesgenerativeadversarialnetworks.Renew.Energy2022,199,560–586.[CrossRef]
+
+=== PAGE 19 ===
+Energies2024,17,698 19of19
+40. Hu,Y.;Xiao,F.Networkselfattentionforforecastingtimeseries.Appl.SoftComput.2022,124,109092.[CrossRef]
+41. DKASolarCenter’sOnlineHubforSharingSolar-RelatedKnowledgeandDatafromtheNorthernTerritory,Australia.Available
+online:http://dkasolarcentre.com.au/download(accessedon16October2022).
+Disclaimer/Publisher’sNote: Thestatements, opinionsanddatacontainedinallpublicationsaresolelythoseoftheindividual
+author(s)andcontributor(s)andnotofMDPIand/ortheeditor(s).MDPIand/ortheeditor(s)disclaimresponsibilityforanyinjuryto
+peopleorpropertyresultingfromanyideas,methods,instructionsorproductsreferredtointhecontent.

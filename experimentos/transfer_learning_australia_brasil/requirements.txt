@@ -1,1 +1,0 @@
--r ../australia_deep_learning/requirements.txt

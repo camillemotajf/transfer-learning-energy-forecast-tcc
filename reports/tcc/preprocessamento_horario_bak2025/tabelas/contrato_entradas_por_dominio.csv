@@ -1,0 +1,6 @@
+variavel_imagem,coluna_australia,unidade_au,situacao_brasil
+GHI,Global_Horizontal_Radiation,W/m² nominal,Fora das entradas BR; escala local pendente
+Temperatura do ar,Weather_Temperature_Celsius,°C,Fora das entradas BR por decisão de cobertura
+Umidade relativa,Weather_Relative_Humidity,%,Sem coluna medida no consolidado BR
+Velocidade do vento,Wind_Speed,Unidade original a confirmar,Fora das entradas BR conforme decisão anterior
+Potência ativa,Active_Power,kW,Entrada BR: total_active_power_w / 1000

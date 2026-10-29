@@ -1,0 +1,5 @@
+cenario,horas_conjuntas_antes,horas_aproveitaveis_total,dias_civis_24h,quantidade_blocos,maior_bloco_horas,maior_bloco_dias,inicio,fim,valores_interpolados
+AP,7542,6310,261,30,792,33.0,2025-08-18,2025-09-19 23:00:00,11
+AP + Temp,2856,2544,106,7,696,29.0,2025-10-19,2025-11-16 23:00:00,7
+AP + Temp + GHI,2856,2544,106,7,696,29.0,2025-10-19,2025-11-16 23:00:00,10
+AP + Temp + GHI + RH,0,0,0,0,0,0.0,,,0

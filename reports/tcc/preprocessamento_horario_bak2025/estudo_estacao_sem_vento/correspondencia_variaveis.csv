@@ -1,0 +1,5 @@
+variavel,australia,brasil,unidade,observacao
+AP,Active_Power,total_active_power_w / 1000,kW,Potência da soma disponível; verificar oito contribuintes
+GHI,Global_Horizontal_Radiation,ghi_irr_med,"W/m² nominal, a confirmar",Alternativa: ghi_irradiancia; escala brasileira pendente
+Temp,Weather_Temperature_Celsius,air_temperature_med,°C nominal,Alternativa: temperatura_ambiente; não usar temperatura do painel
+RH,Weather_Relative_Humidity,Não existe coluna no consolidado,%,Não pode ser reconstruída por interpolação sem observações

@@ -2,7 +2,7 @@
 
 O [03_02](../../notebooks/tcc/03_02_caracterizacao_dados_crus.ipynb) utiliza a potência por sistema e os canais meteorológicos. No Brasil, a fonte é `Leopoldo_base_consolidada_5min.csv`, fornecida pelo pesquisador. A potência é `total_active_power_w` dividida por 1000, e as demais variáveis são os canais físicos da estação existentes no mesmo CSV. Na Austrália, utiliza-se Active_Power e os canais meteorológicos do arquivo. Contadores de energia e outras grandezas elétricas não entram nessa caracterização.
 
-O 03_02 apenas lê o CSV manual, sem executar ou modificar `data.ipynb`. Não refaz o merge nem substitui a fonte pelo CSV alternativo gerado pelo [03_01](../../notebooks/tcc/03_01_brasil_merge_horarios.ipynb). A [auditoria original anterior](../../reports/tcc/caracterizacao_dados_crus/) permanece separada. O protocolo diário documentado no 03_03 e seus alvos não são alterados.
+O 03_02 apenas lê o CSV manual, sem executar ou modificar `data.ipynb`. Não refaz o merge nem substitui a fonte pelo CSV alternativo gerado pelo [03_01](../../notebooks/tcc/03_01_brasil_merge_horarios.ipynb). A [auditoria original anterior](../../reports/tcc/caracterizacao_dados_crus/) permanece separada. O 03_03 agora contém o novo tratamento horário, com código diretamente nas células. Os relatórios e experimentos diários anteriores permanecem separados como históricos.
 
 ## 3.2: figuras e tabelas atuais
 
@@ -19,31 +19,46 @@ Os valores brasileiros são preservados como informados no CSV manual. O gerador
 
 As duas potências são apresentadas em kW. Não se aplica normalização por capacidade nesta etapa. Unidades meteorológicas pendentes permanecem identificadas, especialmente a escala do GHI brasileiro e os canais GRI. A meteorologia é descritiva e não entra no cenário univariado.
 
-A Austrália é caracterizada de 25/07/2013 a 23/08/2025; o modelo diário utiliza somente o recorte até 2023. O Brasil utiliza o calendário de 2025. A disponibilidade de potência de cinco minutos não equivale à aprovação dos alvos diários pelos contadores.
+A Austrália é caracterizada de 25/07/2013 a 23/08/2025; os experimentos diários anteriores utilizaram somente o recorte até 2023; o novo tratamento horário do 03_03 consulta o arquivo integral. O Brasil utiliza o calendário de 2025. A disponibilidade de potência de cinco minutos não equivale à aprovação dos alvos diários pelos contadores.
 
-## 3.3 : onde usar cada figura e tabela
+## 3.3: tratamento horário baseado em Bak et al. (2025)
 
-Pasta: [preprocessamento_diario](../../reports/tcc/preprocessamento_diario/).
+Notebook: [03_03_tratamento_e_preprocessamento.ipynb](../../notebooks/tcc/03_03_tratamento_e_preprocessamento.ipynb). Todas as etapas e figuras estão implementadas nas suas células; não há módulo externo de pré-processamento nem execução de código remoto.
 
-| Subseção | Figuras sugeridas | Tabelas principais |
+Pasta: [preprocessamento_horario_bak2025](../../reports/tcc/preprocessamento_horario_bak2025/). As figuras possuem o prefixo `fig_3_3_h`.
+
+| Subseção | Figuras | Tabelas principais |
 |---|---|---|
-| 3.3.1 Tratamento australiano | 3.3-01: etapas e faltantes; 3.3-03: cobertura intradiária dos alvos | `australia_etapas.csv`, `australia_cobertura_alvos.csv` |
-| 3.3.2 Tratamento brasileiro | 3.3-04: contadores/motivos; 3.3-05: dias aprovados e ERA5 | `brasil_motivos.csv`, `brasil_estados.csv`, `meteorologia_era5.csv` |
-| 3.3.3 Potência média diária | 3.3-06: séries diárias das duas bases | séries finais exportadas; `brasil_contadores_por_inversor.csv` |
-| 3.3.4 Valores ausentes | 3.3-02: exemplos de ffill; 3.3-07: dias e janelas disponíveis | `faltantes_finais_por_variavel.csv`, `lacunas_alvo_diario.csv`, `particoes.csv` |
-| 3.3.5 Normalização/padronização | 3.3-08: potência p.u. e padronização do histórico brasileiro | `escalas_treino_brasil.csv`, capacidades no manifesto |
+| 3.3.1 Tratamento australiano | H01: cobertura original por hora; H02: anomalias | `cobertura_5min_por_hora.csv`, `regras_anomalias.csv` |
+| 3.3.2 Tratamento brasileiro | H03: dias aprovados/reprovados; H06: potência e contribuição dos inversores | `dias_auditados.csv`, `brasil_contagens_5min.csv` |
+| 3.3.3 Potência média horária e diária derivada | H06: séries de todos os blocos | `intervalos_escolhidos.csv`; bases horárias e diárias auxiliares exportadas |
+| 3.3.4 Valores ausentes | H04: seleção; H05: interpolação; H07: maiores blocos | `faltantes_por_etapa.csv`, `australia_blocos.csv`, `brasil_blocos.csv` |
+| 3.3.5 Normalização e padronização | H08: potência p.u. e z-score | `escalas_treino.csv`, `particoes_propostas.csv` |
 
-A Austrália usa médias de leituras disponíveis; o Brasil usa soma da energia dos oito
-inversores aprovados dividida por 24 horas. Somente a meteorologia australiana recebe
-ffill limitado a dois dias. Não há imputação de potência diária no protocolo vigente.
-A base brasileira final possui 284 dias aprovados e 230 janelas de três dias mais alvo,
-distribuídas em 160/26/44 para treino/validação/teste.
+A média horária utiliza as leituras presentes, como no código dos autores; não exige doze amostras de cinco minutos. Depois da triagem de anomalias, dias com duas horas NaN consecutivas em qualquer variável exigida são reprovados. Interpolam-se somente faltas isoladas de uma hora, internas, preservando o calendário e as máscaras de imputação. Essas salvaguardas e as diferenças entre o artigo e o código dos autores estão explicitadas no notebook e no manifesto.
 
-As capacidades de 24 kW e 1000 kW são parâmetros adotados, pendentes de confirmação
-técnica definitiva. O controle dos alvos não é idêntico entre as bases: a Austrália
-não recebeu filtro de cobertura mínima, e a referência brasileira exige concordância
-dos contadores. A meteorologia pública é retrospectiva; a latência operacional não
-foi simulada. Essas limitações devem acompanhar a metodologia.
+A configuração final utiliza **todos os blocos elegíveis**. No Brasil, são **6.310 horas, 261 dias completos e 30 blocos** de potência; o maior continua com 792 horas (33 dias), de 18/08/2025 a 19/09/2025. Na Austrália, exigem-se as cinco variáveis da imagem: **AP, GHI, temperatura do ar, RH e velocidade do vento**. São **26.710 horas, 1.111 dias completos e 28 blocos**; a maior sequência tem 258 dias. A cobertura dos cinco canais restringe a base australiana a períodos entre 2013 e 2016, principalmente pela disponibilidade do vento. Isso não significa que a potência australiana termine em 2016.
+
+As bases principais são `data/processed/brasil/brasil_horario_bak2025_todos_blocos.csv.gz` e `data/processed/australia/australia_horario_bak2025_todos_blocos.csv.gz`. As datas originais e `bloco_id` são preservados. Os arquivos `*_bloco.csv.gz` contêm o maior bloco somente para diagnóstico; os arquivos `*_calendario.csv.gz` conservam a grade com lacunas. A base diária auxiliar contém todos os dias de 24 horas aprovados, não apenas os do maior intervalo.
+
+O CSV `australia_horario_bak2025_auditoria_canais.csv.gz` preserva onze canais australianos, exceto direção do vento, com contagens e valores após QC. Canais auxiliares não restringem o cenário principal. Energia acumulada e chuva acumulada usam a última leitura horária, sem interpretação como potência ou energia incremental. A unidade de `Wind_Speed` conserva o valor original e ainda requer confirmação antes de comparar magnitudes com o vento externo em m/s dos autores.
+
+A fonte brasileira é exclusivamente `Leopoldo_base_consolidada_5min.csv`. Nenhuma estação restringe os blocos brasileiros; preservam-se as flags de contribuição parcial dos inversores. A Austrália aplica a triagem elétrica e meteorológica disponível, incluindo vento negativo e AP × GHI; o Brasil aplica somente QC elétrico. Máscaras, bloco, partição, contagens e versões normalizadas são metadados ou representações alternativas, não medições independentes.
+
+A auditoria de janelas demonstra 24 horas de histórico e alvo uma hora à frente, sem atravessar blocos ou partições e sem acessar interpolações antes da disponibilidade. Esses números são exemplos, não hiperparâmetros validados. As partições seguem a ordem cronológica de todas as horas elegíveis, e os z-scores usam somente treino. A média horária só está disponível ao terminar a hora; a borda direita da interpolação também respeita esse término.
+
+A entrada física comum para transferência direta é AP. O modelo australiano com cinco entradas tem contrato diferente do brasileiro univariado; sua arquitetura de adaptação ainda precisa ser definida no experimento, antes de transferir pesos. As novas tabelas `resumo_todos_blocos.csv`, `decisao_final_todos_blocos.csv`, `contrato_entradas_por_dominio.csv` e `resumo_janelas_blocos.csv` identificam a configuração vigente.
+
+As capacidades adotadas de 24 kW e 1000 kW continuam pendentes de confirmação técnica definitiva. O máximo do período serve à triagem retrospectiva; o z-score usa somente o treino proposto. As novas partições 70/15/15 são preparatórias: nenhum modelo foi retreinado. Os antigos 284 dias e 44 alvos de teste pertencem ao protocolo anterior e não descrevem estas novas bases.
+
+## Estudo complementar da estação brasileira — sem vento
+
+A seção final do [03_03](../../notebooks/tcc/03_03_tratamento_e_preprocessamento.ipynb) verifica AP, temperatura do ar, GHI e RH, com vento excluído das entradas brasileiras; na Austrália, o vento está incluído conforme a imagem. O [resumo](../../reports/tcc/preprocessamento_horario_bak2025/estudo_estacao_sem_vento/resumo.md) e seis tabelas estão em `preprocessamento_horario_bak2025/estudo_estacao_sem_vento/`.
+
+- `estacao_h01_cobertura_e_blocos`: cobertura mensal e efeito das entradas exigidas sobre o maior bloco.
+- `estacao_h02_diagnostico_ghi`: diferenças observadas da escala do GHI entre meses, sem correção automática.
+
+AP + temperatura fornece 106 dias civis completos, distribuídos em blocos; o maior tem 29 dias (19/10/2025 a 16/11/2025). GHI não reduz esse intervalo sob os filtros individuais, mas continua condicionado à confirmação de sua escala. RH não existe no consolidado brasileiro. A maior lacuna da estação tem 5.017 horas e não é recuperada pela interpolação curta proposta. O estudo fundamenta a decisão final de usar apenas AP no Brasil; seus cenários com estação são diagnósticos e não entradas escolhidas. Ele não comprova equivalência física ou ganho preditivo.
 
 ## Exportação e numeração
 

@@ -1,0 +1,26 @@
+{
+  "notebook": "notebooks\\tcc\\03_03_tratamento_e_preprocessamento.ipynb",
+  "vento_excluido": true,
+  "decisao_final": "Brasil com AP em todos os blocos; Austrália com AP, GHI, temperatura, RH e vento; estudo da estação brasileira mantido",
+  "fonte_brasil": "Leopoldo_base_consolidada_5min.csv",
+  "fonte_brasil_sha256": "9593a0cacecff5020d0481bde2e21aed06f3fe1750d694ae0b9e6e93ff6768c9",
+  "fonte_australia_sha256": "adebe983a30f58c5900247308790ed0659de9fdff2a4fd59f6e464147e3c2d14",
+  "calendario_inicio": "2025-01-02 00:00:00",
+  "calendario_fim": "2025-12-31 23:00:00",
+  "regra": "Médias horárias; QC individual; >=2 NaN seguidos reprovam dia; interpolação só de uma hora interna",
+  "regra_cruzada_ghi_ap_aplicada": false,
+  "motivo": "Escala do GHI brasileiro não confirmada; dados permanecem em sua escala original",
+  "exportados": {
+    "alternativas_estacao.csv": "87dc6c7625dfd3e67f1d788a774a37a1228eaa3529f8396974ff508ad19f4a41",
+    "australia_cobertura_auxiliar.csv": "8e8efcddb18450d8eadfca69e44f671b2fc4c23da4b1a6a8b4bb2ef60a127337",
+    "cenarios_sem_vento.csv": "ba90f880958a609e5bf23558bd7eb265b8dd7f8950918f8f9dfc89637177f9f6",
+    "cobertura_horaria.csv": "50c4089e14d8f2b52c305074a229dc05f2f5afc9ac0862292ed828db42c7925c",
+    "cobertura_mensal.csv": "7436a5ceeac8a3e68bcb3b0dde25d6139b8cf3291c5a699923c6e6566ef50406",
+    "correspondencia_variaveis.csv": "ba4ca75beef797bfa6e7e7317518ad695e3c5f512d6b79309235fcf39d9657a0",
+    "estacao_h01_cobertura_e_blocos.pdf": "958f9ba9d29e32df3b4e393aed8fd25df113a5957b4377e623963a511f81d0e7",
+    "estacao_h01_cobertura_e_blocos.png": "ec4c65908c1c950a1cc96f864b2a4d2b7b15b0dd82c18921da5e370477a93d22",
+    "estacao_h02_diagnostico_ghi.pdf": "10cb4fc9b928a6c7bd07f82ae35d51e32eb65a8eb8e9dae3e47cded71affdbe6",
+    "estacao_h02_diagnostico_ghi.png": "58ab43b17420386f18d23bcb603d28e2537c4c75b5e967b610b3a211f8096c86",
+    "resumo.md": "aebbc3468f4068344f94de857073e9ee97fded2afa08ebfa72a244cbbda45ad8"
+  }
+}

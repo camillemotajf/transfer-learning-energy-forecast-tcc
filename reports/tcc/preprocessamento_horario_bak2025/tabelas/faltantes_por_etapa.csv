@@ -1,0 +1,7 @@
+dominio,variavel,horas_calendario,ausentes_apos_media,novos_nan_qc,interpolados_total,interpolados_base_final,ausentes_apos_dias_e_interpolacao
+australia,Active_Power,105864,1198,162,1,1,79152
+australia,Global_Horizontal_Radiation,105864,1702,0,1,1,79152
+australia,Weather_Temperature_Celsius,105864,1702,255,1,1,79152
+australia,Weather_Relative_Humidity,105864,1702,1184,13,13,79154
+australia,Wind_Speed,105864,77459,6,7,7,79152
+brasil,Active_Power,8736,1194,0,11,11,2426

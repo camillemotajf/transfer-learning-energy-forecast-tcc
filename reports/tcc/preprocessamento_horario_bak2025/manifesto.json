@@ -1,0 +1,117 @@
+{
+  "escopo": "Pré-processamento horário baseado no código dos autores; adaptações explícitas para as fontes locais",
+  "frequencia": "h",
+  "colunas_australia": [
+    "Active_Power",
+    "Global_Horizontal_Radiation",
+    "Weather_Temperature_Celsius",
+    "Weather_Relative_Humidity",
+    "Wind_Speed"
+  ],
+  "colunas_brasil": [
+    "Active_Power"
+  ],
+  "entradas_comuns": [
+    "Active_Power"
+  ],
+  "covariaveis_meteorologicas_australia": true,
+  "outros_canais_australianos_auditados": [
+    "Active_Energy_Delivered_Received",
+    "Current_Phase_Average",
+    "Diffuse_Horizontal_Radiation",
+    "Radiation_Global_Tilted",
+    "Radiation_Diffuse_Tilted",
+    "Weather_Daily_Rainfall"
+  ],
+  "vento_excluido_brasil": true,
+  "vento_incluido_australia": true,
+  "selecao": "Todos os blocos elegíveis; o maior é apenas diagnóstico",
+  "unidade_vento_au": "Mantida como no CSV original; confirmar metadados antes de comparar com m/s do estudo",
+  "fonte_brasil": "Leopoldo_base_consolidada_5min.csv",
+  "brasil_criterio": "Potência do consolidado manual; não exige estação; W/1000 para kW",
+  "referencia": {
+    "doi": "10.1109/ACCESS.2025.3591040",
+    "uniformizacao_url": "https://github.com/gist-ailab/transfer-learning-PV-forecasting/blob/main/data_preprocessing/DKASC_AliceSprings/1_unify_format.py",
+    "anomalias_url": "https://github.com/gist-ailab/transfer-learning-PV-forecasting/blob/main/data_preprocessing/DKASC_AliceSprings/2_drop_anomaly.py",
+    "uniformizacao_git_blob": "3901f03cdd23a657b913ab2ec70f094989319409",
+    "anomalias_git_blob": "61648152ab2d4e81ef54e8e41dc5968e852738a6"
+  },
+  "fidelidade": {
+    "media_horaria": "Média dos valores disponíveis, sem requisito de 12 amostras, com contagens exportadas",
+    "limiares": "AU: QC elétrico e meteorológico, incluindo AP × GHI; Brasil: somente QC elétrico, pois é univariado",
+    "normalizacao_qc": "AP dividida pelo máximo horário observado no período de referência, como no código; somente para triagem retrospectiva",
+    "repeticao": "Não zero; 10 comparações consecutivas iguais: marca a 11ª observação em diante, conforme a função dos autores"
+  },
+  "adaptacoes": [
+    "Calendário horário é recomposto e mantido; dias descartados não são comprimidos.",
+    "Interpolação só de lacuna inteira de uma hora, com duas bordas; sem extrapolar ou cruzar dias removidos.",
+    "Austrália exige suas cinco entradas; Brasil exige somente potência. Entradas comuns entre domínios: AP.",
+    "Todos os blocos elegíveis são exportados com datas originais e bloco_id; não são uma única sequência contínua.",
+    "Os demais canais AU, exceto direção do vento, ficam em auditoria horária; acumuladas usam última leitura, não energia incremental.",
+    "AU usa meteorologia validada para triagem; Brasil não aplica AP × GHI e conserva flags de soma parcial.",
+    "Não se reutilizam os 284 dias, os 44 testes nem escalas dos experimentos antigos."
+  ],
+  "previsao": "Interpolação usa a borda direita. Alvos imputados não são medidos; históricos precisam estar disponíveis antes da emissão.",
+  "particoes": "Proposta 70/15/15 cronológica sobre todas as horas elegíveis; janelas não cruzam blocos nem partições; sem treino.",
+  "auditoria_janelas": {
+    "historico_horas": 24,
+    "horizonte_horas": 1,
+    "finalidade": "Exemplo de contagem, sem otimização",
+    "alvos_teste": "Contabilizar somente alvos observados"
+  },
+  "disponibilidade": "Média horária disponível ao terminar a hora; interpolação só após o término da hora da borda direita",
+  "exportados": {
+    "australia_todos_blocos": {
+      "arquivo": "data/processed/australia/australia_horario_bak2025_todos_blocos.csv.gz",
+      "linhas": 26710,
+      "sha256": "7fe2a438987721ee63ebccda051406cd2dbb71ffc24b64152046a96336504b44"
+    },
+    "australia_maior_bloco": {
+      "arquivo": "data/processed/australia/australia_horario_bak2025_bloco.csv.gz",
+      "linhas": 6192,
+      "sha256": "3dc31facfa68c3b84809294a3b35ea5120cf247a41ce8f2da9a0a01d09cf61f4"
+    },
+    "australia_diario_derivado": {
+      "arquivo": "data/processed/australia/australia_bak2025_diario_derivado.csv.gz",
+      "linhas": 1111,
+      "sha256": "e4405a787ab3e800dd09bdbae637196ba0ef64ad7f6a83ffcbe2fa9ec01e1623"
+    },
+    "australia_calendario": {
+      "arquivo": "data/processed/australia/australia_horario_bak2025_calendario.csv.gz",
+      "linhas": 105864,
+      "sha256": "28479e624e06e8c1e87ad826c4165856dadeb61c0b72b4718362189c9a37f93a"
+    },
+    "brasil_todos_blocos": {
+      "arquivo": "data/processed/brasil/brasil_horario_bak2025_todos_blocos.csv.gz",
+      "linhas": 6310,
+      "sha256": "34a47032a03666fc4017133986817b82876e813940c74104478cbb25c521f42b"
+    },
+    "brasil_maior_bloco": {
+      "arquivo": "data/processed/brasil/brasil_horario_bak2025_bloco.csv.gz",
+      "linhas": 792,
+      "sha256": "92f250f76d02ed2dc0e55e60a3792bda92d97beeaa0b855c882d4d8a92720993"
+    },
+    "brasil_diario_derivado": {
+      "arquivo": "data/processed/brasil/brasil_bak2025_diario_derivado.csv.gz",
+      "linhas": 261,
+      "sha256": "10c375909c1b9f5e51efaf715f753f24791334dc914b62bfdf898de7839ac3d1"
+    },
+    "brasil_calendario": {
+      "arquivo": "data/processed/brasil/brasil_horario_bak2025_calendario.csv.gz",
+      "linhas": 8736,
+      "sha256": "b7124eab36d4207337c9c44839a36d30a516424043ac44cf8b7bdc3ef20a07a0"
+    },
+    "australia_auditoria_canais": {
+      "arquivo": "data/processed/australia/australia_horario_bak2025_auditoria_canais.csv.gz",
+      "linhas": 105864,
+      "sha256": "8c0d9699a2849bc20661224e93c9b7c65d339fde62958897e6c4a3d72bdd7537"
+    }
+  },
+  "fontes_sha256": {
+    "data\\raw\\australia\\87-Site_DKA-M9_A+C-Phases.csv": "adebe983a30f58c5900247308790ed0659de9fdff2a4fd59f6e464147e3c2d14",
+    "Leopoldo_base_consolidada_5min.csv": "9593a0cacecff5020d0481bde2e21aed06f3fe1750d694ae0b9e6e93ff6768c9",
+    "data.ipynb": "ed0126fb8a4c399cf715b066c509e3c1ef6bed672a52c9ccb4e71966f6e68050"
+  },
+  "codigo_arquivo": "notebooks\\tcc\\03_03_tratamento_e_preprocessamento.ipynb",
+  "codigo_sha256": "86670aceb0738c3406431e2897cc09889c609434f6eebb70622653c3471f5ebe"
+}
