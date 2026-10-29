@@ -1,0 +1,472 @@
+{
+  "historicos": [
+    24,
+    48,
+    168,
+    240
+  ],
+  "horizonte": 24,
+  "features": {
+    "australia": [
+      "Global_Horizontal_Radiation",
+      "Weather_Temperature_Celsius",
+      "Weather_Relative_Humidity",
+      "Wind_Speed",
+      "Active_Power"
+    ],
+    "brasil": [
+      "Active_Power"
+    ]
+  },
+  "selecao": "Horária; 24 alvos observados em todas as partições; histórico disponível na emissão",
+  "particoes": "70/15/15 cronológicas herdadas, provisórias; histórico e alvo na mesma partição e bloco",
+  "capacidades_adotadas_kw": {
+    "australia": 24.0,
+    "brasil": 1000.0
+  },
+  "capacidades_confirmadas": false,
+  "fontes_sha256": {
+    "reports\\tcc\\preprocessamento_horario_bak2025\\manifesto.json": "c1ca9faebb69ae50119730a129cfdb4631dba9b82bf15e6d8361c1441393647a",
+    "reports\\tcc\\preprocessamento_horario_bak2025\\tabelas\\escalas_treino.csv": "e73a82c5545eb96bca6125f4dc703ad6a7f23344afd3f4dd24cf8b761b70926c",
+    "data/processed/australia/australia_horario_bak2025_todos_blocos.csv.gz": "7fe2a438987721ee63ebccda051406cd2dbb71ffc24b64152046a96336504b44",
+    "data/processed/brasil/brasil_horario_bak2025_todos_blocos.csv.gz": "34a47032a03666fc4017133986817b82876e813940c74104478cbb25c521f42b",
+    "reports\\tcc\\preprocessamento_horario_bak2025\\tabelas\\australia_contagens_5min.csv": "bf6ce120a0de4d7fd432568f2bd588cc9751a0aa0aac132016070e806f9c0f03"
+  },
+  "codigo_sha256": "90be5dcabc201a3e54da1fe6cdefdbf19536d385a9f545784e3bc41142db6c12",
+  "tensores": [
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_treino_L24_H24.npz",
+      "sha256": "790cad9b5b926cb9912814d0b204d513c4f6295766eaac7f7c9ca58085ba9cfd",
+      "dominio": "australia",
+      "particao": "treino",
+      "historico_horas": 24,
+      "amostras": 5486
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_validacao_L24_H24.npz",
+      "sha256": "9ae853783322e3e4ad4a013aa6fd68aaf255ba52d8750fe26bffe03ed382e6aa",
+      "dominio": "australia",
+      "particao": "validacao",
+      "historico_horas": 24,
+      "amostras": 2601
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_teste_L24_H24.npz",
+      "sha256": "fdd63b1fe1305260786c0d39154b0f16659885a45bd4005f02264cc681943c73",
+      "dominio": "australia",
+      "particao": "teste",
+      "historico_horas": 24,
+      "amostras": 2275
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_treino_L48_H24.npz",
+      "sha256": "ce494a3c3cd0ee5eb22662494de414f5683be54d8762fbaca27cc1a06f267027",
+      "dominio": "australia",
+      "particao": "treino",
+      "historico_horas": 48,
+      "amostras": 5462
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_validacao_L48_H24.npz",
+      "sha256": "ad90e48c862fee2cd4baa13e947674fa9e5e350d48e3a1c5856f463c4d179df6",
+      "dominio": "australia",
+      "particao": "validacao",
+      "historico_horas": 48,
+      "amostras": 2434
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_teste_L48_H24.npz",
+      "sha256": "15c790b3effab86a6e2b6c357e3b3c302571e7863be3d4d691dbce80dadaa63a",
+      "dominio": "australia",
+      "particao": "teste",
+      "historico_horas": 48,
+      "amostras": 2159
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_treino_L168_H24.npz",
+      "sha256": "b916ff06035de996e9d65759e088ed8149bab60af1fd39c5ea9bb1acf924d34b",
+      "dominio": "australia",
+      "particao": "treino",
+      "historico_horas": 168,
+      "amostras": 5303
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_validacao_L168_H24.npz",
+      "sha256": "a8f67cc2b4dbf2dae0616a3387420e08151483de972fe433cfe4dad9453a75f5",
+      "dominio": "australia",
+      "particao": "validacao",
+      "historico_horas": 168,
+      "amostras": 1787
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_teste_L168_H24.npz",
+      "sha256": "d3a2ae4de0dbd76ed5cbca97a4f5a0d2eb8836757bf4a3b09c1d8dc04568b40f",
+      "dominio": "australia",
+      "particao": "teste",
+      "historico_horas": 168,
+      "amostras": 1662
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_treino_L240_H24.npz",
+      "sha256": "d97f026747d62488174d3db365877b8c57abeee66192cdc25e9c80fe1218a0d7",
+      "dominio": "australia",
+      "particao": "treino",
+      "historico_horas": 240,
+      "amostras": 5160
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_validacao_L240_H24.npz",
+      "sha256": "5f9ee0734723b46010eb9f2ed6dde92d49adeb2e7a261655d62368f40daf73cf",
+      "dominio": "australia",
+      "particao": "validacao",
+      "historico_horas": 240,
+      "amostras": 1503
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\australia_teste_L240_H24.npz",
+      "sha256": "b96e2ccaa1169ccbdd65c77c163ca900a628f74f35709364e2348d1a679ef993",
+      "dominio": "australia",
+      "particao": "teste",
+      "historico_horas": 240,
+      "amostras": 1476
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_treino_L24_H24.npz",
+      "sha256": "2541e147887bdee329514b7f87878edaf705e53d48bd7e1b74f3c42fa08647b6",
+      "dominio": "brasil",
+      "particao": "treino",
+      "historico_horas": 24,
+      "amostras": 3269
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_validacao_L24_H24.npz",
+      "sha256": "cc305fdd548369972c256ec26af94b062dcfe2fc4af7cff592a84bb9a62b5d59",
+      "dominio": "brasil",
+      "particao": "validacao",
+      "historico_horas": 24,
+      "amostras": 827
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_teste_L24_H24.npz",
+      "sha256": "752b59989c799b923c07b21de5b40d2d151a8fa6fb1e276f09dabc1304c19785",
+      "dominio": "brasil",
+      "particao": "teste",
+      "historico_horas": 24,
+      "amostras": 662
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_treino_L48_H24.npz",
+      "sha256": "12dc2944ee4f27f6adf59004791925497a7dd32a1dd98bf9d97113479d13ad3e",
+      "dominio": "brasil",
+      "particao": "treino",
+      "historico_horas": 48,
+      "amostras": 2945
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_validacao_L48_H24.npz",
+      "sha256": "75f70d8659384de7b970b52bc6a7098ba738b0536263fac2dad6eb7b09554a1c",
+      "dominio": "brasil",
+      "particao": "validacao",
+      "historico_horas": 48,
+      "amostras": 779
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_teste_L48_H24.npz",
+      "sha256": "671bd1b2f4ae0f3e2a108887bb9824fe30110ce85ceed5e1ad73f4f22f94d32b",
+      "dominio": "brasil",
+      "particao": "teste",
+      "historico_horas": 48,
+      "amostras": 588
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_treino_L168_H24.npz",
+      "sha256": "2309d38aa87a3dde9c70f07ef7bc542d029cbd406db80730ce89b1c848aacbeb",
+      "dominio": "brasil",
+      "particao": "treino",
+      "historico_horas": 168,
+      "amostras": 1682
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_validacao_L168_H24.npz",
+      "sha256": "d27920df4fb7094b1b5afbd93a753b85498828814b5d18963e37726d8c1d52af",
+      "dominio": "brasil",
+      "particao": "validacao",
+      "historico_horas": 168,
+      "amostras": 539
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_teste_L168_H24.npz",
+      "sha256": "5879908cf8801a5d0c67ef3358578b1d6e770744903d77696719eec055ae942d",
+      "dominio": "brasil",
+      "particao": "teste",
+      "historico_horas": 168,
+      "amostras": 290
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_treino_L240_H24.npz",
+      "sha256": "e5cd3bb1cd928d9e4b82c0d82ebabe1cdfa442033fcb316752d58dba808931b8",
+      "dominio": "brasil",
+      "particao": "treino",
+      "historico_horas": 240,
+      "amostras": 1162
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_validacao_L240_H24.npz",
+      "sha256": "3f869bf7f59f8708c6e4951e5fc352f886efb52f3056f04054dafc2871494e4b",
+      "dominio": "brasil",
+      "particao": "validacao",
+      "historico_horas": 240,
+      "amostras": 395
+    },
+    {
+      "arquivo": "data\\processed\\sequencias_temporais_24h\\brasil_teste_L240_H24.npz",
+      "sha256": "79fb2aad71860ab5332c0e9d23d5a389df6a80d6b4d3cca416ba6a402f669fa2",
+      "dominio": "brasil",
+      "particao": "teste",
+      "historico_horas": 240,
+      "amostras": 193
+    }
+  ],
+  "contagens": [
+    {
+      "dominio": "australia",
+      "historico_horas": 24,
+      "particao": "treino",
+      "candidatas": 18297,
+      "rejeitadas_disponibilidade": 4,
+      "rejeitadas_alvos_apos_disponibilidade": 12807,
+      "janelas_observadas": 5486,
+      "emissoes_00h": 228
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 24,
+      "particao": "validacao",
+      "candidatas": 3677,
+      "rejeitadas_disponibilidade": 2,
+      "rejeitadas_alvos_apos_disponibilidade": 1074,
+      "janelas_observadas": 2601,
+      "emissoes_00h": 110
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 24,
+      "particao": "teste",
+      "candidatas": 3418,
+      "rejeitadas_disponibilidade": 8,
+      "rejeitadas_alvos_apos_disponibilidade": 1135,
+      "janelas_observadas": 2275,
+      "emissoes_00h": 99
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 48,
+      "particao": "treino",
+      "candidatas": 18105,
+      "rejeitadas_disponibilidade": 3,
+      "rejeitadas_alvos_apos_disponibilidade": 12640,
+      "janelas_observadas": 5462,
+      "emissoes_00h": 227
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 48,
+      "particao": "validacao",
+      "candidatas": 3509,
+      "rejeitadas_disponibilidade": 2,
+      "rejeitadas_alvos_apos_disponibilidade": 1073,
+      "janelas_observadas": 2434,
+      "emissoes_00h": 103
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 48,
+      "particao": "teste",
+      "candidatas": 3177,
+      "rejeitadas_disponibilidade": 8,
+      "rejeitadas_alvos_apos_disponibilidade": 1010,
+      "janelas_observadas": 2159,
+      "emissoes_00h": 93
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 168,
+      "particao": "treino",
+      "candidatas": 17311,
+      "rejeitadas_disponibilidade": 3,
+      "rejeitadas_alvos_apos_disponibilidade": 12005,
+      "janelas_observadas": 5303,
+      "emissoes_00h": 221
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 168,
+      "particao": "validacao",
+      "candidatas": 2669,
+      "rejeitadas_disponibilidade": 1,
+      "rejeitadas_alvos_apos_disponibilidade": 881,
+      "janelas_observadas": 1787,
+      "emissoes_00h": 76
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 168,
+      "particao": "teste",
+      "candidatas": 2284,
+      "rejeitadas_disponibilidade": 6,
+      "rejeitadas_alvos_apos_disponibilidade": 616,
+      "janelas_observadas": 1662,
+      "emissoes_00h": 70
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 240,
+      "particao": "treino",
+      "candidatas": 16879,
+      "rejeitadas_disponibilidade": 3,
+      "rejeitadas_alvos_apos_disponibilidade": 11716,
+      "janelas_observadas": 5160,
+      "emissoes_00h": 215
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 240,
+      "particao": "validacao",
+      "candidatas": 2284,
+      "rejeitadas_disponibilidade": 1,
+      "rejeitadas_alvos_apos_disponibilidade": 780,
+      "janelas_observadas": 1503,
+      "emissoes_00h": 63
+    },
+    {
+      "dominio": "australia",
+      "historico_horas": 240,
+      "particao": "teste",
+      "candidatas": 1924,
+      "rejeitadas_disponibilidade": 4,
+      "rejeitadas_alvos_apos_disponibilidade": 444,
+      "janelas_observadas": 1476,
+      "emissoes_00h": 62
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 24,
+      "particao": "treino",
+      "candidatas": 3426,
+      "rejeitadas_disponibilidade": 6,
+      "rejeitadas_alvos_apos_disponibilidade": 151,
+      "janelas_observadas": 3269,
+      "emissoes_00h": 150
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 24,
+      "particao": "validacao",
+      "candidatas": 852,
+      "rejeitadas_disponibilidade": 1,
+      "rejeitadas_alvos_apos_disponibilidade": 24,
+      "janelas_observadas": 827,
+      "emissoes_00h": 35
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 24,
+      "particao": "teste",
+      "candidatas": 712,
+      "rejeitadas_disponibilidade": 2,
+      "rejeitadas_alvos_apos_disponibilidade": 48,
+      "janelas_observadas": 662,
+      "emissoes_00h": 32
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 48,
+      "particao": "treino",
+      "candidatas": 3087,
+      "rejeitadas_disponibilidade": 5,
+      "rejeitadas_alvos_apos_disponibilidade": 137,
+      "janelas_observadas": 2945,
+      "emissoes_00h": 135
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 48,
+      "particao": "validacao",
+      "candidatas": 804,
+      "rejeitadas_disponibilidade": 1,
+      "rejeitadas_alvos_apos_disponibilidade": 24,
+      "janelas_observadas": 779,
+      "emissoes_00h": 33
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 48,
+      "particao": "teste",
+      "candidatas": 638,
+      "rejeitadas_disponibilidade": 2,
+      "rejeitadas_alvos_apos_disponibilidade": 48,
+      "janelas_observadas": 588,
+      "emissoes_00h": 27
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 168,
+      "particao": "treino",
+      "candidatas": 1788,
+      "rejeitadas_disponibilidade": 4,
+      "rejeitadas_alvos_apos_disponibilidade": 102,
+      "janelas_observadas": 1682,
+      "emissoes_00h": 79
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 168,
+      "particao": "validacao",
+      "candidatas": 564,
+      "rejeitadas_disponibilidade": 1,
+      "rejeitadas_alvos_apos_disponibilidade": 24,
+      "janelas_observadas": 539,
+      "emissoes_00h": 23
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 168,
+      "particao": "teste",
+      "candidatas": 290,
+      "rejeitadas_disponibilidade": 0,
+      "rejeitadas_alvos_apos_disponibilidade": 0,
+      "janelas_observadas": 290,
+      "emissoes_00h": 14
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 240,
+      "particao": "treino",
+      "candidatas": 1229,
+      "rejeitadas_disponibilidade": 2,
+      "rejeitadas_alvos_apos_disponibilidade": 65,
+      "janelas_observadas": 1162,
+      "emissoes_00h": 54
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 240,
+      "particao": "validacao",
+      "candidatas": 420,
+      "rejeitadas_disponibilidade": 1,
+      "rejeitadas_alvos_apos_disponibilidade": 24,
+      "janelas_observadas": 395,
+      "emissoes_00h": 17
+    },
+    {
+      "dominio": "brasil",
+      "historico_horas": 240,
+      "particao": "teste",
+      "candidatas": 193,
+      "rejeitadas_disponibilidade": 0,
+      "rejeitadas_alvos_apos_disponibilidade": 0,
+      "janelas_observadas": 193,
+      "emissoes_00h": 9
+    }
+  ]
+}

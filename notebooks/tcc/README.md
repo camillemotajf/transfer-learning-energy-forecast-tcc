@@ -5,6 +5,7 @@
 | [03_01_brasil_merge_horarios.ipynb](03_01_brasil_merge_horarios.ipynb) | Gera o CSV de cinco minutos com potência e energia somadas dos oito inversores e canais da estação | 1 |
 | [03_02_caracterizacao_dados_crus.ipynb](03_02_caracterizacao_dados_crus.ipynb) | Potência e meteorologia; Brasil a partir de Leopoldo_base_consolidada_5min.csv fornecido pelo pesquisador | 7 |
 | [03_03_tratamento_e_preprocessamento.ipynb](03_03_tratamento_e_preprocessamento.ipynb) | Tratamento horário em todos os blocos; Brasil com AP, Austrália com AP/GHI/temperatura/RH/vento; código e diagnóstico nas células | 10 |
+| [03_04_construcao_sequencias_temporais.ipynb](03_04_construcao_sequencias_temporais.ipynb) | Compara históricos 24/48/168/240 → 24 h; auditoria estrita dos 24 alvos, tensores e cobertura sazonal | 0 |
 | [04_01_estrategia_entrada_240h_24h.ipynb](04_01_estrategia_entrada_240h_24h.ipynb) | Sliding window: 240 horas anteriores → vetor das próximas 24 horas; treino horário e avaliação diária | 3 |
 
 O [mapa de figuras e tabelas](../../docs/tcc/02_mapa_notebooks_e_figuras.md) indica
@@ -107,3 +108,20 @@ Brasil: **1.227 janelas horárias de treino, 17 dias de validação e 9 dias de 
 As contagens dependem das fronteiras conservadoras herdadas. Janelas sobrepostas não
 são amostras independentes. O treino conserva máscaras dos alvos tratados; a avaliação
 principal utiliza somente vetores sem alteração, mantendo indicadores de soma parcial.
+
+## Construção de sequências 03_04
+
+O [03_04](03_04_construcao_sequencias_temporais.ipynb) compara quatro históricos
+com horizonte fixo de 24 horas, preservando as bases do 03_03. Exige todos os
+alvos observados nas três partições e disponibilidade do histórico na emissão.
+Exporta 24 NPZ com X, X_potencia, y, y_kw, timestamps, máscaras e cobertura.
+As partições 70/15/15 permanecem provisórias; a cobertura mensal ajuda a revisá-las.
+
+- [Auditoria e contagens](../../reports/tcc/03_04_sequencias_temporais/)
+- [Tensores](../../data/processed/sequencias_temporais_24h/)
+- [Análise dos resultados e limitações](../../reports/tcc/03_04_sequencias_temporais/resumo.md)
+
+O protocolo principal é horário para todas as partições. Também informa emissões
+à meia-noite e a interseção de emissões entre os quatro históricos. O 04_01 conserva
+seu protocolo anterior: treino com alvos tratados e avaliação diária. Suas contagens
+não são diretamente equivalentes às do 03_04. Nenhuma etapa treina modelos.
