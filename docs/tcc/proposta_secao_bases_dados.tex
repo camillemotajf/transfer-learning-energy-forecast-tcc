@@ -1,0 +1,99 @@
+% Proposta de substituição do capítulo anexado; não é um documento autônomo.
+% Referências em docs/tcc/referencias.bib. Não exige booktabs ou siunitx.
+% Antes da versão definitiva, consultar as pendências em revisao_secao_bases_dados.md.
+\chapter{Bases de Dados}
+\label{cap:bases_dados}
+
+\section{Caracterização das bases e definição das variáveis}
+
+O estudo utiliza duas instalações fotovoltaicas, com diferentes extensões de histórico e disponibilidade de variáveis. A instalação australiana constitui o domínio-fonte para o pré-treinamento, enquanto a instalação brasileira representa o domínio de destino. Essa organização permite investigar se o conhecimento aprendido na origem contribui para a previsão em uma instalação com menor histórico disponível. A melhoria por transferência constitui uma hipótese experimental, a ser avaliada em relação ao treinamento exclusivamente com dados brasileiros.
+
+\subsection{Base de dados australiana}
+\label{subsec:base_australiana}
+
+Os dados australianos são provenientes do Desert Knowledge Australia Solar Centre (DKASC), localizado em Alice Springs, e correspondem ao sistema identificado no arquivo como DKA-M9 A+C Phases. O arquivo original contém 1.256.431 linhas, entre 25 de julho de 2013 e 23 de agosto de 2025, com resolução nominal de cinco minutos. Sua estrutura compreende uma coluna temporal e 12 colunas numéricas, incluindo grandezas elétricas e meteorológicas.
+
+Foram selecionadas cinco variáveis candidatas: potência ativa, irradiância global horizontal, temperatura do ar, umidade relativa e velocidade do vento. Essa seleção estabelece correspondência com as grandezas utilizadas por Bak et al.\ \cite{bak2025transfer}. A potência ativa é a variável prevista; as demais constituem informações históricas auxiliares. As unidades e definições dos canais australianos são apresentadas no glossário do DKASC\ \cite{dkasc_glossary}. Em particular, GHI designa irradiância, expressa em W/m$^2$, e não energia solar acumulada.
+
+\subsection{Base de dados brasileira}
+\label{subsec:base_brasileira}
+
+A base brasileira corresponde a uma usina localizada em Goiás, aproximadamente nas coordenadas $-16{,}55^\circ$ de latitude e $-48{,}85^\circ$ de longitude, a 927 m de altitude. A instalação dispõe de oito inversores e de uma estação solarimétrica. O arquivo consolidado contém 73 colunas e uma grade de 105.120 instantes de cinco minutos, correspondente ao calendário de 2025. Esse número representa posições temporais esperadas, incluindo lacunas, e não a quantidade de medições efetivamente disponíveis.
+
+A variável de interesse é a potência ativa agregada dos inversores, registrada em \texttt{total\_active\_power\_w} e convertida de W para kW. Em cada instante, a agregação soma as leituras disponíveis; na ausência de todas elas, mantém-se o valor ausente. Como a soma pode conter menos de oito contribuições, preserva-se o indicador \texttt{n\_inversores\_potencia}. Assim, a existência de um valor agregado não comprova, isoladamente, a medição da totalidade da usina.
+
+A potência apresenta maior disponibilidade que as medições meteorológicas locais. A estação possui interrupções prolongadas, não foi identificada uma coluna de umidade relativa e a interpretação de alguns canais de irradiância requer confirmação de escala. Por essas razões, a configuração brasileira foi restrita ao histórico de potência. A incorporação de fontes meteorológicas externas permanece fora do escopo desta configuração e exigiria um protocolo próprio de compatibilização e validação.
+
+\begin{table}[htbp]
+\centering
+\caption{Variáveis selecionadas e correspondência entre os domínios.}
+\label{tab:variaveis_modelagem}
+\small
+\begin{tabular}{p{0.46\linewidth}p{0.16\linewidth}p{0.24\linewidth}}
+\hline
+Grandeza & Unidade & Domínio de utilização \\
+\hline
+Potência ativa (AP) & kW & Austrália e Brasil \\
+Irradiância global horizontal (GHI) & W/m$^2$ & Austrália \\
+Temperatura do ar & $^\circ$C & Austrália \\
+Umidade relativa (RH) & \% & Austrália \\
+Velocidade do vento & m/s & Austrália \\
+\hline
+\end{tabular}
+\par\smallskip
+{\footnotesize Fonte: elaboração própria; unidades australianas conforme o DKASC.}
+\end{table}
+
+\section{Tratamento e construção das séries horárias}
+\label{sec:tratamento_bases}
+
+O tratamento compreende ordenação temporal, agregação horária, identificação de inconsistências, preenchimento de lacunas isoladas e identificação de blocos contínuos. O protocolo foi adaptado do trabalho e da implementação de Bak et al.\ \cite{bak2025transfer}; não se pressupõe reprodução integral de seus resultados. A separação entre caracterização dos dados e preparação das entradas também é adotada por Ren et al.\ \cite{ren2024dctcn}. Neste estudo, os procedimentos efetivos e suas saídas são documentados nos notebooks de pré-processamento e de construção das janelas.
+
+No domínio brasileiro, os horários registrados em UTC foram convertidos para o horário local de Brasília antes da organização por dia. Na Austrália, preservou-se a convenção temporal do arquivo de origem. A média aritmética das observações disponíveis em cada hora foi utilizada para construir as séries horárias. Portanto, a grandeza prevista é potência média horária, em kW, e não energia diária. Uma hora sem observações permaneceu ausente. O protocolo atual aceita médias calculadas com menos de 12 observações de cinco minutos, preservando a contagem de contribuições para auditoria. Essa condição deve ser considerada na interpretação da qualidade dos alvos.
+
+Os filtros australianos identificam GHI acima de 2.000 W/m$^2$, temperatura abaixo de $-10\,^\circ$C, velocidade do vento negativa e umidade fora do intervalo de 0 a 100\%. Também são verificadas incompatibilidades entre potência e GHI e sequências prolongadas de potência constante não nula. Os limites de temperatura e de incompatibilidade seguem o código disponibilizado pelos autores, que apresenta diferenças em relação ao pseudocódigo do artigo. No Brasil, aplicam-se os filtros elétricos compatíveis com a configuração univariada; a indisponibilidade meteorológica não constitui critério de exclusão da potência.
+
+Nos filtros elétricos, a potência é expressa em relação ao máximo horário observado no período de referência. Valores normalizados entre $-0{,}05$ e zero são ajustados para zero; valores inferiores são invalidados. Na Austrália, também se invalida a potência normalizada menor ou igual a $0{,}05$ quando GHI supera 200 W/m$^2$, ou superior a $0{,}1$ quando GHI é inferior a 10 W/m$^2$. A detecção de repetição invalida os pontos a partir da décima primeira leitura consecutiva idêntica e não nula. O uso do máximo do período caracteriza uma triagem retrospectiva, distinta da normalização para os modelos; sua influência deve ser verificada antes de interpretar o protocolo como uma simulação operacional estritamente prospectiva.
+
+Após os filtros, dias envolvidos em lacunas de duas ou mais horas consecutivas em qualquer variável exigida são reprovados. Apenas lacunas isoladas de uma hora, delimitadas por valores válidos, são preenchidas por interpolação linear, sem extrapolação. Mantêm-se as datas originais e os indicadores de alteração, sem aproximar artificialmente observações separadas por interrupções. Valores nulos de potência são preservados, exceto quando incompatíveis com os filtros especificados, pois podem representar períodos sem geração.
+
+\section{Critério de seleção do período de estudo}
+\label{sec:recorte_temporal}
+
+O período aproveitável resulta da aplicação dos critérios de qualidade e disponibilidade, em vez da escolha de datas por desempenho preditivo. Na Austrália, exige-se disponibilidade simultânea das cinco variáveis selecionadas, após o tratamento permitido. No Brasil, exige-se disponibilidade da potência ativa. Os registros remanescentes são organizados em blocos horários contínuos, preservando as interrupções entre eles.
+
+\begin{table}[htbp]
+\centering
+\caption{Extensão temporal dos arquivos e dos dados horários elegíveis após o tratamento.}
+\label{tab:periodos_estudo}
+\small
+\begin{tabular}{p{0.36\linewidth}p{0.27\linewidth}p{0.27\linewidth}}
+\hline
+Característica & Austrália & Brasil \\
+\hline
+Período do arquivo de entrada & 25/07/2013 a 23/08/2025 & Calendário de 2025 \\
+Primeira e última hora elegíveis & 26/07/2013 a 20/10/2016 & 30/01/2025 a 30/12/2025 \\
+Horas elegíveis & 26.710 & 6.310 \\
+Dias civis completos elegíveis & 1.111 & 261 \\
+Blocos contínuos & 28 & 30 \\
+Maior bloco contínuo & 258 dias & 33 dias \\
+\hline
+\end{tabular}
+\par\smallskip
+{\footnotesize Fonte: saídas do notebook de pré-processamento. As datas delimitam o conjunto de blocos e não um intervalo integralmente contínuo. As horas elegíveis incluem trechos de dias incompletos.}
+\end{table}
+
+Embora o arquivo australiano se estenda até 2025, a exigência de disponibilidade conjunta das cinco variáveis restringe os blocos elegíveis ao intervalo de 2013 a 2016, especialmente em função da disponibilidade da velocidade do vento. Esse recorte é específico da configuração multivariada adotada e não significa ausência de potência nos anos posteriores. Uma configuração baseada somente em potência poderia admitir outro período, cuja utilização exigiria uma análise separada.
+
+No Brasil, foram preservados todos os blocos elegíveis de potência, e não apenas o maior trecho contínuo. Os 33 dias correspondem ao maior bloco individual; o conjunto tratado contém 261 dias civis completos, distribuídos em diferentes blocos. A manutenção desses blocos amplia o histórico aproveitável sem interpolar interrupções prolongadas. Entretanto, nem toda hora elegível poderá compor uma amostra supervisionada, pois a janela de entrada e seu horizonte de previsão precisam estar integralmente disponíveis.
+
+\section{Organização dos dados para previsão do dia seguinte}
+\label{sec:organizacao_supervisionada}
+
+A estratégia de entrada considera as 240 horas anteriores para prever um vetor de 24 potências médias horárias, seguindo os comprimentos de entrada e saída adotados por Bak et al.\ \cite{bak2025transfer}. Assim, prevê-se a curva do dia seguinte, em vez de um único valor diário. As janelas são construídas exclusivamente dentro de um mesmo bloco contínuo e de uma mesma partição temporal. O treinamento utiliza avanço de uma hora; na validação e no teste, a emissão ocorre uma vez por dia, à meia-noite, sem sobreposição dos dias previstos.
+
+A divisão cronológica reserva aproximadamente 70\% das horas elegíveis para treinamento, 15\% para validação e 15\% para teste, antes da construção das janelas. No treinamento são aceitos alvos tratados, com identificação das alterações. Na validação e no teste, exigem-se 24 alvos horários sem alteração pelo tratamento, o que não equivale a garantir cobertura integral dos registros de cinco minutos ou dos oito inversores. As interpolações do histórico somente são admitidas quando seus pontos de apoio já estariam disponíveis no instante de emissão.
+
+Na representação multivariada, cada entrada australiana possui dimensão $240\times5$; a entrada brasileira possui dimensão $240\times1$. Essas representações não são diretamente intercambiáveis em uma mesma camada de entrada. Para a comparação principal com entradas comuns entre os domínios, utiliza-se o histórico de potência de dimensão $240\times1$ em ambos. O uso das cinco variáveis na origem requer uma adaptação explícita da arquitetura, a ser descrita na metodologia dos modelos.
+
+A preparação atual utiliza potência dividida por uma capacidade de referência e padronização das variáveis meteorológicas com estatísticas estimadas apenas no treinamento. Foram parametrizados 24 kW na Austrália e 1.000 kW no Brasil; esses valores são referências adotadas no experimento e dependem de confirmação técnica para a versão definitiva. A definição dos modelos, as estratégias de ajuste fino e a comparação de desempenho são apresentadas no capítulo de metodologia experimental. Os dicionários completos de colunas, os mapas de disponibilidade e as contagens detalhadas de exclusão permanecem no material de apoio, assegurando rastreabilidade sem reproduzir toda a auditoria no corpo do texto.
