@@ -1,0 +1,82 @@
+{
+  "objetivo": "Pre-treinamento australiano de DC-TCN adaptada, sem fine-tuning brasileiro",
+  "artigo_base": "Ren et al., Energies 2024, DOI 10.3390/en17030698",
+  "adaptacao": "Cabeca auxiliar univariada supervisionada; nao e replica exata do artigo",
+  "data_utc": "2026-10-30T00:45:42.127674+00:00",
+  "dispositivo": "cuda",
+  "pytorch": "2.14.1+cu126",
+  "fonte": "Australia, tensores do 03_04",
+  "arquivos_fonte": {
+    "treino": {
+      "path": "c:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\processed\\sequencias_temporais_24h\\australia_treino_L240_H24.npz",
+      "sha256": "d97f026747d62488174d3db365877b8c57abeee66192cdc25e9c80fe1218a0d7"
+    },
+    "validacao": {
+      "path": "c:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\processed\\sequencias_temporais_24h\\australia_validacao_L240_H24.npz",
+      "sha256": "5f9ee0734723b46010eb9f2ed6dde92d49adeb2e7a261655d62368f40daf73cf"
+    }
+  },
+  "config": {
+    "hist": 240,
+    "horizonte": 24,
+    "n_features": 5,
+    "dim": 64,
+    "heads": 4,
+    "blocks": 6,
+    "kernel": 3,
+    "dropout": 0.1,
+    "lambda_uni": 0.5,
+    "normalizacao_potencia": {
+      "metodo": "minmax_somente_treino_australia",
+      "min_kw": 0.0,
+      "max_kw": 21.62686586380005,
+      "amplitude_kw": 21.62686586380005,
+      "origem_minmax": "X_potencia e y_kw dos arquivos de treino do 03_04",
+      "fator_desfazer_03_04_kw": 24.0,
+      "avaliacao_fora_intervalo": "nao_clipa"
+    },
+    "features": [
+      "Global_Horizontal_Radiation",
+      "Weather_Temperature_Celsius",
+      "Weather_Relative_Humidity",
+      "Wind_Speed",
+      "Active_Power"
+    ],
+    "seed": 42
+  },
+  "hiperparametros": {
+    "batch": 16,
+    "epocas_max": 100,
+    "paciencia": 12,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "huber_delta": 0.05
+  },
+  "amostras": {
+    "treino": 5160,
+    "validacao": 1503
+  },
+  "melhor_epoca_fusao": 45,
+  "melhor_epoca_univariado": 54,
+  "normalizacao_potencia": {
+    "metodo": "minmax_somente_treino_australia",
+    "min_kw": 0.0,
+    "max_kw": 21.62686586380005,
+    "amplitude_kw": 21.62686586380005,
+    "origem_minmax": "X_potencia e y_kw dos arquivos de treino do 03_04",
+    "fator_desfazer_03_04_kw": 24.0,
+    "avaliacao_fora_intervalo": "nao_clipa"
+  },
+  "capacidade_nominal_utilizada": false,
+  "teste_final_executado": false,
+  "arquivos_gerados": [
+    "best_fusao.pt",
+    "best_univariado_completo.pt",
+    "pre_treinado_univariado_para_tl.pt",
+    "historico_treinamento.csv",
+    "metricas_validacao_australia.csv",
+    "normalizacao_potencia_treino.json",
+    "curvas_treino.png",
+    "exemplo_previsao_validacao.png"
+  ]
+}

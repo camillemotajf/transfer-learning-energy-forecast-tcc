@@ -1,0 +1,10 @@
+seed,modelo,ganho_mae_vs_scratch_pct
+42,Persistencia_24h,-24.785281471427844
+42,Linear_scratch,-9.063554590738775
+42,PatchTST_scratch,0.0
+42,PatchTST_uni_source_only,-10.399058738963983
+42,PatchTST_uni_head,3.0378890629826683
+42,PatchTST_uni_full,5.466221783487091
+42,PatchTST_multi_source_only,-4.303988339304632
+42,PatchTST_multi_head,-0.5715627581128757
+42,PatchTST_multi_full,2.3749869637726517

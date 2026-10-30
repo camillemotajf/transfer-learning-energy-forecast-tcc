@@ -1,0 +1,9 @@
+{
+  "metodo": "minmax_somente_treino_australia",
+  "min_kw": 0.0,
+  "max_kw": 21.62686586380005,
+  "amplitude_kw": 21.62686586380005,
+  "origem_minmax": "X_potencia e y_kw dos arquivos de treino do 03_04",
+  "fator_desfazer_03_04_kw": 24.0,
+  "avaliacao_fora_intervalo": "nao_clipa"
+}

@@ -1,0 +1,8 @@
+{
+  "metodo": "minmax_historico_e_alvos_treino_brasileiro",
+  "min_kw": 0.0,
+  "max_kw": 1007.8729391098022,
+  "amplitude_kw": 1007.8729391098022,
+  "fator_antigo_apenas_reversao_kw": 1000.0,
+  "clipping": false
+}

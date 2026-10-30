@@ -1,0 +1,50 @@
+{
+  "estudo": "03_06 Transfer Learning univariado AU→BR",
+  "timestamp_utc": "2026-10-30T01:38:44.242629+00:00",
+  "historico_h": 240,
+  "horizonte_h": 24,
+  "seeds": [
+    42
+  ],
+  "modelos": [
+    "Persistencia_24h",
+    "CNN_scratch",
+    "CNN_LSTM_scratch",
+    "TCN_scratch",
+    "TCN_source_only",
+    "TCN_TL_head",
+    "TCN_TL_full"
+  ],
+  "normalizacao_brasileira": {
+    "metodo": "minmax_historico_e_alvos_treino_brasileiro",
+    "min_kw": 0.0,
+    "max_kw": 1007.8729391098022,
+    "amplitude_kw": 1007.8729391098022,
+    "fator_antigo_apenas_reversao_kw": 1000.0,
+    "clipping": false
+  },
+  "checkpoint_australia": "c:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\reports\\tcc\\03_05_pre_treinamento_dc_tcn\\L240_H24_minmax_treino_seed42\\pre_treinado_univariado_para_tl.pt",
+  "checkpoint_au_sha256": "dccf665c8a8e6c0fcd5334aedbc9d3c556f9755ab9e95573f5211790cd0eee80",
+  "npz_brasil_treino": "c:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\processed\\sequencias_temporais_24h\\brasil_treino_L240_H24.npz",
+  "npz_brasil_treino_sha256": "e5cd3bb1cd928d9e4b82c0d82ebabe1cdfa442033fcb316752d58dba808931b8",
+  "npz_brasil_validacao": "c:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\data\\processed\\sequencias_temporais_24h\\brasil_validacao_L240_H24.npz",
+  "npz_brasil_validacao_sha256": "3f869bf7f59f8708c6e4951e5fc352f886efb52f3056f04054dafc2871494e4b",
+  "npz_teste_lido": false,
+  "config_treinamento": {
+    "max_epocas": 50,
+    "paciencia": 10,
+    "batch": 16,
+    "lr_base": 0.001,
+    "lr_encoder_tl": 0.0001,
+    "lr_cabeca_tl": 0.0005,
+    "loss": "Huber",
+    "delta": 0.05
+  },
+  "torch": "2.14.1+cu126",
+  "python": "3.14.2",
+  "comparadores_artigo": [
+    "CNN",
+    "CNN-LSTM"
+  ],
+  "referencia": "https://doi.org/10.3390/en17030698"
+}

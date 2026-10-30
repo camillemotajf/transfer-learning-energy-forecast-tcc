@@ -1,0 +1,8 @@
+{
+  "min_kw": 0.0,
+  "max_kw": 21.62686586380005,
+  "amplitude_kw": 21.62686586380005,
+  "fator_original_03_04_kw": 24.0,
+  "metodo": "minmax_treino_historicos_e_alvos",
+  "clipping": false
+}

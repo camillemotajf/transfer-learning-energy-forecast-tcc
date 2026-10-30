@@ -1,0 +1,42 @@
+{
+  "etapa": "03_08",
+  "data_utc": "2026-10-30T03:00:14.159375+00:00",
+  "config_patchtst": {
+    "hist": 240,
+    "horizon": 24,
+    "patch_len": 24,
+    "stride": 8,
+    "dim": 64,
+    "heads": 4,
+    "layers": 2,
+    "ff_dim": 128,
+    "dropout": 0.1
+  },
+  "seeds": [
+    42
+  ],
+  "max_epocas": 50,
+  "normalizacao_brasil": {
+    "min_kw": 0.0,
+    "max_kw": 1007.8729391098022,
+    "amplitude_kw": 1007.8729391098022,
+    "fator_original_03_04_kw": 1000.0,
+    "metodo": "minmax_treino_historicos_e_alvos",
+    "clipping": false
+  },
+  "checkpoint_australia": {
+    "(42, 'univariado')": {
+      "arquivo": "c:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\reports\\tcc\\03_07_pretreino_patchtst\\L240_H24_seed42\\patchtst_australia_univariado.pt",
+      "sha256": "10866d0e9e89d15a31a45baba1a5b49c11f73275111c95060e0b10e1429fbb9c"
+    },
+    "(42, 'multivariado')": {
+      "arquivo": "c:\\Users\\Camille\\Documents\\UFJF\\TCC\\Leopoldo\\reports\\tcc\\03_07_pretreino_patchtst\\L240_H24_seed42\\patchtst_australia_multivariado.pt",
+      "sha256": "2e1ed64dbc366dcd66674018d929b55e45ad28063b39aea1ac87755e045dc3f5"
+    }
+  },
+  "npz_brasil": {
+    "treino": "e5cd3bb1cd928d9e4b82c0d82ebabe1cdfa442033fcb316752d58dba808931b8",
+    "validacao": "3f869bf7f59f8708c6e4951e5fc352f886efb52f3056f04054dafc2871494e4b"
+  },
+  "teste_bloqueado": true
+}

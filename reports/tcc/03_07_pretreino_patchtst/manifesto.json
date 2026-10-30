@@ -1,0 +1,36 @@
+{
+  "etapa": "03_07",
+  "data_utc": "2026-10-30T02:54:50.310872+00:00",
+  "config": {
+    "hist": 240,
+    "horizon": 24,
+    "patch_len": 24,
+    "stride": 8,
+    "dim": 64,
+    "heads": 4,
+    "layers": 2,
+    "ff_dim": 128,
+    "dropout": 0.1
+  },
+  "seeds": [
+    42
+  ],
+  "epochs_max": 65,
+  "early_stopping": 12,
+  "lambda_ssl": 0.25,
+  "mask_ratio": 0.25,
+  "normalizacao_treino_au": {
+    "min_kw": 0.0,
+    "max_kw": 21.62686586380005,
+    "amplitude_kw": 21.62686586380005,
+    "fator_original_03_04_kw": 24.0,
+    "metodo": "minmax_treino_historicos_e_alvos",
+    "clipping": false
+  },
+  "arquivos_03_04": {
+    "treino": "d97f026747d62488174d3db365877b8c57abeee66192cdc25e9c80fe1218a0d7",
+    "validacao": "5f9ee0734723b46010eb9f2ed6dde92d49adeb2e7a261655d62368f40daf73cf"
+  },
+  "descricao": "PatchTST compartilhado com reconstrucao mascarada historica; previsao sempre via potencia",
+  "teste_nao_utilizado": true
+}
